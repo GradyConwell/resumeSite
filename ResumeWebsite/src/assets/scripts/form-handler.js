@@ -10,42 +10,10 @@ document.getElementById("email-form").addEventListener("submit", async function 
         return;
     }
 
-    try {
-        console.log("Submitting email:", email);
-
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyr-c6rpCTvLEw-Rvgu90No9PSqUGLAxhTdV-XRFQGCK6E8r1TpbFPHsJya6wSPv46I/exec', {
-            method: 'POST',
-            mode: "cors",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
-        });
-
-        console.log("Response status:", response.status);
-
-        // Read the response as text first
-        const responseText = await response.text();
-        console.log("Raw response text:", responseText);
-
-        // Try to parse JSON
-        let responseData;
-        try {
-            responseData = JSON.parse(responseText);
-        } catch {
-            throw new Error("Server did not return valid JSON.");
-        }
-
-        console.log("Parsed response data:", responseData);
-
-        if (response.ok && responseData.status === "success") {
-            messageDiv.innerText = "Success! Download my resume below.";
-            setTimeout(() => {
-                window.location.href = "assets/pdf/Grady_Conwell_Resume_2025_03.pdf";
-            }, 1000);
-        } else {
-            throw new Error(responseData.message || "Error submitting email.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        messageDiv.innerText = `Error: ${error.message || "An unexpected error occurred."}`;
-    }
+    // Email should be submitted through netlify, but, for now, we'll just log it.
+    console.log("Submitting email:", email);
+    messageDiv.innerText = "Success! Download my resume below.";
+        setTimeout(() => {
+            window.location.href = "assets/pdf/Grady_Conwell_Resume_2025_03.pdf";
+        }, 1000);
 });
