@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact CNC Lathe - Grady Conwell</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/images/logo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Right Section: Resume Button -->
+        <div class="navbar-right">
+            <button id="popup-button" class="navbar-resume-button">View My Resume</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Popup Form -->
+<div id="popup-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 8px; color: black; width: 300px; text-align: center;">
+    <form id="email-form">
+        <label for="email" style="color: #403B3B;">Almost There! Let’s Stay in Touch.</label>
+        <input type="email" id="email" placeholder="Enter your email" required style="margin: 10px 0; padding: 8px; width: calc(100% - 20px); box-sizing: border-box;" />
+        <button type="submit" class="popup-form-button">Submit</button>
+    </form>
+</div>
+
+<script>
+    const popupButton = document.getElementById('popup-button');
+    const popupForm = document.getElementById('popup-form');
+
+    popupButton.addEventListener('click', () => {
+        popupForm.style.display = 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target !== popupForm && !popupForm.contains(event.target) && event.target !== popupButton) {
+            popupForm.style.display = 'none';
+        }
+    });
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+
+
+
+    <main class="content-container">
+        <h1>Compact CNC Lathe</h1>
+<div class="project-content-wrapper">
+    <p>
+        This page is still under construction! Check back soon. In the meantime, enjoy some pictures!
+    </p>
+    <p> 
+    <img src="/assets/images/lathe_wip_control_cabinet.png" alt="Prototype Pen" title="Prototype Pen" class="responsive-image">
+    <img src="/assets/images/lathe_standing_on_cross_slide.jpeg" alt="Picture of Grady standing on one foot atop the prototype lathe cross slide." title="Prototype Pen" class="responsive-image">
+    <p>
+        This project is...
+    </p>
+    <img src="/assets/images/lathe_wip_cross_slide.png" alt="Prototype Pen, Milling J Slot" title="Prototype Pen" class="responsive-image">
+    <p>
+        More talking...
+    <p>
+    <img src="/assets/images/lathe_first_assembled_z_axis.jpeg" alt="Two flat, etched aluminum parts for a SME shop tool project" title="Prototype Pen" class="responsive-image">
+</div>
+    </main>
+
+    <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
+    <p>© 2025 Grady Conwell</p>
+</footer>
+</body>
+</html>
