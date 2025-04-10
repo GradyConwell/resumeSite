@@ -1,0 +1,148 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    background-color: var(--color-primary);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add spacing between the logo and the links */
+}
+
+.logo-svg {
+    height: 40px; /* Adjust size as needed */
+    width: auto;
+    fill: var(--color-hover); /* Color the SVG white */
+    filter: none; /* Ensure the SVG appears as the accent color */
+    fill: var(--color-accent); /* Set the SVG color to the accent color */
+}
+
+.navbar-logo img.logo-svg {
+    height: 40px; /* Adjust size as needed */
+    width: auto;
+    fill: var(--color-hover); /* Color the SVG white */
+    fill: var(--color-accent); /* Set the SVG color to the accent color */
+}
+
+.navbar-logo img {
+    height: 40px;
+    cursor: pointer;
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    margin: 0 15px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--color-accent);
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.navbar-resume-button {
+    padding: 10px 20px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 25px;
+}
+
+.navbar-resume-button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* Default: Show text, hide icons */
+.navbar-icon {
+    display: none; /* Hide icons by default */
+}
+
+.navbar-text {
+    display: inline; /* Show text by default */
+}
+
+/* Style for the icons */
+.navbar-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+    fill: var(--color-text-light); /* Default color */
+    transition: fill 0.3s ease;
+}
+
+.navbar-links a:hover .navbar-icon {
+    fill: var(--color-accent); /* Change color on hover */
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 575px) {
+    .navbar-icon {
+        display: inline; /* Show icons on small screens */
+        height: 24px;
+        width: 24px;
+        margin-right: 0; /* Remove spacing for icons */
+        vertical-align: middle;
+        fill: var(--color-text-light); /* Default color */
+        transition: fill 0.3s ease;
+    }
+
+    .navbar-text {
+        display: none; /* Hide text on small screens */
+    }
+
+    .navbar-links {
+        justify-content: space-around; /* Space out the icons */
+        width: 100%; /* Ensure icons take up full width */
+    }
+
+    .navbar-links li {
+        margin: 0; /* Remove extra margin */
+    }
+}

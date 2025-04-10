@@ -1,0 +1,31 @@
+/* Center and add padding around the injected md content */
+.content-container {
+    width: 80%;          
+    max-width: 800px;         
+    margin: 50px auto;        /* Add margin to create blank space above and below */
+    padding: 10px 60px;       /* Apply less padding to the top and bottom, and keep the left and right padding */
+    background-color: var(--color-primary);   
+    color: var(--color-text-light);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;
+    line-height: 1.5;          /* Increase line spacing for better readability */        
+    margin-top: 80px; /* Add margin-top equal to the navbar height */
+}
+
+/* Style for md elements like headings and paragraphs */
+.content-container h1, .content-container h2, .content-container h3 {
+    color: var(--color-accent);
+    line-height: 1.5;
+}
+
+.content-container p {
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        width: 80%;          /* Increase width on smaller screens */
+        padding: 15px 35px;       /* Reduce padding for small screens */
+    }
+}

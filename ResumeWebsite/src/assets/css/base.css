@@ -1,0 +1,55 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter';
+    text-align: left;
+    background-color: var(--color-base);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 15;
+    justify-content: space-between;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    background-color: #3E6E8C;
+    color: white;
+    padding: 10px;
+}
+
+.title-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Make the title card take up the full viewport height */
+    text-align: center; /* Center the text */
+    background-color: var(--color-primary); /* Optional: Set a background color */
+    color: var(--color-text-light); /* Use your defined text color */
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+}

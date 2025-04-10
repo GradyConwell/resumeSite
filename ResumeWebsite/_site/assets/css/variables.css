@@ -1,0 +1,8 @@
+:root {
+    --color-base: #F2F2F2;
+    --color-primary: #F2F2F2;
+    --color-accent: #3E6E8C; /* Accent color for headings and links */
+    --color-text: #0D0C0C; /* Default text color */
+    --color-text-light: #403B3B; /* Alt text color */
+    --color-hover: #0476D9; /* Hover color for buttons/links */
+}
