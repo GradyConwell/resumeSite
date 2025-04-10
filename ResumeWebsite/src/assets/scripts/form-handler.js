@@ -1,19 +1,27 @@
-document.getElementById("email-form").addEventListener("submit", async function (e) {
-    e.preventDefault();
+document.getElementById('email-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+  
+    const form = event.target;
+  
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON
 
-    const emailInput = document.getElementById("email");
-    const messageDiv = document.getElementById("message");
-    const email = emailInput.value.trim();
-
-    if (!email || !email.includes("@") || !email.includes(".")) {
-        messageDiv.innerText = "Please enter a valid email address.";
-        return;
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' // Notably, not converting to JSON here does not work. This is important
+        },
+        body: JSON.stringify(data)
+      });
+  
+      // Show the PDF to the user   
+      window.location.href = "assets/pdf/Grady_Conwell_Resume_2025_03.pdf";  
+  
+    } catch (error) {
+      alert('There was an error, please try again.');
+      console.error(error);
     }
-
-    // Email should be submitted through netlify, but, for now, we'll just log it.
-    console.log("Submitting email:", email);
-    messageDiv.innerText = "Success! Download my resume below.";
-        setTimeout(() => {
-            window.location.href = "assets/pdf/Grady_Conwell_Resume_2025_03.pdf";
-        }, 1000);
-});
+  });
+  
