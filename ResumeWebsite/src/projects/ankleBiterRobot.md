@@ -4,6 +4,7 @@ description: "FIRST Competition Robot"
 image: "assets/images/robot_sliceRobotnobacklight.png"
 permalink: "/projects/anklebiter/"
 layout: "projectLayout.html"
+priority: 2
 ---
 
 # AnkleBiter (2023)

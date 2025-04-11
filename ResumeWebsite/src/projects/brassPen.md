@@ -4,6 +4,7 @@ description: "A simple gel pen, designed and machined as a gift for a friend."
 image: "assets/images/PrototypePen.png"
 permalink: "/projects/2023_proto_pen/"
 layout: "projectLayout.html"
+priority: 4
 ---
 
 # First Pen (2023)

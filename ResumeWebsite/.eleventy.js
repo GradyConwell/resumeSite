@@ -25,7 +25,9 @@ module.exports = function (eleventyConfig) {
 
     // Project Card Collection 
     eleventyConfig.addCollection("projects", function (collectionApi) {
-        return collectionApi.getFilteredByGlob("./src/projects/*.md");
+        return collectionApi.getFilteredByGlob("./src/projects/*.md").sort((a, b) => {
+            return a.data.priority - b.data.priority; // Sort by priority (ascending)
+        });
     });
 
     return {
