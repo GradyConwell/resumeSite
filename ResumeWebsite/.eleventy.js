@@ -1,13 +1,16 @@
 const fs = require("fs");
 const markdownIt = require("markdown-it");
 const markdownItAttrs = require("markdown-it-attrs");
+const markdownItTaskLists = require("markdown-it-task-lists");
 
 module.exports = function (eleventyConfig) {
     // Copy the entire 'assets' directory to the output
     eleventyConfig.addPassthroughCopy("src/assets");
 
-    // Initialize Markdown-It
-    const md = markdownIt({ html: true }).use(markdownItAttrs);
+    // Initialize Markdown-It with plugins
+    const md = markdownIt({ html: true })
+        .use(markdownItAttrs)
+        .use(markdownItTaskLists, { enabled: true });
 
     // Add a shortcode to include and render Markdown files
     eleventyConfig.addShortcode("markdownInclude", function (filePath) {
@@ -19,7 +22,7 @@ module.exports = function (eleventyConfig) {
         html: true,
         breaks: true,
         linkify: true
-    });
+    }).use(markdownItTaskLists, { enabled: true });
 
     eleventyConfig.setLibrary("md", markdownLib);
 
