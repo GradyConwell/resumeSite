@@ -44,7 +44,8 @@ document.getElementById('email-form').addEventListener('submit', async function 
             Organization: ${userOrg}`);
 
     // Wrap up data in a nice little box
-    const discordWebhookUrl = 'https://discord.com/api/webhooks/1359770334537973800/zn3uUL7D0WU4JPuC9ymVGuWI9EIHtq_DZweDW_8eQJqdtjAfbHY_SMwYx6jBmHx8fdwi';
+    const discordWebhookUrl = 'https://discord.com/api/webhooks/1364687475422924871/fPTurGx4lkCEpndZ7XdiF1bJU823MkrVr0JxR1h-rCr7-iEyn35TTCZmnc3_CN4JqRXM'
+    
     const discordPayload = {
       content: `New email submission: ${data.email}
       City: ${userCity}

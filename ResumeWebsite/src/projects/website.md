@@ -65,6 +65,6 @@ const discordResponse = await fetch(discordWebhookUrl, {
     body: JSON.stringify(discordPayload)
 });
         </pre>
-        <em>An excerpt from the form handling function.</em>
+        <em>An excerpt from the form handling function. May have some issues displaying on mobile, working on fix. </em>
     </div>
 </div>
