@@ -43,8 +43,8 @@ document.getElementById('email-form').addEventListener('submit', async function 
             Postal Code: ${userPostal}
             Organization: ${userOrg}`);
 
-    // Send data to the Discord webhook
-    const discordWebhookUrl = 'https://discord.com/api/webhooks/1359770334537973800/zn3uUL7D0WU4JPuC9ymVGuWI9EIHtq_DZweDW_8eQJqdtjAfbHY_SMwYx6jBmHx8fdwi'; // Replace with your Discord webhook URL
+    // Wrap up data in a nice little box
+    const discordWebhookUrl = 'https://discord.com/api/webhooks/1359770334537973800/zn3uUL7D0WU4JPuC9ymVGuWI9EIHtq_DZweDW_8eQJqdtjAfbHY_SMwYx6jBmHx8fdwi';
     const discordPayload = {
       content: `New email submission: ${data.email}
       City: ${userCity}
@@ -53,7 +53,7 @@ document.getElementById('email-form').addEventListener('submit', async function 
       Postal Code: ${userPostal}
       Organization: ${userOrg}`
     };
-
+    // Send data to the Discord webhook
     const discordResponse = await fetch(discordWebhookUrl, {
       method: 'POST',
       headers: {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnkleBiter (2023) - Grady Conwell</title>
+    <title>Portfolio Website - Grady Conwell</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
@@ -78,34 +78,63 @@
 <script src="/assets/scripts/form-handler.js"></script>
 
     <main class="content-container">
-        <h1>AnkleBiter (2023)</h1>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
-<iframe src="https://icloud11636.autodesk360.com/shares/public/SH35dfcQT936092f0e43955c17b2f02d9e36?mode=embed" frameborder="0" allowfullscreen loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        <h1>Portfolio Website</h1>
+<p>While this project is undoubtedly still ongoing, I am quite proud of some of the tricks I employed to create a modular, simple, and most importantly, not hideous website.</p>
+<h2>A Quick Overview</h2>
+<p>I’m using the static site generator Eleventy, which enables me to template a significant portion of the tedious code, allowing me to concentrate on adding content (like this!).</p>
+<p>For example, each project page is a simple markdown file which is automatically transformed into it's own page and corresponding card using a template. All I have to do in order to add another page is create a new file, and specify a handful of parameters that power the templating.</p>
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+    <div style="text-align: left;">
+        <pre>
+---
+title: "AnkleBiter (2023)"
+description: "FIRST Competition Robot"
+image: "assets/images/robot_sliceRobotnobacklight.png"
+permalink: "/projects/anklebiter/"
+layout: "projectLayout.html"
+priority: 2
+---
+        </pre>
+        <em>An example of the header for each project file.</em>
+    </div>
 </div>
-<h2>Summary</h2>
-<p>The AnkleBiter robot was built for the 2023-24 FIRST Tech Challenge competition season. In my role as a hardware lead, I delegated tasks, and designed parts for the robot.</p>
-<p>My team captain directed me to design a novel swerve-type drivetrain system, where each wheel is indepedent, and capable of infinite steering. To accomplish this, I worked closely with Josh, our software lead, to design the motion control system required to operate a differential swerve drivetrain. It took several months of constant iteration to create the two competition ready swerve drive modules.</p>
-<p>While exciting, and time consuming, the swerve drivetrain didn't end up being the most exciting part of AnkleBiter. Instead, the powerful robot arm affixed to the front defined our competitiveness.</p>
-<h2>AnkleBiter Lifter</h2>
-<p>A key element of AnkleBiter's success was its versatile and efficient lifting mechanism, designed to manipulate cones. The primary goals for the lifter were high stiffness, minimal reliance on complex linear motion components, low cost, and the use of easily sourced or fabricated parts.</p>
-<p>My initial approach explored a linkage system inspired by desk lamps. However, I encountered issues with a &quot;dead-zone&quot; due to overextension and backlash, leading to a switch to a more direct drive system.</p>
-<p>The final iteration utilized three motors for speed and power: two at the base (shoulder) with high gearing and one faster motor at the elbow. To maintain consistent claw orientation, a servo-driven &quot;wrist&quot; (C stage) was implemented. Notably, the elbow joint incorporated 3D-printed gears made from ABS and Nylon, where I leveraged the anisotropic properties of FDM 3D prints with special curved teeth.</p>
-<p>For cone manipulation, I developed Pinchy. This entirely 3D-printed, modular claw required no custom metal components, relying on COTS bearings, and M3 fasteners. Pinchy offered good grip, low cost, ideal geometry with special tapered grippers, and quiet operation.</p>
-<p>Keynote features of the AnkleBiter lifter included:</p>
-<ul>
+<p>In addition to my modular project pages and their accompanying cards, I am also proud of my user-friendly resume download button. The website will offer users a copy of my generic resume in exchange for their email address.</p>
+<p>After the user submits their email, the function executes several actions before displaying my resume:</p>
+<ol>
 <li>
-<p>19mm Square Aluminum Extrusion (16 gauge) Construction</p>
-<ul>
-<li>Offered a lightweight yet stiff structure that could be easily worked by hand eliminating the need for complex machined or 3D printed components.</li>
-</ul>
+<p>It ensures that the ‘user’ didn’t fill out the honeypot form field.</p>
 </li>
 <li>
-<p>High Extension and Compact Folding</p>
-<ul>
-<li>The 2+1 joint design allowed for significant reach while also enabling the arm to fold neatly within the robot's 18&quot; starting cube–which can be seen in the interactive CAD model above.</li>
-</ul>
+<p>It verifies that the form wasn’t submitted within a second.</p>
 </li>
-</ul>
+<li>
+<p>The user’s email and basic IP address information is successfully received by a Discord webhook (which I selected for data collection because it is free!).</p>
+</li>
+</ol>
+<div style="display: flex; justify-content: center; margin: 20px 0;">
+    <div style="text-align: left;">
+        <pre>
+const discordWebhookUrl = '...';
+const discordPayload = {
+    content: `New email submission: ${data.email}
+    City: ${userCity}
+    Region: ${userRegion}
+    Country: ${userCountry}
+    Postal Code: ${userPostal}
+    Organization: ${userOrg}`
+};
+// Send data to the Discord webhook
+const discordResponse = await fetch(discordWebhookUrl, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(discordPayload)
+});
+        </pre>
+        <em>An excerpt from the form handling function.</em>
+    </div>
+</div>
 
     </main>
 
