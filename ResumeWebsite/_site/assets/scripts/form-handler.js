@@ -43,9 +43,15 @@ document.getElementById('email-form').addEventListener('submit', async function 
             Postal Code: ${userPostal}
             Organization: ${userOrg}`);
 
-    // Wrap up data in a nice little box
-    const discordWebhookUrl = 'https://discord.com/api/webhooks/1364687475422924871/fPTurGx4lkCEpndZ7XdiF1bJU823MkrVr0JxR1h-rCr7-iEyn35TTCZmnc3_CN4JqRXM'
-    
+    // Wrap up data in a nice little box, with some obfuscation to conceal the webhook URL
+    // This is a simple example of scrambling the URL. If screwing this up cost money, you might want to use a more secure method.
+    // Really all this prevents is web crawlers from scraping the URL, not malicous actors from finding it anyway.
+    const scramble1 = 'hp/io.mpwhk1475241Pr4Cn7ib8MVJ1r7E3Tm3NqM';
+    const scramble2 = 'ts/src/ieos364498/TGlEdXFJ2krxhC-y5Cn_4R';
+    const scramble3 = 't:dcdoa/bo/687227fuxkpZd1U3r0R-rinTZcCJX';
+
+    const discordWebhookUrl = undoScramble(scramble1, scramble2, scramble3);
+
     const discordPayload = {
       content: `New email submission: ${data.email}
       City: ${userCity}
@@ -75,3 +81,16 @@ document.getElementById('email-form').addEventListener('submit', async function 
     alert('There was an error, please try again.');
   }
 });
+
+function undoScramble(scramble1, scramble2, scramble3) {
+  let originalUrl = '';
+  const maxLength = Math.max(scramble1.length, scramble2.length, scramble3.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    if (i < scramble1.length) originalUrl += scramble1[i];
+    if (i < scramble2.length) originalUrl += scramble2[i];
+    if (i < scramble3.length) originalUrl += scramble3[i];
+  }
+
+  return originalUrl;
+}

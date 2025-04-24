@@ -17,10 +17,9 @@ I’m using the static site generator Eleventy, which enables me to template a s
 
 For example, each project page is a simple markdown file which is automatically transformed into it's own page and corresponding card using a template. All I have to do in order to add another page is create a new file, and specify a handful of parameters that power the templating. 
 
-
 <div style="display: flex; justify-content: center; margin: 20px 0;">
-    <div style="text-align: left;">
-        <pre>
+    <div style="text-align: left; max-width: 100%; overflow-x: auto;">
+        <pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;">
 ---
 title: "AnkleBiter (2023)"
 description: "FIRST Competition Robot"
@@ -45,9 +44,10 @@ After the user submits their email, the function executes several actions before
 3. The user’s email and basic IP address information is successfully received by a Discord webhook (which I selected for data collection because it is free!). 
 
 <div style="display: flex; justify-content: center; margin: 20px 0;">
-    <div style="text-align: left;">
-        <pre>
-const discordWebhookUrl = '...';
+    <div style="text-align: left; max-width: 100%; overflow-x: auto;">
+        <pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;">
+const discordWebhookUrl = '...'; 
+// The 'real' webhook is obfuscated in the code, and put back together when neededq
 const discordPayload = {
     content: `New email submission: ${data.email}
     City: ${userCity}
@@ -65,6 +65,6 @@ const discordResponse = await fetch(discordWebhookUrl, {
     body: JSON.stringify(discordPayload)
 });
         </pre>
-        <em>An excerpt from the form handling function. May have some issues displaying on mobile, working on fix. </em>
+        <em>An excerpt from the form handling function.</em>
     </div>
 </div>
