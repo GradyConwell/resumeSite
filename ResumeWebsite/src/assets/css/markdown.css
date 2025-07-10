@@ -3,7 +3,7 @@
     width: 80%;          
     max-width: 800px;         
     margin: 50px auto;        /* Add margin to create blank space above and below */
-    padding: 10px 60px;       /* Apply less padding to the top and bottom, and keep the left and right padding */
+    padding: 10px var(--dynamic-padding);       /* Apply less padding to the top and bottom, and keep the left and right padding */
     background-color: var(--color-primary);   
     color: var(--color-text-light); /* Ensure default text color is applied */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
@@ -95,7 +95,7 @@
 @media (max-width: 768px) {
     .content-container {
         width: 80%;          /* Increase width on smaller screens */
-        padding: 15px 35px;  /* Reduce padding for small screens */
+        padding: 15px var(--dynamic-padding);  /* Reduce padding for small screens */
     }
 }
 

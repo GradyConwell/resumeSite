@@ -5,6 +5,7 @@ image: "/assets/images/lathe_wip_control_cabinet.png"
 permalink: "/projects/lathe/"
 layout: "projectLayout.html"
 priority: 1
+isPriority: true
 ---
 
 # Compact CNC Lathe

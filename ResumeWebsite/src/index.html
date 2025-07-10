@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grady Conwell - Portfolio</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+    
 </head>
 <body>
     {% include "navbar.html" %}
@@ -27,7 +31,7 @@
     <!-- Projects Section-->
     <section id="projects" class="projects-grid">
         {% for project in collections.projects %}
-            <a class="project-card" href="{{ project.url }}">
+            <a class="project-card {% if project.data.isPriority %}project-card--priority{% endif %}" href="{{ project.url }}">
                 <div class="project-image">
                     <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
                 </div>

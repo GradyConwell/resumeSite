@@ -5,6 +5,7 @@ image: "/assets/images/pencil_aluv3.jpeg"
 permalink: "/project/pencils/"
 layout: "projectLayout.html"
 priority: 0
+isPriority: true
 ---
 
 # Pencil Replacement Parts

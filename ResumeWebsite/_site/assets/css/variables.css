@@ -5,4 +5,6 @@
     --color-text: #0D0C0C; /* Default text color */
     --color-text-light: #403B3B; /* Alt text color */
     --color-hover: #0476D9; /* Hover color for buttons/links */
+
+    --dynamic-padding: clamp(1.5rem, 5vw, 8rem); /* Dynamic horizontal padding */
 }
