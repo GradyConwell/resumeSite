@@ -39,7 +39,7 @@ document.getElementById("email-form").addEventListener("submit", async function 
         if (response.ok && responseData.status === "success") {
             messageDiv.innerText = "Success! Download my resume below.";
             setTimeout(() => {
-                window.location.href = "assets/pdf/Grady_Conwell_Resume_2025_03.pdf";
+                window.location.href = "assets/pdf/Grady Conwell_Resume_2025_07.pdf";
             }, 1000);
         } else {
             throw new Error(responseData.message || "Error submitting email.");
