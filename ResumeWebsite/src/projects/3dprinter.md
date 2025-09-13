@@ -1,7 +1,7 @@
 ---
 title: "Three-D-Printer"
 description: "A one-of-one custom FDM 3d printer (2021)"
-image: "assets/images/printer_toolhead.jpeg"
+image: "/assets/images/printer_toolhead.jpeg"
 permalink: "/project/printer/"
 layout: "projectLayout.html"
 priority: 1
@@ -26,7 +26,7 @@ Little boats, tchotchkes, and plastic animals soon adorned my desk. But the most
 
 In its most enduring configuration, my printer has contributed parts to almost every project I’ve undertaken, from high school competition robotics to countless revisions of packaging for tiny pencil parts. 
 
-At the end of the day, I’m grateful that my younger self’s naïve and ambitious printer project—enabled by a once-in-a-lifetime global—was a gateway drug to mechatronics and engineering design. 
+At the end of the day, I’m grateful that my younger self’s naïve and ambitious printer project—enabled by a once-in-a-lifetime global crisis—was a gateway drug to mechatronics and engineering design. 
 
 <img src="/assets/images/printer_toolhead.jpeg" alt="high flow toolhead mounted in a custom 3d printer" title="Toolhead"> 
 

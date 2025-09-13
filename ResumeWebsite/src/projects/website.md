@@ -1,7 +1,7 @@
 ---
 title: "Portfolio Website"
 description: "Pretty meta right?"
-image: "assets/images/website_thumb3.png"
+image: "/assets/images/website_thumb3.png"
 permalink: "/projects/meta/"
 layout: "projectLayout.html"
 priority: 2

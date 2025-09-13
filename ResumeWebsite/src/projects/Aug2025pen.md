@@ -1,7 +1,7 @@
 ---
 title: "Graphgear Derived Pen"
 description: "One-off prototype pen built around my production Graphgear 1000 bodies."
-image: "assets/images/WarmAug25.png"
+image: "/assets/images/WarmAug25.png"
 permalink: "/project/graphPen/"
 layout: "projectLayout.html"
 priority: 1
