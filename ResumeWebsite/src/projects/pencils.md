@@ -12,7 +12,11 @@ isPriority: true
 
 This page is still under construction! Check back soon. 
 
-For now, enjoy some fun pictures! 
+For now, enjoy some fun pictures! Oh, and I got featured by someone on youtube, that's worth checking out too!
+
+<div style="text-align: center; margin: 20px auto;">
+<iframe width="100%" style="max-width: 800px; aspect-ratio: 16/9; border-radius: 8px;" src="https://www.youtube.com/embed/Ya259UVlYx8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 <img src="/assets/images/pencil_aluv3.jpeg" alt="Several Aluminum Pencil parts in a row." title="aluv3" class="responsive-image"> 
 

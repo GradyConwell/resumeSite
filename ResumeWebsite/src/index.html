@@ -2,146 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grady Conwell - Under Construction</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grady Conwell - Portfolio</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     
-    <!-- 
-    
-    Steps to restore full portfolio as the main landing page:
-    
-    1. Navigate to the source directory:
-       cd /Users/gradyconwell/Documents/GitHub/resumeSite/ResumeWebsite/src
-    
-    2. Backup this construction page:
-       mv index.html construction-backup.html
-
-    3. Restore portfolio as the main page:
-       mv portfolio.html index.html
-    
-    4. Remove the front matter from the restored index.html:
-       Delete these lines from the top of the file:
-       ---
-       permalink: /portfolio/
-       title: Grady Conwell - Portfolio
-       ---
-    -->
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #ff6b9d 0%, #667eea 50%, #a855f7 100%);
-            background-size: 400% 400%;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-            animation: gradientShift 12s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 2rem;
-            z-index: 2;
-            position: relative;
-        }
-
-        .gear {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            animation: spin 10s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
-        }
-
-        p {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hidden link for accessing the real site */
-        .hidden-access {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            opacity: 0;
-            font-size: 0.8rem;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.3);
-            transition: opacity 0.3s ease;
-        }
-
-        .hidden-access:hover {
-            opacity: 0.8;
-            color: white;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Under Construction</h1>
-        <!-- <h1>Under Construction</h1> -->
-        <!-- add a gap here -->
-        <div style="height: 1rem;"></div>
-        <p>I promise, I'm working on it.</p>
-        <p>Check back soon. :)</p>
-    </div>
-    
-    <!-- Hidden access link -->
-    <a href="/portfolio/" class="hidden-access" title="Development Access">🔧</a>
+    {% include "navbar.html" %}
+
+    <!-- Title Card-->
+    <header>
+        <div class="title-card">
+            <h1>Hi, I'm Grady Conwell</h1>
+            <!-- Tagline chosen from a list of options randomly.-->
+            <p>Look ma! He's got a website.</p>
+            <script>
+                const taglines = [
+                    "Look ma! He's got a website.",
+                    "Mechanical and Mechatronic Engineering Student",
+                    "Pretend Machinist",
+                    "The pigeons on the street are free. You can just grab em.",
+                    "Please send me your Chai recommendations.",
+                    "Selling stationary to strangers on the internent since 2023.",
+                    "I promise, I don't bite.",
+                    "Humanoid Robotics Skeptist.",
+                    "I sometimes update the website.",
+                ];
+                const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+                document.querySelector('header p').textContent = randomTagline;
+            </script>
+
+            <p id="message"></p>
+        </div>
+    </header>
+
+    <!-- About Section-->
+    <section id="about" class="content-container">
+        {% markdownInclude "./src/about.md" %}
+    </section>
+
+    <!-- Projects Section-->
+    <section id="projects" class="projects-grid">
+        {% for project in collections.projects %}
+            <a class="project-card {% if project.data.isPriority %}project-card--priority{% endif %}" href="{{ project.url }}">
+                <div class="project-image">
+                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
+                </div>
+                <div class="project-content">
+                    <h3>{{ project.data.title }}</h3>
+                    <p>{{ project.data.description }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+
+    <!-- Contact Section-->
+    <section id="contact" class="content-container">
+        {% markdownInclude "./src/contact.md" %}
+    </section>
+
+    {% include "footer.html" %}
 </body>
 </html>
+

@@ -86,7 +86,24 @@
     <header>
         <div class="title-card">
             <h1>Hi, I'm Grady Conwell</h1>
-            <p>Mechanical and Mechatronic Engineering Student</p>
+            <!-- Tagline chosen from a list of options randomly.-->
+            <p>Look ma! He's got a website.</p>
+            <script>
+                const taglines = [
+                    "Look ma! He's got a website.",
+                    "Mechanical and Mechatronic Engineering Student",
+                    "Pretend Machinist",
+                    "The pigeons on the street are free. You can just grab em.",
+                    "Please send me your Chai recommendations.",
+                    "Selling stationary to strangers on the internent since 2023.",
+                    "I promise, I don't bite.",
+                    "Humanoid Robotics Skeptist.",
+                    "I sometimes update the website.",
+                ];
+                const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+                document.querySelector('header p').textContent = randomTagline;
+            </script>
+
             <p id="message"></p>
         </div>
     </header>
