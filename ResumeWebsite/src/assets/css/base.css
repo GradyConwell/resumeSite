@@ -26,6 +26,16 @@ header {
     color: var(--color-text-light);
     margin: 0;
     padding: 0;
+    
+    /* Background image configuration - uncomment the line below to enable chicken.jpg background */
+    background-image: url('/assets/images/OnTheRun.jpg');
+    /* To switch back to no background image, comment out the line above */
+    /* also remove the radial blur in .title-card */
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: normal; /* Change to 'overlay' for blended effect */
 }
 
 html {
@@ -47,13 +57,17 @@ footer {
     flex-direction: column;
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
-    height: 100vh; /* Make the title card take up the full viewport height */
+    height: 100%; /* Fill the header container */
+    width: 100%; /* Fill the header container width */
     text-align: center; /* Center the text */
-    background-color: var(--color-base); /* Set the background color */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-size: cover; /* Scale the image to cover the entire area */
-    background-blend-mode: overlay; /* Blend the image with the background color */
-    color: var(--color-text-light); /* Use your defined text color */
+    /* color: var(--color-text-light); /* Use your defined text color */
+    color: var(--color-base);
     margin: 0; /* Remove any default margin */
     padding: 0; /* Remove any default padding */
+    
+    /* Radial gradient overlay to make text pop - adjust blur/darkness as needed */
+    background: radial-gradient(ellipse at center, 
+        rgba(0, 0, 0, 0.4) 0%,            /* Darker in center */
+        rgba(0, 0, 0, 0.2) 30%,           /* Gradual lightening */
+        rgba(255, 255, 255, 0.1) 100%);   /* Lighter at edges */
 }
