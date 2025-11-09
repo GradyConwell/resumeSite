@@ -37,9 +37,35 @@ Most notable among the early acquisitions were:
 - A three-inch square aluminum extrusion to serve as the machine base.
 
 <figure>
-    <img src="/assets/images/lathe_first_assembled_z_axis.jpeg" alt="A long aluminum frame with a black slide bolted to the top" title="Z Axis">
+    <img src="/assets/images/lathe_first_assembled_z_axis.jpeg" alt="A long aluminum frame with a black slide bolted to the top" title="Z Axis" loading="lazy">
     <figcaption class="caption"> Several of the "locked in" components are visible in this image. </figcaption>
 </figure>
+
+Working around these components, I designed a frame and motion system. For surfaces that I knew required relatively flat surfaces, I opted for an aluminum tooling plate, which is inexpensive and readily available. I also employed laser cut mild steel where tolerances where less critical. 
+
+## Initial Fabrication 
+
+During the first few months of 2024, I gradually machined, assembled, and tested the frame. Once the frame was securely bolted together for the first time, I partially disassembled it and filled the large hollow sections of the aluminum framing with epoxy granite. The epoxy granite is designed to dampen vibrations and stiffen the frame.
+
+My epoxy granite recipe, admittedly amateur, was based on industry best practices. The final mixture consisted of 80% granite by weight and 20% epoxy. For the granite, I used a combination of coarse granite pebbles and DG. Although sifting, washing, and drying the granite was time-consuming, the casting process itself was quick and straightforward. 
+
+At this stage of the project, the scope getting out of control. Recognizing this, I deliberately set aside the enclosure design until I had an operational machine to test. 
+
+## Moving Forward
+
+This project is still ongoing as of April 2025. Here's a breakdown of what's been completed, what's currently being worked on, and what's next:
+
+| **Complete**         | **Ongoing**                  | **Planned**                   |
+|-----------------------|------------------------------|--------------------------------|
+| Machine Base          | Gang Tool System             | Enclosure Design              |
+| Motion System         | Rotary Encoder for Spindle   | Coolant System                |
+| Control Cabinet       | Limit Switches for all Axes  | Final Assembly and Testing    |
+
+<img src="/assets/images/lathe_standing_on_cross_slide.jpeg" alt="Picture of Grady standing on one foot atop the prototype lathe cross slide." title="Standing on Cross Slide" loading="lazy">
+
+<img src="/assets/images/lathe_wip_cross_slide.png" alt="A partially assembled lathe cross slide" title="WIP Cross Slide" loading="lazy">
+
+<img src="/assets/images/lathe_wip_control_cabinet.png" alt="Several electronic components wired together atop a metal panel" title="Control Cabinet Demo Assembly" loading="lazy">
 
 Working around these components, I designed a frame and motion system. For surfaces that I knew required relatively flat surfaces, I opted for an aluminum tooling plate, which is inexpensive and readily available. I also employed laser cut mild steel where tolerances where less critical. 
 

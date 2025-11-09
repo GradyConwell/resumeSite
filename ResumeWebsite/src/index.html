@@ -55,7 +55,7 @@
         {% for project in collections.projects %}
             <a class="project-card {% if project.data.isPriority %}project-card--priority{% endif %}" href="{{ project.url }}">
                 <div class="project-image">
-                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
+                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}" loading="lazy">
                 </div>
                 <div class="project-content">
                     <h3>{{ project.data.title }}</h3>

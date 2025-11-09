@@ -10,7 +10,7 @@ priority: 1
 # Graphgear Derived Pen
 ## Prototype pen built around my production Graphgear 1000 bodies
 
-<img src="/assets/images/WarmAug25.png" alt="A Brass pencil laying on a plush white rug" title="on the rug"> 
+<img src="/assets/images/WarmAug25.png" alt="A Brass pencil laying on a plush white rug" title="on the rug" loading="lazy"> 
 
 I'm slowly exploring ways to expand my product offerings, and I often get requests to make a ballpoint conversion kit for the graphgear.
 
