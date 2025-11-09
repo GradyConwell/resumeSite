@@ -6,5 +6,13 @@
     --color-text-light: #403B3B; /* Alt text color */
     --color-hover: #0476D9; /* Hover color for buttons/links */
 
-    --dynamic-padding: clamp(1.5rem, 5vw, 8rem); /* Dynamic horizontal padding */
+    --dynamic-padding: clamp(0.25rem, 5vw, 8rem); /* Dynamic horizontal padding */
+    
+    --card-padding-vertical-desktop: 1rem; /* Fixed vertical padding inside cards for desktop */
+    --card-padding-horizontal-desktop: 2rem; /* Fixed horizontal padding inside cards for desktop */
+    --card-padding-vertical-mobile: 1rem; /* Fixed vertical padding inside cards for mobile */
+    --card-padding-horizontal-mobile: 2rem; /* Fixed horizontal padding inside cards for mobile */
+    
+    --font-serif: 'Cormorant Garamond', serif; /* Serif accent font for titles */
+    --font-sans: 'Inter', sans-serif; /* Sans-serif body font */
 }

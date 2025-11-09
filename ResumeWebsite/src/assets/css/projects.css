@@ -2,14 +2,16 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1.5rem;
-    padding: 2rem var(--dynamic-padding);
-    margin: 0 auto; /* Center the grid horizontally */
+    padding: 10px var(--dynamic-padding); /* Match title and about card padding */
+    margin: 0 0 50px 0; /* Add bottom margin to match spacing between sections */
+    width: 100%; /* Fill full width */
+    box-sizing: border-box; /* Include padding in width calculation */
     grid-auto-flow: dense;
 }
 
 .project-card {
     background: var(--color-base);
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-decoration: none;
@@ -35,6 +37,10 @@
     padding: 1rem;
 }
 
+.project-content h3 {
+    color: var(--color-accent);
+}
+
 .project-card--priority {
     grid-column: span 2;
     grid-row: span 2;
@@ -46,6 +52,6 @@
 
 @media (min-width: 1400px) {
     .projects-grid {
-        padding: 2rem var(--dynamic-padding);
+        padding: 10px var(--dynamic-padding); /* Match title and about card padding */
     }
 }

@@ -2,20 +2,37 @@
 .content-container {
     width: 80%;          
     max-width: 800px;         
-    margin: 50px auto;        /* Add margin to create blank space above and below */
-    padding: 10px var(--dynamic-padding);       /* Apply less padding to the top and bottom, and keep the left and right padding */
+    margin: 0 auto 50px var(--dynamic-padding);  /* Default margin */
+    padding: var(--card-padding-vertical-desktop) var(--card-padding-horizontal-desktop);       /* Fixed padding for desktop */
     background-color: var(--color-primary);   
     color: var(--color-text-light); /* Ensure default text color is applied */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     border-radius: 8px;
-    line-height: 1.5;          /* Increase line spacing for better readability */        
-    margin-top: 80px; /* Add margin-top equal to the navbar height */
+    line-height: 1.5;          /* Increase line spacing for better readability */
+}
+
+/* Add top margin only for project pages (main element) */
+main.content-container {
+    margin-top: 100px; /* Add top margin for navbar clearance on project pages */
 }
 
 /* Style for md elements like headings and paragraphs */
-.content-container h1, .content-container h2, .content-container h3 {
+.content-container h1 {
+    margin-top: 0; /* Remove space above the header */
     margin-bottom: 10px; /* Reduce space below the header */
     color: var(--color-accent); /* Use accent color for headings */
+    font-family: var(--font-serif); /* Use serif font for headings */
+    font-weight: 500; /* Medium weight */
+    font-size: 2em; /* Match overlapping title card size */
+    line-height: 1.5;
+}
+
+.content-container h2, .content-container h3 {
+    margin-top: 0; /* Remove space above the header */
+    margin-bottom: 10px; /* Reduce space below the header */
+    color: var(--color-accent); /* Use accent color for headings */
+    font-family: var(--font-serif); /* Use serif font for headings */
+    font-weight: 500; /* Medium weight */
     line-height: 1.5;
 }
 
@@ -95,7 +112,13 @@
 @media (max-width: 768px) {
     .content-container {
         width: 80%;          /* Increase width on smaller screens */
-        padding: 15px var(--dynamic-padding);  /* Reduce padding for small screens */
+        padding: var(--card-padding-vertical-mobile) var(--card-padding-horizontal-mobile);  /* Fixed padding for mobile */
+        margin: 0 auto 50px auto;   /* Default margin for mobile */
+    }
+    
+    /* Add top margin only for project pages on mobile */
+    main.content-container {
+        margin-top: 100px; /* Add top margin for navbar clearance on project pages */
     }
 }
 

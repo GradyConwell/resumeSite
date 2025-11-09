@@ -28,7 +28,7 @@
 .navbar-logo {
     display: flex;
     align-items: center;
-    margin-right: 20px; /* Add spacing between the logo and the links */
+    margin-right: 15px; /* Add spacing between the logo and the links */
 }
 
 .logo-svg {
@@ -40,7 +40,7 @@
 }
 
 .navbar-logo img.logo-svg {
-    height: 40px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
     width: auto;
     fill: var(--color-hover); /* Color the SVG white */
     fill: var(--color-accent); /* Set the SVG color to the accent color */

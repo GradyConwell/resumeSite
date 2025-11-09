@@ -20,7 +20,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px);
+    height: min(82vh, calc(100vh - 80px)); /* Max 75% of viewport height */
     text-align: center;
     background-color: var(--color-primary);
     color: var(--color-text-light);
@@ -28,13 +28,13 @@ header {
     padding: 0;
     
     /* Background image configuration - uncomment the line below to enable chicken.jpg background */
-    background-image: url('/assets/images/OnTheRun.jpg');
+    background-image: url('/assets/images/16:9_Sunset_Silhouette.jpeg');
     /* To switch back to no background image, comment out the line above */
     /* also remove the radial blur in .title-card */
     
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: left center; /* Keep left edge fixed, center vertically */
     background-blend-mode: normal; /* Change to 'overlay' for blended effect */
 }
 
@@ -55,7 +55,6 @@ footer {
 .title-card {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     height: 100%; /* Fill the header container */
     width: 100%; /* Fill the header container width */
@@ -66,8 +65,49 @@ footer {
     padding: 0; /* Remove any default padding */
     
     /* Radial gradient overlay to make text pop - adjust blur/darkness as needed */
-    background: radial-gradient(ellipse at center, 
-        rgba(0, 0, 0, 0.4) 0%,            /* Darker in center */
-        rgba(0, 0, 0, 0.2) 30%,           /* Gradual lightening */
-        rgba(255, 255, 255, 0.1) 100%);   /* Lighter at edges */
+    /* background: radial-gradient(ellipse at center, 
+        rgba(0, 0, 0, 0.4) 0%,            
+        rgba(0, 0, 0, 0.2) 30%,           
+        rgba(255, 255, 255, 0.1) 100%);
+    */
+}
+
+/* Overlapping title card that sits between header and body */
+.overlapping-title-card {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto 50px var(--dynamic-padding); /* Align to left with padding on large screens */
+    margin-top: -50px; /* Negative margin to overlap with header (adjusted lower) */
+    padding: var(--card-padding-vertical-desktop) var(--card-padding-horizontal-desktop); /* Fixed padding for desktop */
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px; /* Match content-container radius */
+    text-align: left; /* Left justify text */
+    z-index: 10; /* Ensure it sits above other elements */
+}
+
+.overlapping-title-card h1 {
+    color: var(--color-accent);
+    font-family: var(--font-serif); /* Use serif font for title */
+    font-weight: 500; /* Medium weight */
+    font-size: 2.25em; /* Set explicit size for consistency */
+    margin-top: 0.5rem; /* Remove space above the header */
+    margin-bottom: 1rem;
+}
+
+.overlapping-title-card p {
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .overlapping-title-card {
+        width: 80%; /* Match content-container width on small screens */
+        margin: 0 auto 50px auto; /* Center on small screens with reduced bottom margin */
+        margin-top: -50px;
+        padding: var(--card-padding-vertical-mobile) var(--card-padding-horizontal-mobile); /* Fixed padding for mobile */
+    }
 }

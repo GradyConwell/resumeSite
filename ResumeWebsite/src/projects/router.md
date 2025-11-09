@@ -8,7 +8,7 @@ priority: 1
 ---
 
 # Benchtop CNC Router
-This introduction... does not exist! Check back soon for updates. In the mean time, enjoy some pictures! 
+This introduction... does not exist! As a consolation prize, enjoy some pictures.
 
 <img src="/assets/images/router_lathe_part_machining.png" alt="router machining aluminum panels for the ongoing lathe project" title="SME Eureka Part machining">
 

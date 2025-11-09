@@ -10,7 +10,7 @@ isPriority: true
 
 # Pencil Replacement Parts
 
-This page is still under construction! Check back soon. 
+This page is still under construction! I'll finish it eventually.
 
 For now, enjoy some fun pictures! Oh, and I got featured by someone on youtube, that's worth checking out too!
 
