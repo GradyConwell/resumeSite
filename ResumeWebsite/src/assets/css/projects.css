@@ -50,6 +50,22 @@
     height: 485px;
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    
+    .project-card--priority {
+        grid-column: span 1; /* Remove column spanning on mobile */
+        grid-row: span 1; /* Remove row spanning on mobile */
+    }
+    
+    .project-card--priority .project-image img {
+        height: 300px; /* Use standard height on mobile */
+    }
+}
+
 @media (min-width: 1400px) {
     .projects-grid {
         padding: 10px var(--dynamic-padding); /* Match title and about card padding */
