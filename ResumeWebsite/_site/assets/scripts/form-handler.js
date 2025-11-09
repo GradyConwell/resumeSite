@@ -74,7 +74,7 @@ document.getElementById('email-form').addEventListener('submit', async function 
     }
 
     // Show the PDF to the user
-    window.location.href = "/assets/pdf/Grady Conwell_Resume_2025_07.pdf";
+    window.location.href = "/assets/pdf/Grady Conwell_Resume_2025_11_b.pdf";
 
   } catch (error) {
     console.error('Error occurred:', error);
