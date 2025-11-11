@@ -12,6 +12,11 @@ This introduction... does not exist! As a consolation prize, enjoy some pictures
 
 <img src="/assets/images/router_lathe_part_machining.png" alt="router machining aluminum panels for the ongoing lathe project" title="SME Eureka Part machining" loading="lazy">
 
+<figure>
+    <img src="/assets/images/router_chipboardcutouts.jpeg" alt="Chipboard CNC parts" title="Chipboard CNC parts" loading="lazy"> 
+    <figcaption class="caption">I built the first version of the router by hand, cutting out chipboard with a dremel. This configuration barely survived cutting the aluminum plate replacement parts</figcaption>
+</figure>
+
 <img src="/assets/images/router_SME_sample_parts.jpeg" alt="Two flat, etched aluminum parts for a SME shop tool project" title="SME finished parts" loading="lazy">
 
 <img src="/assets/images/router_milling_slot.png" alt="Machining a J-slot in Brass with a 2mm endmill" title="J-slot Milling" loading="lazy">

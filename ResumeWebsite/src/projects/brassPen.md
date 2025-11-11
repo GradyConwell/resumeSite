@@ -14,6 +14,6 @@ This project is the first in a series of pens I have designed and machined. The 
     
 A sample of the (admittedly sloppy) working drawings I drafted can be seen in the background of the image above.
 
-<img src="/assets/images/millingSlotPen.png" alt="Prototype Pen, Milling J Slot" title="Prototype Pen">
+<img src="/assets/images/router_milling_slot.png" alt="Machining a J-slot in Brass with a 2mm endmill" title="J-slot Milling" loading="lazy">
 
 All the milling for this project was done on my benchtop CNC router, which I designed and built in 2022. For a relatively large machine, I think it did a fantastic job milling the tiny J-slot mechanism into the pen. 

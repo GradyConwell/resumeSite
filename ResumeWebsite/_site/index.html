@@ -83,11 +83,29 @@
 <script src="/assets/scripts/form-handler.js"></script>
 
     <!-- Title Card-->
-    <header>
+    <header id="main-header">
         <div class="title-card">
             <!-- Content moved to overlapping card below -->
         </div>
     </header>
+
+    <script>
+        // Preload the header background image and trigger animation when loaded
+        const header = document.getElementById('main-header');
+        const bgImage = new Image();
+        bgImage.src = '/assets/images/16:9_Sunset_Silhouette.jpeg';
+        
+        bgImage.onload = function() {
+            header.classList.add('loaded');
+        };
+        
+        // Fallback: trigger animation after 3 seconds if image doesn't load
+        setTimeout(function() {
+            if (!header.classList.contains('loaded')) {
+                header.classList.add('loaded');
+            }
+        }, 3000);
+    </script>
 
     <!-- Overlapping Title Card -->
     <div class="overlapping-title-card">

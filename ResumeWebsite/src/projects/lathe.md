@@ -10,7 +10,7 @@ isPriority: true
 
 # Compact CNC Lathe
 
-In 2023, I began selling mechanical pencil components, each one meticulously manually machined. I quickly began to struggle to keep up with demand. As I made my first hundred sales, it became increasingly evident that automation would enable me to increase productivity and, consequently, volume. After researching my options thoroughly and receiving quotes from several job shops, I decided that the best course of action would be to construct a **purpose-built lathe**. This of course, is a ludicrous decision that only a 17 year old high school student would make. 
+In 2023, I began selling mechanical pencil components, each one meticulously manually machined. I quickly began to struggle to keep up with demand. As I made my first hundred sales, it became increasingly evident that automation would enable me to increase productivity and, consequently, volume. After researching my options thoroughly and receiving quotes from several job shops, I decided that the best course of action would be to construct a teeny **purpose-built lathe**. This of course, is a ludicrous decision that only a 17 year old high school student would make. 
 
 ## Planning
 My design had to work around several key constraints. The new lathe would have to: 

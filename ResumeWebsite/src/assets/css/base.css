@@ -36,6 +36,23 @@ header {
     background-size: cover;
     background-position: left center; /* Keep left edge fixed, center vertically */
     background-blend-mode: normal; /* Change to 'overlay' for blended effect */
+    
+    /* Start hidden for fade-in animation */
+    opacity: 0;
+}
+
+/* Animation class added after image loads */
+header.loaded {
+    animation: fadeInHeader 0.7s ease-in-out forwards;
+}
+
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 html {
