@@ -1,6 +1,6 @@
 ---
 title: "Pencil Replacement Parts"
-description: "100% positive customer feedback with over 300 precision replacement parts sold."
+description: "100% positive customer feedback with over 600 precision replacement parts sold."
 image: "/assets/images/pencil_aluv3.jpeg"
 permalink: "/project/pencils/"
 layout: "projectLayout.html"

@@ -4,7 +4,7 @@ description: "One-off prototype pen built around my production Graphgear 1000 bo
 image: "/assets/images/WarmAug25.png"
 permalink: "/project/graphPen/"
 layout: "projectLayout.html"
-priority: 1
+priority: 2
 ---
 
 # Graphgear Derived Pen

@@ -4,8 +4,8 @@ description: "WIP gang tool lathe designed for small parts"
 image: "/assets/images/lathe_wip_control_cabinet.png"
 permalink: "/projects/lathe/"
 layout: "projectLayout.html"
-priority: 1
-isPriority: true
+priority: 2
+isPriority: false
 ---
 
 # Compact CNC Lathe

@@ -5,6 +5,7 @@ image: "/assets/images/printer_toolhead.jpeg"
 permalink: "/project/printer/"
 layout: "projectLayout.html"
 priority: 1
+isPriority: true
 ---
 
 # Three-D-Printer
