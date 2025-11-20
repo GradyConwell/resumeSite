@@ -10,4 +10,4 @@ In 2023, I embarked on an 'entrepreneurial journey' by selling my first product:
 
 In the summer of 2025, I stumbled into my first grown-up job, as an intern at Copper – an absolutely phenomenal Berkeley-based hardware startup. I don't think I could've asked for a better start to my nascent engineering career. I've since had the privilege to stick around part-time during the fall, despite attending Chico State. It's a bizarre state of affairs, and I wouldn't have it any other way. 
 
-Looking ahead, summer 2026 is still an open question, so if you know of any roles I be a good fit for, reach out!
+Looking ahead, summer 2026 is still an open question, so if you know of any roles I'd be a good fit for, reach out!
