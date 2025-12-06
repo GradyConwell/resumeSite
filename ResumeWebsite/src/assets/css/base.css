@@ -15,7 +15,7 @@ body {
     justify-content: space-between;
 }
 
-header {
+#main-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,7 @@ header {
 }
 
 /* Animation class added after image loads */
-header.loaded {
+#main-header.loaded {
     animation: fadeInHeader 0.7s ease-in-out forwards;
 }
 
