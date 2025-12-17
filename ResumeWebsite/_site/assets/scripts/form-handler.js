@@ -42,7 +42,7 @@ document.getElementById('email-form').addEventListener('submit', async function 
     let userPostal = 'Unknown';
     let userOrg = 'Unknown';
     
-    // Try multiple services in order
+    // Try multiple HTTPS services in order (avoid mixed content errors in Chrome)
     const geoServices = [
       {
         name: 'ipapi.co',
@@ -56,14 +56,14 @@ document.getElementById('email-form').addEventListener('submit', async function 
         })
       },
       {
-        name: 'ip-api.com',
-        url: 'http://ip-api.com/json/',
+        name: 'freeipapi.com',
+        url: 'https://freeipapi.com/api/json',
         parse: (data) => ({
-          city: data.city,
+          city: data.cityName,
           region: data.regionName,
-          country: data.country,
-          postal: data.zip,
-          org: data.isp
+          country: data.countryName,
+          postal: data.zipCode,
+          org: 'Unknown'
         })
       }
     ];
