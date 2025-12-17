@@ -116,23 +116,9 @@
     <!-- Overlapping Title Card -->
     <div class="overlapping-title-card">
         <h1>Hi, I'm Grady Conwell</h1>
-        <!-- Tagline chosen from a list of options randomly.-->
+        <!-- Tagline chosen based on location or randomly from default list -->
         <p>Look ma! He's got a website.</p>
-        <script>
-            const taglines = [
-                "Look ma! He's got a website.",
-                "Mechanical and Mechatronic Engineering Student",
-                "Pretend Machinist",
-                "The pigeons on the street are free. You can just grab em.",
-                "Please send me your Chai recommendations.",
-                "Selling stationary to strangers on the internent since 2023.",
-                "I promise, I don't bite.",
-                "Humanoid Robotics Skeptist.",
-                "I sometimes update the website.",
-            ];
-            const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
-            document.querySelector('.overlapping-title-card p').textContent = randomTagline;
-        </script>
+        <script src="/assets/scripts/location-tagline.js"></script>
 
         <p id="message"></p>
     </div>
@@ -242,7 +228,7 @@
     </section>
 
     <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
-    <p>© 2025 Grady Conwell</p>
+    <p>© 2026 Grady Conwell</p>
 </footer>
 </body>
 </html>

@@ -3,38 +3,113 @@ const formLoadTime = Date.now();
 
 document.getElementById('email-form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent the default form submission
+  console.log('Form submission started at:', new Date().toISOString());
 
   const form = event.target;
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries()); // Convert FormData to JSON
+  console.log('Form data collected:', { email: data.email, honeypotPresent: !!data.honeypot });
 
   // Honeypot Check
   if (data.honeypot) {
     console.warn('Spam detected: Honeypot field filled.');
+    console.warn('Honeypot value:', data.honeypot);
     alert('Submission failed. Please try again.');
     return;
   }
+  console.log('Honeypot check passed');
 
   // Time-Based Check
   const submissionTime = Date.now();
   const timeElapsed = (submissionTime - formLoadTime) / 1000; // Time in seconds
+  console.log(`Time elapsed since page load: ${timeElapsed.toFixed(2)} seconds`);
   if (timeElapsed < 1.1) {
     console.warn('Spam detected: Form submitted too quickly.');
+    console.warn(`Required: 1.1s, Actual: ${timeElapsed.toFixed(2)}s`);
     alert('Submission failed. Please try again.');
     return;
   }
+  console.log('Time-based check passed');
 
   try {
-    // Fetch the user's location using a geolocation API
-    const geoResponse = await fetch('https://ipapi.co/json/'); // Replace with your preferred geolocation API
-    const geoData = await geoResponse.json();
-
-    // Extract additional information
-    const userCity = geoData.city || 'Unknown';
-    const userRegion = geoData.region || 'Unknown';
-    const userCountry = geoData.country_name || 'Unknown';
-    const userPostal = geoData.postal || 'Unknown';
-    const userOrg = geoData.org || 'Unknown';
+    // Fetch the user's location using multiple geolocation APIs with fallback
+    console.log('Fetching geolocation data...');
+    
+    let geoData = null;
+    let userCity = 'Unknown';
+    let userRegion = 'Unknown';
+    let userCountry = 'Unknown';
+    let userPostal = 'Unknown';
+    let userOrg = 'Unknown';
+    
+    // Try multiple services in order
+    const geoServices = [
+      {
+        name: 'ipapi.co',
+        url: 'https://ipapi.co/json/',
+        parse: (data) => ({
+          city: data.city,
+          region: data.region,
+          country: data.country_name,
+          postal: data.postal,
+          org: data.org
+        })
+      },
+      {
+        name: 'ip-api.com',
+        url: 'http://ip-api.com/json/',
+        parse: (data) => ({
+          city: data.city,
+          region: data.regionName,
+          country: data.country,
+          postal: data.zip,
+          org: data.isp
+        })
+      }
+    ];
+    
+    for (const service of geoServices) {
+      try {
+        console.log(`Trying geolocation service: ${service.name}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        
+        const geoResponse = await fetch(service.url, {
+          signal: controller.signal,
+          mode: 'cors'
+        });
+        clearTimeout(timeoutId);
+        
+        console.log(`${service.name} response status:`, geoResponse.status, geoResponse.statusText);
+        
+        if (!geoResponse.ok) {
+          console.warn(`${service.name} returned error status:`, geoResponse.status);
+          continue; // Try next service
+        }
+        
+        const data = await geoResponse.json();
+        console.log(`${service.name} data received:`, data);
+        
+        const parsed = service.parse(data);
+        userCity = parsed.city || 'Unknown';
+        userRegion = parsed.region || 'Unknown';
+        userCountry = parsed.country || 'Unknown';
+        userPostal = parsed.postal || 'Unknown';
+        userOrg = parsed.org || 'Unknown';
+        
+        geoData = parsed;
+        console.log(`Successfully retrieved geolocation from ${service.name}`);
+        break; // Success, exit loop
+        
+      } catch (serviceError) {
+        console.warn(`${service.name} failed:`, serviceError.message);
+        // Continue to next service
+      }
+    }
+    
+    if (!geoData) {
+      console.warn('All geolocation services failed, using default values');
+    }
 
     console.log(`Geolocation Info:
             City: ${userCity}
@@ -51,6 +126,7 @@ document.getElementById('email-form').addEventListener('submit', async function 
     const scramble3 = 't:dcdoa/bo/687227fuxkpZd1U3r0R-rinTZcCJX';
 
     const discordWebhookUrl = undoScramble(scramble1, scramble2, scramble3);
+    console.log('Discord webhook URL prepared (length:', discordWebhookUrl.length, ')');
 
     const discordPayload = {
       content: `New email submission: ${data.email}
@@ -60,7 +136,10 @@ document.getElementById('email-form').addEventListener('submit', async function 
       Postal Code: ${userPostal}
       Organization: ${userOrg}`
     };
+    console.log('Discord payload prepared:', discordPayload);
+    
     // Send data to the Discord webhook
+    console.log('Sending data to Discord webhook...');
     const discordResponse = await fetch(discordWebhookUrl, {
       method: 'POST',
       headers: {
@@ -69,15 +148,38 @@ document.getElementById('email-form').addEventListener('submit', async function 
       body: JSON.stringify(discordPayload)
     });
 
+    console.log('Discord webhook response status:', discordResponse.status, discordResponse.statusText);
+
     if (!discordResponse.ok) {
-      throw new Error('Failed to send data to Discord webhook');
+      const errorText = await discordResponse.text();
+      console.error('Discord webhook error response:', errorText);
+      throw new Error(`Failed to send data to Discord webhook: ${discordResponse.status} - ${errorText}`);
     }
 
-    // Show the PDF to the user
-    window.location.href = "/assets/pdf/Grady Conwell_Resume_2025_11_b.pdf";
+    console.log('Discord webhook sent successfully');
+    console.log('Opening resume PDF...');
+    
+    // Show the PDF to the user - URL encode the path for Chrome compatibility
+    const resumeUrl = "/assets/pdf/Grady%20Conwell_Resume_2025_11_b.pdf";
+    console.log('Resume URL:', resumeUrl);
+    
+    // Try to open in a new tab first (works better in Chrome)
+    const newTab = window.open(resumeUrl, '_blank');
+    
+    // Fallback to current window if popup was blocked
+    if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+      console.log('New tab blocked, redirecting in current window');
+      window.location.href = resumeUrl;
+    } else {
+      console.log('PDF opened in new tab');
+    }
 
   } catch (error) {
-    console.error('Error occurred:', error);
+    console.error('Error occurred during form submission');
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('Full error object:', error);
     alert('There was an error, please try again.');
   }
 });

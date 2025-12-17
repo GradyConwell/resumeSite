@@ -11,7 +11,7 @@ body {
     background-color: var(--color-base);
     color: var(--color-text-light);
     margin: 0;
-    padding: 15;
+    padding: 0;
     justify-content: space-between;
 }
 
@@ -20,12 +20,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: min(82vh, calc(100vh - 80px)); /* Max 75% of viewport height */
+    height: min(82vh, calc(100vh - 80px)); /* Max 82vh or viewport minus navbar */
+    min-height: 400px; /* Ensure minimum height for Chrome */
     text-align: center;
     background-color: var(--color-primary);
     color: var(--color-text-light);
     margin: 0;
+    margin-top: -80px; /* Push down to account for fixed navbar */
     padding: 0;
+    flex-shrink: 0; /* Prevent shrinking in Chrome */
     
     /* Background image configuration - uncomment the line below to enable chicken.jpg background */
     background-image: url('/assets/images/16:9_Sunset_Silhouette.jpeg');
@@ -103,6 +106,8 @@ footer {
     border-radius: 8px; /* Match content-container radius */
     text-align: left; /* Left justify text */
     z-index: 10; /* Ensure it sits above other elements */
+    transform: translateZ(0); /* Force hardware acceleration for better Chrome rendering */
+    will-change: transform; /* Optimize for transform changes */
 }
 
 .overlapping-title-card h1 {
