@@ -214,15 +214,15 @@ const defaultTaglines = [
 
 // Function to get user's location using IP geolocation API
 async function getUserLocation() {
-    // Try multiple HTTPS services in order (avoid mixed content errors in Chrome)
+    // Try multiple geolocation services in order
     const services = [
         {
             url: 'https://ipapi.co/json/',
             parseZip: (data) => data.postal || data.zip_code
         },
         {
-            url: 'https://freeipapi.com/api/json',
-            parseZip: (data) => data.zipCode
+            url: 'http://ip-api.com/json/',
+            parseZip: (data) => data.zip
         }
     ];
     
