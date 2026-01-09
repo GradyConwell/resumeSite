@@ -42,9 +42,45 @@
     <!-- Overlapping Title Card -->
     <div class="overlapping-title-card">
         <h1>Hi, I'm Grady Conwell</h1>
-        <!-- Tagline chosen based on location or randomly from default list -->
-        <p>Look ma! He's got a website.</p>
-        <script src="/assets/scripts/location-tagline.js"></script>
+        <!-- Tagline chosen from a list of options randomly.-->
+         <!--"Look ma! He's got a website.",
+                "Mechanical and Mechatronic Engineering Student",
+                "Pretend Machinist",
+                "The pigeons on the street are free. You can just grab em.",
+                "Please send me your Chai recommendations.",
+                "Selling stationary to strangers on the internent since 2023.",
+                "I sometimes update the website.",
+                "I promise, I don't bite.",
+                "Humanoid Robotics Skeptic.",
+                "I will probably email you back.",
+                "2026, pfff, I'm still working on projects from 2023!",
+                --->
+
+        <p>Coming to a university near you, far from you, or a moderate distance away.</p>
+        <script>
+            const taglines = [
+                { text: "Ask me about my music tastes. I no longer dodge the question. ;)", weight: 1 },
+                { text: "I will answer calls from unknown numbers.", weight: 1 },
+                { text: "Currently applying to everywhere. Moving to... somewhere?", weight: 1 },
+                { text: "Coming to a university near you, far from you, or a moderate distance away.", weight: 1 },
+                { text: "Check back in three months. I think. Wait. Yeah, three months, that's sorta right.", weight: 1 },
+                { text: "Threatening to become your neighbor in Fall 2026. Or not. We'll see.", weight: 1 },
+                { text: "Embracing the liminality of it all since 2006.", weight: 10 }
+            ];
+
+            function getWeightedRandom(items) {
+                const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (const item of items) {
+                    if (random < item.weight) return item.text;
+                    random -= item.weight;
+                }
+                return items[0].text;
+            }
+
+            document.querySelector('.overlapping-title-card p').textContent = getWeightedRandom(taglines);
+        </script>
 
         <p id="message"></p>
     </div>

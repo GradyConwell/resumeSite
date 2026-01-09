@@ -116,9 +116,45 @@
     <!-- Overlapping Title Card -->
     <div class="overlapping-title-card">
         <h1>Hi, I'm Grady Conwell</h1>
-        <!-- Tagline chosen based on location or randomly from default list -->
-        <p>Look ma! He's got a website.</p>
-        <script src="/assets/scripts/location-tagline.js"></script>
+        <!-- Tagline chosen from a list of options randomly.-->
+         <!--"Look ma! He's got a website.",
+                "Mechanical and Mechatronic Engineering Student",
+                "Pretend Machinist",
+                "The pigeons on the street are free. You can just grab em.",
+                "Please send me your Chai recommendations.",
+                "Selling stationary to strangers on the internent since 2023.",
+                "I sometimes update the website.",
+                "I promise, I don't bite.",
+                "Humanoid Robotics Skeptic.",
+                "I will probably email you back.",
+                "2026, pfff, I'm still working on projects from 2023!",
+                --->
+
+        <p>Coming to a university near you, far from you, or a moderate distance away.</p>
+        <script>
+            const taglines = [
+                { text: "Ask me about my music tastes. I no longer dodge the question. ;)", weight: 1 },
+                { text: "I will answer calls from unknown numbers.", weight: 1 },
+                { text: "Currently applying to everywhere. Moving to... somewhere?", weight: 1 },
+                { text: "Coming to a university near you, far from you, or a moderate distance away.", weight: 1 },
+                { text: "Check back in three months. I think. Wait. Yeah, three months, that's sorta right.", weight: 1 },
+                { text: "Threatening to become your neighbor in Fall 2026. Or not. We'll see.", weight: 1 },
+                { text: "Embracing the liminality of it all since 2006.", weight: 10 }
+            ];
+
+            function getWeightedRandom(items) {
+                const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (const item of items) {
+                    if (random < item.weight) return item.text;
+                    random -= item.weight;
+                }
+                return items[0].text;
+            }
+
+            document.querySelector('.overlapping-title-card p').textContent = getWeightedRandom(taglines);
+        </script>
 
         <p id="message"></p>
     </div>
@@ -130,8 +166,10 @@
 <p>Outside of work and the classroom, I am all over the map (mind you, a map of California). Whether its feeding my bike to the dirt on some dodgy fire road, taking a moment to sketch the scenery, or dawdling off to the post office with a Santa sack of pencil parts, I'm always up to something.</p>
 <p>At Chico State, I serve as Vice President / Vice Chair for our Society of Manufacturing Engineers’ chapter (SME). My responsibilities include mentoring members in machining and design for manufacturing. I also lend general technical assistance to the club’s projects.</p>
 <p>In 2023, I embarked on an 'entrepreneurial journey' by selling my first product: a precision brass replacement component for a popular mechanical pencil. Two years of refinement later, and I've shipped over six hundred units to happy customers in fifteen countries.</p>
-<p>In the summer of 2025, I stumbled into my first grown-up job, as an intern at Copper – an absolutely phenomenal Berkeley-based hardware startup. I don't think I could've asked for a better start to my nascent engineering career. I've since had the privilege to stick around part-time during the fall, despite attending Chico State. It's a bizarre state of affairs, and I wouldn't have it any other way.</p>
-<p>Looking ahead, summer 2026 is still an open question, so if you know of any roles I'd be a good fit for, reach out!</p>
+<p>In the summer of 2025, I stumbled into my first grown-up job, as an intern at Copper – an absolutely phenomenal Berkeley-based hardware startup. I don't think I could've asked for a better start to my nascent engineering career. I've since had the privilege to stick around part-time during the fall, despite attending Chico State. It was a bizarre state of affairs, and I wouldn't have had it any other way.</p>
+<p>Heading into the new year, I'm all in on the transfer process. I spent the majority of 2025 explaining to everyone my great reasons for not transfering – only to realize that, maybe, there was something to it all along.</p>
+<p>I'll have a clearer picture of what the rest of the year looks like come April. In the meantime, I'm getting back into music for the first time in a few years, and going full steam ahead at Chico State.</p>
+<p>Looking forward, summer 2026 is still an open question, so if you know of any roles I'd be a good fit for, reach out!</p>
 
     </section>
 

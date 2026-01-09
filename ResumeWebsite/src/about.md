@@ -8,6 +8,10 @@ At Chico State, I serve as Vice President / Vice Chair for our Society of Manufa
 
 In 2023, I embarked on an 'entrepreneurial journey' by selling my first product: a precision brass replacement component for a popular mechanical pencil. Two years of refinement later, and I've shipped over six hundred units to happy customers in fifteen countries.
 
-In the summer of 2025, I stumbled into my first grown-up job, as an intern at Copper – an absolutely phenomenal Berkeley-based hardware startup. I don't think I could've asked for a better start to my nascent engineering career. I've since had the privilege to stick around part-time during the fall, despite attending Chico State. It's a bizarre state of affairs, and I wouldn't have it any other way. 
+In the summer of 2025, I stumbled into my first grown-up job, as an intern at Copper – an absolutely phenomenal Berkeley-based hardware startup. I don't think I could've asked for a better start to my nascent engineering career. I've since had the privilege to stick around part-time during the fall, despite attending Chico State. It was a bizarre state of affairs, and I wouldn't have had it any other way. 
 
-Looking ahead, summer 2026 is still an open question, so if you know of any roles I'd be a good fit for, reach out!
+Heading into the new year, I'm all in on the transfer process. I spent the majority of 2025 explaining to everyone my great reasons for not transfering – only to realize that, maybe, there was something to it all along. 
+
+I'll have a clearer picture of what the rest of the year looks like come April. In the meantime, I'm getting back into music for the first time in a few years, and going full steam ahead at Chico State. 
+
+Looking forward, summer 2026 is still an open question, so if you know of any roles I'd be a good fit for, reach out!
