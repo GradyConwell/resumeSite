@@ -4,12 +4,24 @@ description: "WIP gang tool lathe designed for small parts"
 image: "/assets/images/lathe_wip_control_cabinet.png"
 permalink: "/projects/lathe/"
 layout: "projectLayout.html"
-priority: 2
+priority: 1
 isPriority: false
 ---
 
 # Compact CNC Lathe
 
+<div style="text-align: center; margin: 20px auto;">
+<iframe width="100%" style="max-width: 800px; aspect-ratio: 16/9; border-radius: 8px;" src="https://www.youtube.com/embed/k7oSAq7gK64?si=eOCRGVswx6PJW6x9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+</div>
+
+## Jan. 2026
+It's making chips! I had just enough time to get the machine running for the first time and turn a handful of test parts before driving back to Chico for the spring semester. I finished the spindle assembly, dialed in all the axes, and loaded up some test material. I didn't have time to wire in the encoders for threading, so unfortunately, no threading demo as of yet. 
+
+All the toolpaths for the pawns were programmed in Fusion 360. I picked relatively conservative feeds given that the lathe is currently rolling around on some Ikea wheels, and not bolted to a concrete slab. This is why there is some shaking in the video: the whole machine is rocking back and forth!
+
+My plan is to continue developing the machine, and hopefully bring it to a polished state. Full enclosure, (mist?) coolant, tool changer, the works. 
+
+## Planning
 In 2023, I began selling mechanical pencil components, each one meticulously manually machined. I quickly began to struggle to keep up with demand. As I made my first hundred sales, it became increasingly evident that automation would enable me to increase productivity and, consequently, volume. After researching my options thoroughly and receiving quotes from several job shops, I decided that the best course of action would be to construct a teeny **purpose-built lathe**. This of course, is a ludicrous decision that only a 17 year old high school student would make. 
 
 ## Planning

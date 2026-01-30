@@ -4,7 +4,7 @@ description: "A one-of-one custom FDM 3d printer (2021)"
 image: "/assets/images/printer_toolhead.jpeg"
 permalink: "/project/printer/"
 layout: "projectLayout.html"
-priority: 1
+priority: 2
 isPriority: true
 ---
 
