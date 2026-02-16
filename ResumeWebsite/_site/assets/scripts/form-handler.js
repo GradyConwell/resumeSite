@@ -160,7 +160,7 @@ document.getElementById('email-form').addEventListener('submit', async function 
     console.log('Opening resume PDF...');
     
     // Show the PDF to the user - URL encode the path for Chrome compatibility
-    const resumeUrl = "/assets/pdf/Grady%20Conwell_Resume_2025_11_b.pdf";
+    const resumeUrl = "/assets/pdf/Grady_Conwell_Resume_Feb_2026_A_r2.pdf";
     console.log('Resume URL:', resumeUrl);
     
     // Try to open in a new tab first (works better in Chrome)
