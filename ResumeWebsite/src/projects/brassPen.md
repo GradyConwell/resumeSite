@@ -4,11 +4,12 @@ description: "A simple gel pen, designed and machined as a gift for a friend."
 image: "/assets/images/PrototypePen.png"
 permalink: "/projects/2023_proto_pen/"
 layout: "projectLayout.html"
+category: "Stationary"
 priority: 4
 ---
 
 # First Pen (2023)
-<img src="/assets/images/PrototypePen.png" alt="Prototype Pen" title="Prototype Pen">
+<img src="/assets/images/PrototypePen.png" alt="Prototype Pen" title="Prototype Pen" loading="lazy">
     
 This project is the first in a series of pens I have designed and machined. The bolt action pen has a stepped tip, forward center of mass, and engraved text.
     

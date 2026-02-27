@@ -1,25 +1,39 @@
+.category-title {
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: var(--color-accent);
+}
+
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    /* Using auto-fill keeps empty column tracks, preventing single items from stretching full width */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
-    padding: 10px var(--dynamic-padding); /* Match title and about card padding */
-    margin: 0 0 50px 0; /* Add bottom margin to match spacing between sections */
-    width: 100%; /* Fill full width */
-    box-sizing: border-box; /* Include padding in width calculation */
-    grid-auto-flow: dense;
+    padding: 0;
+    margin: 0 0 30px 0;
+    width: 100%;
+    align-items: stretch; /* Ensure all cards in a row have equal height */
 }
+
 
 .project-card {
     background: var(--color-base);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    /* Ensure flex column behavior */
+    display: flex;
+    flex-direction: column;
+    
     overflow: hidden;
     text-decoration: none;
     color: var(--color-text-light);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
     font-size: 12pt;
+    
+    width: 100%; 
+    height: 100%; /* Fill full height of grid cell for consistent row heights */
 }
 
 .project-card:hover {
@@ -27,27 +41,40 @@
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
 
-.project-image img {
+.project-image {
     width: 100%;
-    height: 230px;
-    object-fit: cover;
+    aspect-ratio: 4 / 3; /* Consistent aspect ratio for all images */
+    overflow: hidden;
+    flex-shrink: 0; /* Prevent image from shrinking */
+    margin: 0;
+    padding: 0;
+    line-height: 0; /* Remove any inline spacing */
+}
+
+.project-card .project-image img {
+    display: block; /* Remove inline image gap */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop to fill, maintaining aspect ratio */
+    object-position: center; /* Center the crop */
+    margin: 0; /* Override .content-container img margin */
+    padding: 0;
+    border-radius: 0; /* Override .content-container img border-radius */
+    max-width: none; /* Override .content-container img max-width */
 }
 
 .project-content {
     padding: 1rem;
+    flex-grow: 1; /* Allow content area to expand to fill remaining space */
 }
 
 .project-content h3 {
     color: var(--color-accent);
+    margin: 0 0 0.5rem 0;
 }
 
-.project-card--priority {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-.project-card--priority .project-image img {
-    height: 485px;
+.project-content p {
+    margin: 0;
 }
 
 /* Mobile adjustments */
@@ -56,18 +83,7 @@
         grid-template-columns: 1fr; /* Single column on mobile */
     }
     
-    .project-card--priority {
-        grid-column: span 1; /* Remove column spanning on mobile */
-        grid-row: span 1; /* Remove row spanning on mobile */
-    }
-    
-    .project-card--priority .project-image img {
-        height: 300px; /* Use standard height on mobile */
-    }
-}
-
-@media (min-width: 1400px) {
-    .projects-grid {
-        padding: 10px var(--dynamic-padding); /* Match title and about card padding */
+    .project-image {
+        aspect-ratio: 16 / 9; /* Taller images on mobile */
     }
 }

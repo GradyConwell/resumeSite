@@ -6,6 +6,7 @@ permalink: "/project/pencils/"
 layout: "projectLayout.html"
 priority: 0
 isPriority: true
+category: "Stationary"
 ---
 
 # Pencil Replacement Parts

@@ -5,6 +5,7 @@ image: "/assets/images/router_lathe_part_machining.png"
 permalink: "/projects/router/"
 layout: "projectLayout.html"
 priority: 2
+category: "Cap"
 ---
 
 # Benchtop CNC Router

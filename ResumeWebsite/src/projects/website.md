@@ -5,6 +5,7 @@ image: "/assets/images/website_thumb3.png"
 permalink: "/projects/meta/"
 layout: "projectLayout.html"
 priority: 2
+category: "Software"
 ---
 
 # Portfolio Website
@@ -27,6 +28,7 @@ image: "assets/images/robot_sliceRobotnobacklight.png"
 permalink: "/projects/anklebiter/"
 layout: "projectLayout.html"
 priority: 2
+category: "Software"
 ---
         </pre>
         <em>An example of the header for each project file.</em>

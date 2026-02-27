@@ -5,6 +5,7 @@ image: "/assets/images/WarmAug25.png"
 permalink: "/project/graphPen/"
 layout: "projectLayout.html"
 priority: 2
+category: "Design"
 ---
 
 # Graphgear Derived Pen
@@ -18,6 +19,6 @@ Turns out, that's fairly complicated, and difficult to offer in volume. So, why 
 
 A fun little evening project I recently finished. This little pen has a ~9mm OD. It uses a PR4 (Fisher) or Uni PowerTank refill, both oil based. It's grip and body are compatible with Pentel GraphGear 1000 parts. 
 
-<img src="/assets/images/brassPenAlongWhiteRug.jpeg " alt="A Brass pencil laying on a plush white rug" title="on the rug"> 
+<img src="/assets/images/brassPenAlongWhiteRug.jpeg" alt="A Brass pencil laying on a plush white rug" title="on the rug" loading="lazy"> 
 
 

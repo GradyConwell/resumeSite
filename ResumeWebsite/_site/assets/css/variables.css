@@ -1,18 +1,18 @@
 :root {
-    --color-base: #F2F2F2;
-    --color-primary: #F2F2F2;
+    --color-base: 	#FFF9F4;
+    --color-primary: #FFFBF7;
     --color-accent: #3E6E8C; /* Accent color for headings and links */
     --color-text: #0D0C0C; /* Default text color */
     --color-text-light: #403B3B; /* Alt text color */
     --color-hover: #0476D9; /* Hover color for buttons/links */
 
-    --dynamic-padding: clamp(0.25rem, 5vw, 8rem); /* Dynamic horizontal padding */
+    --dynamic-padding: clamp(0.25rem, 5vw, 4rem); /* Dynamic horizontal padding */
     
     --card-padding-vertical-desktop: 1rem; /* Fixed vertical padding inside cards for desktop */
     --card-padding-horizontal-desktop: 2rem; /* Fixed horizontal padding inside cards for desktop */
     --card-padding-vertical-mobile: 1rem; /* Fixed vertical padding inside cards for mobile */
     --card-padding-horizontal-mobile: 2rem; /* Fixed horizontal padding inside cards for mobile */
     
-    --font-serif: 'Cormorant Garamond', serif; /* Serif accent font for titles */
+    --font-serif: 'Fraunces', serif; /* Serif accent font for titles */
     --font-sans: 'Inter', sans-serif; /* Sans-serif body font */
 }

@@ -127,10 +127,6 @@
 
 /* Media Query for Small Screens */
 @media (max-width: 575px) {
-    .nav-item-photos {
-        display: none; /* Hide photos link on mobile */
-    }
-
     .navbar-icon {
         display: inline; /* Show icons on small screens */
         height: 24px;

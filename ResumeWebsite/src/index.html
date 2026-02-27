@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grady Conwell - Portfolio</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
@@ -41,7 +41,13 @@
 
     <!-- Overlapping Title Card -->
     <div class="overlapping-title-card">
-        <h1>Hi, I'm Grady Conwell</h1>
+        <h1 id="title-heading">Hi, I'm Grady Conwell</h1>
+        <script>
+            // Randomly choose softness and wonk for the title font on each reload
+            const softness = Math.floor(Math.random() * 101); // 0 to 100
+            const wonk = Math.round(Math.random()); // 0 or 1
+            document.getElementById('title-heading').style.fontVariationSettings = `'SOFT' ${softness}, 'WONK' ${wonk}`;
+        </script>
         <!-- Tagline chosen from a list of options randomly.-->
          <!--"Look ma! He's got a website.",
                 "Mechanical and Mechatronic Engineering Student",
@@ -85,23 +91,36 @@
         <p id="message"></p>
     </div>
 
-    <!-- About Section-->
-    <section id="about" class="content-container">
-        {% markdownInclude "./src/about.md" %}
+    <!-- Main content wrapper for two-column layout on wide screens -->
+    <div class="main-layout-wrapper">
+        <!-- Primary content column -->
+        <div class="main-content-column">
+            <!-- About Section-->
+            <section id="about" class="content-container">
+                {% markdownInclude "./src/about.md" %}
     </section>
 
     <!-- Projects Section-->
-    <section id="projects" class="projects-grid">
-        {% for project in collections.projects %}
-            <a class="project-card {% if project.data.isPriority %}project-card--priority{% endif %}" href="{{ project.url }}">
-                <div class="project-image">
-                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}" loading="lazy">
+    <section id="projects" class="content-container">
+        {% for category in categories %}
+            <div class="category-section">
+                <h2 class="category-title">{{ category.name }}</h2>
+                <div class="projects-grid">
+                    {% for project in collections.projects %}
+                        {% if project.data.category == category.id %}
+                            <a class="project-card {% if project.data.isPriority %}project-card--priority{% endif %}" href="{{ project.url }}">
+                                <div class="project-image">
+                                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    <h3>{{ project.data.title }}</h3>
+                                    <p>{{ project.data.description }}</p>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="project-content">
-                    <h3>{{ project.data.title }}</h3>
-                    <p>{{ project.data.description }}</p>
-                </div>
-            </a>
+            </div>
         {% endfor %}
     </section>
 
@@ -109,6 +128,21 @@
     <section id="contact" class="content-container">
         {% markdownInclude "./src/contact.md" %}
     </section>
+        </div><!-- End main-content-column -->
+
+        <!-- Photos sidebar - only visible on wide screens -->
+        <aside class="photos-sidebar">
+            <div class="photos-sidebar-header">
+                <h2>Latest Photos</h2>
+                <a href="/photos/" class="photos-link">View All</a>
+            </div>
+            <div class="photos-sidebar-grid">
+                {% for photo in sidebarPhotos %}
+                <img src="{{ photo.src }}" alt="{{ photo.category }} photo" class="sidebar-photo" loading="lazy">
+                {% endfor %}
+            </div>
+        </aside>
+    </div><!-- End main-layout-wrapper -->
 
     {% include "footer.html" %}
 </body>

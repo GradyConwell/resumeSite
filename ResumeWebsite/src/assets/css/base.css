@@ -133,3 +133,97 @@ footer {
         padding: var(--card-padding-vertical-mobile) var(--card-padding-horizontal-mobile); /* Fixed padding for mobile */
     }
 }
+
+/* Two-column layout wrapper for wide screens */
+.main-layout-wrapper {
+    display: block; /* Default: single column */
+}
+
+/* Photos sidebar - hidden by default */
+.photos-sidebar {
+    display: none;
+}
+
+/* Wide screen two-column layout */
+@media (min-width: 1400px) {
+    .main-layout-wrapper {
+        display: flex;
+        gap: 4rem;
+        padding-right: var(--dynamic-padding);
+        align-items: flex-start;
+    }
+
+    .main-content-column {
+        flex: 0 0 auto; /* Don't grow, don't shrink, size by content */
+        min-width: 900px; /* Ensure content column maintains minimum width */
+        width: 900px; /* Fixed width to prevent shrinking */
+    }
+
+    /* Override content-container to use fixed width instead of percentage */
+    .main-content-column .content-container {
+        width: 800px;
+        margin-left: var(--dynamic-padding);
+        margin-right: 0;
+    }
+
+    .photos-sidebar {
+        display: block;
+        flex: 1 1 400px; /* Grow to fill remaining space */
+        min-width: 350px;
+        background-color: var(--color-primary);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        align-self: flex-start; /* Height matches content, not stretched */
+    }
+
+    .photos-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .photos-sidebar-header h2 {
+        font-family: var(--font-serif);
+        font-size: 2em;
+        font-weight: 500; /* Match other section headers */
+        color: var(--color-accent);
+        margin: 0;
+    }
+
+    .photos-link {
+        font-size: 0.9rem;
+        color: var(--color-accent);
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+    }
+
+    .photos-link:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+
+    .photos-sidebar-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .sidebar-photo {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .sidebar-photo:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}

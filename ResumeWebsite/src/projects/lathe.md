@@ -6,6 +6,7 @@ permalink: "/projects/lathe/"
 layout: "projectLayout.html"
 priority: 1
 isPriority: false
+category: "Cap"
 ---
 
 # Compact CNC Lathe
