@@ -361,24 +361,32 @@
         <!-- Photos sidebar - only visible on wide screens -->
         <aside class="photos-sidebar">
             <div class="photos-sidebar-header">
-                <h2>Latest Photos</h2>
+                <h2>Some of my Photos</h2>
                 <a href="/photos/" class="photos-link">View All</a>
             </div>
-            <div class="photos-sidebar-grid">
-                
-                <img src="/assets/photos/01_Dogs/DSC00653.JPG" alt="01_Dogs photo" class="sidebar-photo" loading="lazy">
-                
-                <img src="/assets/photos/01_Dogs/DSC00229.JPG" alt="01_Dogs photo" class="sidebar-photo" loading="lazy">
-                
-                <img src="/assets/photos/00_LA_Wide/DSC00619.JPG" alt="00_LA_Wide photo" class="sidebar-photo" loading="lazy">
-                
-                <img src="/assets/photos/00_LA_Wide/DSC00554.JPG" alt="00_LA_Wide photo" class="sidebar-photo" loading="lazy">
-                
-                <img src="/assets/photos/00_LA_Wide/DSC00503.JPG" alt="00_LA_Wide photo" class="sidebar-photo" loading="lazy">
-                
-                <img src="/assets/photos/05_Landscapes/07_Mammoth_Mountain.jpeg" alt="05_Landscapes photo" class="sidebar-photo" loading="lazy">
-                
+            <div class="photos-sidebar-grid" id="sidebar-photos-grid">
             </div>
+            <script>
+                (function() {
+                    const allPhotos = [{"src":"/assets/photos/00_LA_Wide/DSC00503.JPG","category":"00_LA_Wide","mtime":1772178702068},{"src":"/assets/photos/00_LA_Wide/DSC00554.JPG","category":"00_LA_Wide","mtime":1772178702085},{"src":"/assets/photos/00_LA_Wide/DSC00619.JPG","category":"00_LA_Wide","mtime":1772178702092},{"src":"/assets/photos/01_Dogs/DSC00229.JPG","category":"01_Dogs","mtime":1772178752323},{"src":"/assets/photos/01_Dogs/DSC00653.JPG","category":"01_Dogs","mtime":1772178752335},{"src":"/assets/photos/02_Travel/01_Kauai.jpeg","category":"02_Travel","mtime":1764996991194},{"src":"/assets/photos/02_Travel/04_Chico.jpeg","category":"02_Travel","mtime":1764997148244},{"src":"/assets/photos/02_Travel/05_Kauai.jpeg","category":"02_Travel","mtime":1764997050229},{"src":"/assets/photos/03_Geese/2_nene.jpeg","category":"03_Geese","mtime":1764996567480},{"src":"/assets/photos/03_Geese/3_nene.jpeg","category":"03_Geese","mtime":1764996665330},{"src":"/assets/photos/03_Geese/7_nene.jpeg","category":"03_Geese","mtime":1764996903423},{"src":"/assets/photos/03_Geese/8_nene.jpeg","category":"03_Geese","mtime":1764996942559},{"src":"/assets/photos/05_Landscapes/01_Kauai_Waves.jpeg","category":"05_Landscapes","mtime":1764997266123},{"src":"/assets/photos/05_Landscapes/02_Oakland.jpeg","category":"05_Landscapes","mtime":1764997541377},{"src":"/assets/photos/05_Landscapes/03_Paradise.jpeg","category":"05_Landscapes","mtime":1764997249154},{"src":"/assets/photos/05_Landscapes/04_Kauai_Sleeping_Giant.jpeg","category":"05_Landscapes","mtime":1764997074368},{"src":"/assets/photos/05_Landscapes/05_Kauai_Birds.jpeg","category":"05_Landscapes","mtime":1764997261023},{"src":"/assets/photos/05_Landscapes/06_Bay_Bridge.jpeg","category":"05_Landscapes","mtime":1767918092984},{"src":"/assets/photos/05_Landscapes/07_Mammoth_Mountain.jpeg","category":"05_Landscapes","mtime":1767918244218},{"src":"/assets/photos/06_Newt/01_Newt.jpeg","category":"06_Newt","mtime":1764998025587},{"src":"/assets/photos/06_Newt/03_PowerLines.jpeg","category":"06_Newt","mtime":1764998041323},{"src":"/assets/photos/06_Newt/04_Trees.jpeg","category":"06_Newt","mtime":1764998039040},{"src":"/assets/photos/07_Chickens/1_chicken.jpeg","category":"07_Chickens","mtime":1764984931681},{"src":"/assets/photos/07_Chickens/4_run.jpg","category":"07_Chickens","mtime":1764983725405},{"src":"/assets/photos/07_Chickens/5_chicken.jpg","category":"07_Chickens","mtime":1764983725399}];
+                    if (!allPhotos || allPhotos.length === 0) return;
+                    // Shuffle array
+                    for (let i = allPhotos.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
+                    }
+                    // Pick 6 and render
+                    const grid = document.getElementById('sidebar-photos-grid');
+                    allPhotos.slice(0, 6).forEach(photo => {
+                        const img = document.createElement('img');
+                        img.src = photo.src;
+                        img.alt = photo.category + ' photo';
+                        img.className = 'sidebar-photo';
+                        img.loading = 'lazy';
+                        grid.appendChild(img);
+                    });
+                }) ();
+            </script>
         </aside>
     </div><!-- End main-layout-wrapper -->
 

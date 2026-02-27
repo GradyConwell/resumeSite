@@ -133,14 +133,32 @@
         <!-- Photos sidebar - only visible on wide screens -->
         <aside class="photos-sidebar">
             <div class="photos-sidebar-header">
-                <h2>Latest Photos</h2>
+                <h2>Some of my Photos</h2>
                 <a href="/photos/" class="photos-link">View All</a>
             </div>
-            <div class="photos-sidebar-grid">
-                {% for photo in sidebarPhotos %}
-                <img src="{{ photo.src }}" alt="{{ photo.category }} photo" class="sidebar-photo" loading="lazy">
-                {% endfor %}
+            <div class="photos-sidebar-grid" id="sidebar-photos-grid">
             </div>
+            <script>
+                (function() {
+                    const allPhotos = {{ sidebarPhotos | json }};
+                    if (!allPhotos || allPhotos.length === 0) return;
+                    // Shuffle array
+                    for (let i = allPhotos.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
+                    }
+                    // Pick 6 and render
+                    const grid = document.getElementById('sidebar-photos-grid');
+                    allPhotos.slice(0, 6).forEach(photo => {
+                        const img = document.createElement('img');
+                        img.src = photo.src;
+                        img.alt = photo.category + ' photo';
+                        img.className = 'sidebar-photo';
+                        img.loading = 'lazy';
+                        grid.appendChild(img);
+                    });
+                }) ();
+            </script>
         </aside>
     </div><!-- End main-layout-wrapper -->
 

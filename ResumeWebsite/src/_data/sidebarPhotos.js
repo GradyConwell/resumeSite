@@ -36,8 +36,6 @@ module.exports = function() {
         console.error("Error loading sidebar photos:", e);
     }
 
-    // Sort by most recently modified and return top 8
-    return photos
-        .sort((a, b) => b.mtime - a.mtime)
-        .slice(0, 6);
+    // Return all photos - shuffling happens client-side
+    return photos;
 };
