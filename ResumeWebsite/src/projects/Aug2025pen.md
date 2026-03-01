@@ -5,7 +5,7 @@ image: "/assets/images/WarmAug25.png"
 permalink: "/project/graphPen/"
 layout: "projectLayout.html"
 priority: 2
-category: "Design"
+category: "Stationary"
 ---
 
 # Graphgear Derived Pen
