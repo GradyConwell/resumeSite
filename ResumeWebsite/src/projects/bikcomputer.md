@@ -1,7 +1,7 @@
 ---
 title: "GPS Bike Computer"
 description: "I will finish it eventually"
-image: "/assets/images/myCASdemoShot.png"
+image: "/assets/images/bikeComEarlyDemo.jpeg"
 permalink: "/projects/bikecomputer/"
 layout: "projectLayout.html"
 priority: 2
@@ -15,5 +15,12 @@ I spent the summer of 2025 cycling around the Bay Area on a pair of bikes. It wa
 
 So, I figured I'd get some time with the ESP32 ecosystem, and build my own—that does exactly what I want, and precisely nothing more.
 
-## Overview
+## Where it's at
 
+<img src="/assets/images/bikeComEarlyDemo.jpeg" alt="Two COTS circuit boards lying on a piece of bubble wrap." title="on the bubblewrap." loading="lazy"> 
+
+I need to find a better GPS board; that also isn't very expensive. Or, give up, and wire some sort of pedometer to my fork.
+
+For now, the computer lives in a plastic box on my desk. I get the privilege of looking at it every day, and thinking about how I want to avoid solving its problems. Sometimes, I even pack it up in my suitcase so that I can procrastinate in another zipcode.
+
+In the meantime, I've gotten marginally better with the ESP32 ecosystem through a handful of other projects, notable for being finished.
