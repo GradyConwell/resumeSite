@@ -1,14 +1,9 @@
----
-layout: null
-title: Photography
-templateEngineOverride: njk
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - Grady Conwell</title>
+    <title>Photography - Grady Conwell</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
@@ -24,7 +19,81 @@ templateEngineOverride: njk
     </script>
 </head>
 <body>
-    {% include "navbar.html" %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Section: Resume Button -->
+        <div class="navbar-right">
+            <button id="popup-button" class="navbar-resume-button">View My Resume</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Popup Form -->
+<div id="popup-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 8px; color: black; width: 300px; text-align: center;">
+    <!--<form action="https://submit-form.com/EQ3OQ1GmK" id="email-form" method="POST" data-botpoison-public-key="pk_800c4593-6ff7-4f7c-8c87-2f12976427c6">!-->
+    <form id="email-form">
+        <input type="hidden" name="form-name" value="popup-form" />
+        <!-- Honeypot Field -->
+        <input type="text" id="honeypot" name="honeypot" style="display: none;" autocomplete="off" />
+        <label for="email" style="color: #403B3B;">Almost There! Let’s Stay in Touch.</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required style="margin: 10px 0; padding: 8px; width: calc(100% - 20px); box-sizing: border-box;" />
+        <button type="submit" class="popup-form-button">Submit</button>
+    </form>
+</div>
+
+<script>
+    const popupButton = document.getElementById('popup-button');
+    const popupForm = document.getElementById('popup-form');
+
+    popupButton.addEventListener('click', () => {
+        popupForm.style.display = 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target !== popupForm && !popupForm.contains(event.target) && event.target !== popupButton) {
+            popupForm.style.display = 'none';
+        }
+    });
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
 
     <main class="photo-gallery-page">
         <header class="photo-gallery-header">
@@ -33,20 +102,204 @@ templateEngineOverride: njk
         </header>
 
         <div class="gallery-container">
-            {% for category, images in photos %}
+            
             <div class="gallery-category">
                 <div class="cluster-wrapper">
-                    {% for image in images %}
-                        {% if loop.index <= 5 %}
-                        <img src="{{ image }}" alt="{{ category }} photo" class="photo-card" loading="lazy">
-                        {% endif %}
-                    {% endfor %}
+                    
+                        
+                        <img src="/assets/photos/000_Chico_Hills_Flowers/0_purplehead_profile.jpeg" alt="000_Chico_Hills_Flowers photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/000_Chico_Hills_Flowers/1_purplehead_Sunset.jpeg" alt="000_Chico_Hills_Flowers photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/000_Chico_Hills_Flowers/3_purplehead_sillo.jpeg" alt="000_Chico_Hills_Flowers photo" class="photo-card" loading="lazy">
+                        
+                    
                 </div>
             </div>
-            {% endfor %}
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/00_LA_Wide/I_love_LA.JPG" alt="00_LA_Wide photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/00_LA_Wide/Sticks_over_the_2.JPG" alt="00_LA_Wide photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/00_LA_Wide/Sunset_over_GriffithPark.jpeg" alt="00_LA_Wide photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/00_LA_Wide/soccer_montrose_2.JPG" alt="00_LA_Wide photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/00_LA_Wide/windingpath.jpeg" alt="00_LA_Wide photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/01_Dogs/DSC00229.JPG" alt="01_Dogs photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/01_Dogs/DSC00653.JPG" alt="01_Dogs photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/01_Dogs/notadog.jpeg" alt="01_Dogs photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/02_Travel/04_Chico.jpeg" alt="02_Travel photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/02_Travel/05_Kauai.jpeg" alt="02_Travel photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/03_Chico/3FE27390-19AE-45D7-AD8B-55AA822B06A3_1_105_c.jpeg" alt="03_Chico photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/03_Chico/89FF51EC-D951-42BB-9769-BFA27743779E_1_105_c.jpeg" alt="03_Chico photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/03_Chico/AC3E4631-C54D-41A5-8B2A-7196E89B8453_1_105_c.jpeg" alt="03_Chico photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/03_Chico/C2D7B003-F3E3-4812-9D58-12F3F4E2589B_1_201_a.jpeg" alt="03_Chico photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/03_Chico/D4BAE638-6BFC-4371-8AE5-22B9DA109C71_1_201_a.jpeg" alt="03_Chico photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/05_Landscapes/01_Kauai_Waves.jpeg" alt="05_Landscapes photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/05_Landscapes/02_Oakland.jpeg" alt="05_Landscapes photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/05_Landscapes/03_Paradise.jpeg" alt="05_Landscapes photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/05_Landscapes/04_Kauai_Sleeping_Giant.jpeg" alt="05_Landscapes photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/05_Landscapes/05_Kauai_Birds.jpeg" alt="05_Landscapes photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                    
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/06_Newt/01_Newt.jpeg" alt="06_Newt photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/06_Newt/03_PowerLines.jpeg" alt="06_Newt photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/06_Newt/04_Trees.jpeg" alt="06_Newt photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/07_Chickens/1_chicken.jpeg" alt="07_Chickens photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/07_Chickens/4_run.jpg" alt="07_Chickens photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/07_Chickens/5_chicken.jpg" alt="07_Chickens photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
+            <div class="gallery-category">
+                <div class="cluster-wrapper">
+                    
+                        
+                        <img src="/assets/photos/08_Geese/2_nene.jpeg" alt="08_Geese photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/08_Geese/3_nene.jpeg" alt="08_Geese photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/08_Geese/7_nene.jpeg" alt="08_Geese photo" class="photo-card" loading="lazy">
+                        
+                    
+                        
+                        <img src="/assets/photos/08_Geese/8_nene.jpeg" alt="08_Geese photo" class="photo-card" loading="lazy">
+                        
+                    
+                </div>
+            </div>
+            
         </div>
         
-        {% include "footer.html" %}
+        <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
+    <p>© 2026 Grady Conwell</p>
+</footer>
 
         <!-- Lightbox Container -->
         <div id="lightbox" class="lightbox">

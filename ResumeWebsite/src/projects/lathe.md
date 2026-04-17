@@ -60,7 +60,7 @@ Working around these components, I designed a frame and motion system. For surfa
 
 During the first few months of 2024, I gradually machined, assembled, and tested the frame. Once the frame was securely bolted together for the first time, I partially disassembled it and filled the large hollow sections of the aluminum framing with epoxy granite. The epoxy granite is designed to dampen vibrations and stiffen the frame.
 
-My epoxy granite recipe, admittedly amateur, was based on industry best practices. The final mixture consisted of 80% granite by weight and 20% epoxy. For the granite, I used a combination of coarse granite pebbles and DG. Although sifting, washing, and drying the granite was time-consuming, the casting process itself was quick and straightforward. 
+My epoxy granite recipe, admittedly amateur, was based on best practices. The final mixture consisted of 80% granite by weight and 20% epoxy. For the granite, I used a combination of coarse granite pebbles and DG. Although sifting, washing, and drying the granite was time-consuming, the casting process itself was quick and straightforward. 
 
 At this stage of the project, the scope getting out of control. Recognizing this, I deliberately set aside the enclosure design until I had an operational machine to test. 
 
