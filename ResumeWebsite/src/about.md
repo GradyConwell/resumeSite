@@ -1,9 +1,7 @@
 # About Me
 
-I’m a dual Mechanical and Mechatronic Engineering major at CSU Chico. Outside class, I’m always moving—whether it's tumbling down dodgy fire roads on my bike, sketching the scenery, or lugging a Santa sack of pencil parts to the post office.
+I’m a Mechanical Engineering major at CSU Chico. On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, where I mentor students and coordinate our technical projects.
 
-On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, mentoring students and coordinating technical projects. Off campus, my 2023 "entrepreneurial journey" selling precision brass pencil components has grown to 650+ units shipped across 15 countries.
+This summer, I am returning to the Bay Area to work with the wonderful team at Copper, a Berkeley-based climate-tech startup. Come fall, I'll start my penultimate semester at Chico State.
 
-Professionally, I spent the summer interning at Copper, an amazing Berkeley hardware startup. I've since stuck around part time while I attend Chico State. I don't think I could've asked for a better start to my nascent engineering career.
-
-This year, I'm diving back into music, going full steam ahead at Chico, and navigating the university transfer process. I spent the majority of 2025 explaining to everyone my great reasons for not transfering – only to realize that, maybe, there was something to it all along. Summer 2026, of course, remains unresolved: so if you know a great role for me, reach out! 
+Otherwise, I’m looking for new things to do and figuring out where I'm headed after graduation. Recruit me to your lab, try to hire me, whatever floats your boat—my inbox is open.

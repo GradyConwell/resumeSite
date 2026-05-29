@@ -13,7 +13,7 @@ category: "Software"
 ## Where it started
 This project was a bit unexpected. I initially set out to build a LaTeX parser—something quick and dirty that would translate my messy, plain-text math into clean, beautiful LaTeX. Inadvertently, I was becoming more familiar with SymPy around the same time. It struck me that if I glued my LaTeX parser to a SymPy backend, I’d be left with a pretty compelling calculator application.
 
-Every application I've developed previously has been built almost exclusively in JavaScript and HTML. Stitching together my Python and Swift skills was a challenge, but I've been careful to follow best practices and keep the architecture modular.
+Every aaplet I've developed previously has been built almost exclusively in JavaScript and HTML. Stitching together my limited Python and Swift skills was a challenge, but I've been careful to follow best practices and keep the architecture modular.
 
 ## Overview
 

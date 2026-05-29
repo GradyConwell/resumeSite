@@ -54,7 +54,7 @@ Most notable among the early acquisitions were:
     <figcaption class="caption"> Several of the "locked in" components are visible in this image. </figcaption>
 </figure>
 
-Working around these components, I designed a frame and motion system. For surfaces that I knew required relatively flat surfaces, I opted for an aluminum tooling plate, which is inexpensive and readily available. I also employed laser cut mild steel where tolerances were less critical. 
+Working around these components, I designed a frame and motion system. For surfaces that I knew required relatively flat surfaces, I opted for aluminum tooling plate, which is inexpensive and readily available. I also employed laser cut mild steel where tolerances were less critical. 
 
 ## Initial Fabrication 
 
