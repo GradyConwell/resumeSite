@@ -1,6 +1,6 @@
 # About Me
 
-I’m a Mechanical Engineering major at CSU Chico. On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, where I mentor students and coordinate our technical projects.
+I’m a Mechanical Engineering major at CSU Chico. On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, where I mentor students and coordinate our technical projects. Off campus, I am always tinkering away with a plethora of side projects, or aimlessly cycling about. 
 
 This summer, I am returning to the Bay Area to work with the wonderful team at Copper, a Berkeley-based climate-tech startup. Come fall, I'll start my penultimate semester at Chico State.
 
