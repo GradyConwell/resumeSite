@@ -22,7 +22,7 @@ The AnkleBiter robot was built for the 2023-24 FIRST Tech Challenge competition 
 
 My team captain directed me to design a novel swerve-type drivetrain system, where each wheel is indepedent, and capable of infinite steering. To accomplish this, I worked closely with Josh Sugino, our software lead, to design the motion control system required to operate a differential swerve drivetrain. It took several months of constant iteration to create the two competition ready swerve drive modules.
 
-While exciting, and time consuming, the swerve drivetrain didn't end up being the most exciting part of AnkleBiter. Instead, the powerful robot arm affixed to the front defined our competitiveness.  
+While exciting, time consuming, and award-winning, the swerve drivetrain didn't end up being the most important element of AnkleBiter. Instead, the powerful arm affixed to the front was what actually won matches.
 
 ## AnkleBiter Lifter
 
@@ -30,15 +30,15 @@ AnkleBiter's success was derived from its' versatile and efficient lifting mecha
 
 My initial approach explored a linkage system inspired by desk lamps. However, I encountered issues with a "dead-zone" due to overextension and backlash, leading to a switch to a direct drive system.
 
-The final iteration utilized three motors for speed and power: two at the base (shoulder) with high gearing and one faster motor at the elbow. To maintain consistent claw orientation, a servo-driven "wrist" (C stage) was implemented. Notably, the elbow joint incorporated 3D-printed gears made from ABS and Nylon, where I leveraged the anisotropic properties of FDM 3D prints with special curved teeth. 
+The final iteration utilized three motors for speed and power: two at the base (shoulder) with high gearing and one faster motor at the elbow. To maintain consistent claw orientation, a servo-driven "wrist" (C stage) was implemented. Notably, the elbow joint incorporated 3D-printed gears made from ABS and Nylon, where I combated the anisotropic properties of FDM 3D prints with special curved teeth. 
 
 For cone manipulation, I created Pinchy. This entirely 3D-printed, modular claw required no custom metal components, relying on COTS bearings, and M3 fasteners. Pinchy offered good grip, low cost, and ideal geometry with special tapered grippers.
 
 Keynote features of the AnkleBiter lifter included:
 
 * 19mm Square Aluminum Extrusion (16 gauge) Construction
-    * Offered a lightweight yet stiff structure that could be easily worked by hand—thereby eliminating the need for complex machined or 3D printed components.
+    * Lightweight and easily worked by hand. 
     
-* High Extension and Compact Folding
-    * The 2+1 joint design allowed for significant reach while also enabling the arm to fold neatly within the robot's 18" starting cube–which can be seen in the interactive CAD model above. 
+* Stowage
+    * The 2+1 joint design allowed for significant reach while also enabling the arm to fold neatly within the robot's 18" starting cube–which can be seen in the interactive CAD model above.
 
