@@ -25,7 +25,7 @@ My plan is to continue developing the machine, and hopefully bring it to a polis
 ## Planning
 In 2023, I began selling mechanical pencil components, each one meticulously manually machined. I quickly began to struggle to keep up with demand. As I made my first hundred sales, it became increasingly evident that automation would enable me to increase productivity and, consequently, volume. After researching my options thoroughly and receiving quotes from several job shops, I decided that the best course of action would be to construct a teeny **purpose-built lathe**. This of course, is a ludicrous decision that only a 17 year old high school student would make. 
 
-## Planning
+## Spec.
 My design had to work around several key constraints. The new lathe would have to: 
 * Operate on a standard 120v outlet, and draw no more than 2.4kW.
 * Fit through a standard 30" door.
@@ -48,6 +48,11 @@ Most notable among the early acquisitions were:
 - An 80mm wide ballscrew actuator, with two large bearing blocks, and a ⌀20mm ballscrew. 
 - A 0.7kW servo motor to drive the spindle. 
 - A three-inch square aluminum extrusion to serve as the machine base.
+
+<figure>
+    <img src="/assets/images/Lathe/actuatorInCrate.png" alt="An 80mm ballscrew actuator packaged in a wooden shipping crate" title="Ballscrew Actuator in Shipping Crate" loading="lazy">
+    <figcaption class="caption">A bit of low-balling on eBay got me this beauty for a hair under $200. Weird sticky dust from sitting around for years, but otherwise functionally new.</figcaption>
+</figure>
 
 <figure>
     <img src="/assets/images/lathe_first_assembled_z_axis.jpeg" alt="A long aluminum frame with a black slide bolted to the top" title="Z Axis" loading="lazy">
@@ -76,8 +81,27 @@ This project is still ongoing as of January 2026. Here's a breakdown of what's b
 | Limit Switches for all Axes |                        |                               |
 | First Chips.          |                              |                               |
 
-<img src="/assets/images/lathe_standing_on_cross_slide.jpeg" alt="Picture of Grady standing on one foot atop the prototype lathe cross slide." title="Standing on Cross Slide" loading="lazy">
+<figure>
+    <img src="/assets/images/Lathe/motors.jpeg" alt="A belt-driven motor and spindle assembly mounted above the lathe slide" title="Motor and Spindle Assembly" loading="lazy">
+    <figcaption class="caption">I had these pulleys modified to accomodate my goofy combination of "spindle motor" (repurposed 750W servo), and spindle. Getting custom drive belts is so cheap! It was single digit dollars each, and I only bought two. Probably helped that I got the pulleys from the same vendor.</figcaption>
+</figure>
 
-<img src="/assets/images/lathe_wip_cross_slide.png" alt="A partially assembled lathe cross slide" title="WIP Cross Slide" loading="lazy">
+<figure>
+    <img src="/assets/images/lathe_wip_cross_slide.png" alt="A partially assembled lathe cross slide" title="WIP Cross Slide" loading="lazy">
+    <figcaption class="caption">Check out those 1 of 1 custom fasteners! I turned down a bunch of round head torx screws because it was what I could get on amazon with next day shipping.</figcaption>
+</figure>
 
-<img src="/assets/images/lathe_wip_control_cabinet.png" alt="Several electronic components wired together atop a metal panel" title="Control Cabinet Demo Assembly" loading="lazy">
+<figure>
+    <img src="/assets/images/lathe_wip_control_cabinet.png" alt="Several electronic components wired together atop a metal panel" title="Control Cabinet Demo Assembly" loading="lazy">
+    <figcaption class="caption">I built this control cabinet before I had figured out that terminal blocks and  other low voltage control wiring accessories are functionally commodity items, and readily available at bargain prices in the Digikey and Automation Direct catalogues. Please excuse the use of no-name mystery stuff.</figcaption>
+</figure>
+
+<figure>
+    <img src="/assets/images/Lathe/controlcab.jpeg" alt="An open white control cabinet showing its wiring, drivers, and power supply" title="Open Control Cabinet" loading="lazy">
+    <figcaption class="caption">My choice of controls was perhaps too efficient. I really don't like how sparse my semi-finished cabinet looks. Maybe I'll just have to keep adding new stuff until it feels full. </figcaption>
+</figure>
+
+<figure>
+    <img src="/assets/images/Lathe/shopDog.jpeg" alt="A black-and-white dog resting beside the lathe in the workshop" title="Workshop Companion" loading="lazy">
+    <figcaption class="caption">Tucker! Excellent shop dog, and very excited that everyone is on the floor where he hangs out.</figcaption>
+</figure>

@@ -22,7 +22,7 @@ module.exports = function() {
                 
                 // Only add category if it has images
                 if (files.length > 0) {
-                    categories[folder] = files.map(file => `/assets/photos/${folder}/${file}`);
+                    categories[folder] = files.map(file => `/assets/photos/${folder}/${path.parse(file).name}.webp`);
                 }
             });
         }

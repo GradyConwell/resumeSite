@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FP2 - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-83CZPWDMGD');
+    </script>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Section: Resume Button -->
+        <div class="navbar-right">
+            <button id="popup-button" class="navbar-resume-button">View My Resume</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Popup Form -->
+<div id="popup-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 8px; color: black; width: 300px; text-align: center;">
+    <!--<form action="https://submit-form.com/EQ3OQ1GmK" id="email-form" method="POST" data-botpoison-public-key="pk_800c4593-6ff7-4f7c-8c87-2f12976427c6">!-->
+    <form id="email-form">
+        <input type="hidden" name="form-name" value="popup-form" />
+        <!-- Honeypot Field -->
+        <input type="text" id="honeypot" name="honeypot" style="display: none;" autocomplete="off" />
+        <label for="email" style="color: #403B3B;">Almost There! Let’s Stay in Touch.</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required style="margin: 10px 0; padding: 8px; width: calc(100% - 20px); box-sizing: border-box;" />
+        <button type="submit" class="popup-form-button">Submit</button>
+    </form>
+</div>
+
+<script>
+    const popupButton = document.getElementById('popup-button');
+    const popupForm = document.getElementById('popup-form');
+
+    popupButton.addEventListener('click', () => {
+        popupForm.style.display = 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target !== popupForm && !popupForm.contains(event.target) && event.target !== popupButton) {
+            popupForm.style.display = 'none';
+        }
+    });
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+    <main class="content-container">
+        <h1>FP2</h1>
+<img src="/assets/images/fp2/compositedFPthumb.png" alt="A fountain pen against a blue and white background." title="FP2" loading="lazy">
+<p>I got stuck serving on a particularly rough Butte County jury earlier this year (February 2026). I was taking notes during the trial with a Platinum Preppy. I had a lot of free time during breaks, where the only thing I had any bandwidth left to do was idly sketch miscellaneous ideas occupying space in the back of my head. One of those sketches became Fountain Pen Two (FP2), successor to an ill-fated FP1.</p>
+<figure>
+    <img src="/assets/images/fp2/writingSample.jpg" alt="Writing with a red fountain pen." title="Writing Sample" loading="lazy"> 
+    <figcaption class="caption">It's very difficult to photograph your own hand.</figcaption>
+</figure>
+<p>Unlike some of my other projects, FP2 is no replacement for my wallet-friendly Preppy (which costs 25 times less). The underlying design itself is mostly unremarkable, aside from having an elegant silhouette. A three piece body—cap, grip, and post—houses a converter and a plain Bock nib.</p>
+<p>I designed the pen to fit my grip, my writing style, and my weight preferences. My market research consisted of observing that <em>there was a market</em> for high-end stationary. My so-far successful product strategy has been to create wonderful things I want to use every day. It's an interesting application of my perfectionist streak: my standards are too high, so I wind up creating great stuff.</p>
+<p>I deliberately chose materials that I am comfortable working with: 304 Stainless &amp; Anodized 6061 Aluminum. The cap and post are thin, lightweight, and anodized barberry pink. The stainless grip is plain and heavy, giving the pen a low, confident center of mass. It can be a bit too heavy during long writing sessions, but the stability of the pen feels perfect when writing on your lap when, for exampple, taking notes as juror.</p>
+<img src="/assets/images/fp2/Fp2 in Hand.jpeg" alt="Red fountain pen resting in the author's hand" title="fp2, closed" loading="lazy">
+<p>Anodizing is expensive. Anodizing to a particular obscure Pantone color even more so. I took a small risk and made a batch of ten FP2s to start. One for me, two as gifts, another two in reserve, and five to put up for sale.</p>
+
+    </main>
+
+    <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
+    <p>© 2026 Grady Conwell</p>
+</footer>
+</body>
+</html>

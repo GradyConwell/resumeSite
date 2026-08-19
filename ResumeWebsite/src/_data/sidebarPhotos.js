@@ -25,7 +25,7 @@ module.exports = function() {
                     const filePath = path.join(folderPath, file);
                     const stats = fs.statSync(filePath);
                     photos.push({
-                        src: `/assets/photos/${folder}/${file}`,
+                        src: `/assets/photos/${folder}/${path.parse(file).name}.webp`,
                         category: folder,
                         mtime: stats.mtime.getTime() // Modification time in ms
                     });
