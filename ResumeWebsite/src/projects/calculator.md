@@ -22,8 +22,8 @@ The application is split into four distinct parts: a SwiftUI frontend, a backend
 A few of my friends are currently testing demo builds, and I am continuing to expand the toolset as I use the calculator for classwork, homework, work, and everything in between.
 
 <figure>
-<img src="/assets/images/myCASdemoShot.png" alt="Example of calculation being performed in the calculator." title="Screenshot" loading="lazy">
-<figcaption class="caption"> An example workflow: defining variables, and evaluating a definite integral.</figcaption>
+<img src="/assets/images/myCASdemoShot.png" alt="Example of a calculation being performed in the calculator." title="Screenshot" loading="lazy">
+<figcaption class="caption"> An example workflow: defining variables and evaluating a definite integral.</figcaption>
 </figure>
 
 <figure>
@@ -33,5 +33,5 @@ A few of my friends are currently testing demo builds, and I am continuing to ex
 
 <figure>
 <img src="/assets/images/Screenshot 2026-03-01 at 12.59.20 PM.png" alt="Reference Manual" title="Screenshot" loading="lazy">
-<figcaption class="caption">The built-in reference documents every tool, and includes examples.</figcaption>
+<figcaption class="caption">The built-in reference documents every tool and includes examples.</figcaption>
 </figure>
