@@ -1,18 +1,37 @@
 :root {
-    --color-base: 	#FFF9F4;
-    --color-primary: #FFFBF7;
-    --color-accent: #3e6e8c; /* Accent color for headings and links */
-    --color-text: #0D0C0C; /* Default text color */
-    --color-text-light: #403B3B; /* Alt text color */
-    --color-hover: #0476D9; /* Hover color for buttons/links */
+    /* Pantone Palette Tokens */
+    --color-paper: #EDE3D2;        /* Antique White (Pantone 11-0105 TCX) */
+    --color-surface: #F5F3EC;      /* Stalactite (Pantone 11-4101 TCX) */
+    --color-ink: #323438;          /* Charcoal Art (Pantone 19-3916 TCX) */
+    --color-ink-warm: #58423F;     /* French Roast (Pantone 19-1012 TCX) */
+    
+    --color-accent-teal: #006175;  /* Ocean Depths (Pantone 19-4535 TCX) */
+    --color-accent-red: #7D2027;   /* Red Dahlia (Pantone 19-1555 TCX) */
+    --color-accent-warm: #C37C54;  /* Caramel (Pantone 16-1439 TCX) */
 
-    --dynamic-padding: clamp(0.25rem, 5vw, 4rem); /* Dynamic horizontal padding */
+    --color-fig-lime: #9A9738;     /* Golden Lime (Pantone 16-0543 TCX) */
+    --color-fig-blue: #09577B;     /* Blue Sapphire (Pantone 18-4231 TCX) */
+    --color-fig-scarlet: #9D202F;  /* Scarlet Sage (Pantone 19-1559 TCX) */
+    --color-fig-freesia: #F3C12C;  /* Freesia (Pantone 14-0852 TCX) */
+
+    /* Semantic Roles */
+    --color-base: var(--color-paper);
+    --color-primary: var(--color-surface);
+    --color-accent: var(--color-accent-teal);
+    --color-text: var(--color-ink);
+    --color-text-light: #4A4D52;
+    --color-border: rgba(50, 52, 56, 0.12);
+    --color-hover: #004B5C;
+    --color-cta: var(--color-accent-red);
+
+    --dynamic-padding: clamp(0.5rem, 5vw, 4rem);
     
-    --card-padding-vertical-desktop: 1rem; /* Fixed vertical padding inside cards for desktop */
-    --card-padding-horizontal-desktop: 2rem; /* Fixed horizontal padding inside cards for desktop */
-    --card-padding-vertical-mobile: 1rem; /* Fixed vertical padding inside cards for mobile */
-    --card-padding-horizontal-mobile: 2rem; /* Fixed horizontal padding inside cards for mobile */
+    --card-padding-vertical-desktop: 1.25rem;
+    --card-padding-horizontal-desktop: 2rem;
+    --card-padding-vertical-mobile: 1rem;
+    --card-padding-horizontal-mobile: 1.25rem;
     
-    --font-serif: 'Fraunces', serif; /* Serif accent font for titles */
-    --font-sans: 'Inter', sans-serif; /* Sans-serif body font */
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
 }

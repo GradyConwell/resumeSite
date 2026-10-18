@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grady Conwell - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
@@ -100,13 +109,9 @@
         <p id="message"></p>
     </div>
 
-    <!-- Main content wrapper for two-column layout on wide screens -->
-    <div class="main-layout-wrapper">
-        <!-- Primary content column -->
-        <div class="main-content-column">
-            <!-- About Section-->
-            <section id="about" class="content-container">
-                {% markdownInclude "./src/about.md" %}
+    <!-- About Section-->
+    <section id="about" class="content-container">
+        {% markdownInclude "./src/about.md" %}
     </section>
 
     <!-- Projects Section-->
@@ -122,6 +127,9 @@
                                     <img src="{{ project.data.image }}" alt="{{ project.data.title }}" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    {% if project.data.projectDate %}
+                                        <span class="project-card-date">{{ project.data.projectDate }}</span>
+                                    {% endif %}
                                     <h3>{{ project.data.title }}</h3>
                                     <p>{{ project.data.description }}</p>
                                 </div>
@@ -133,43 +141,41 @@
         {% endfor %}
     </section>
 
+    <!-- Photos Section-->
+    <section id="photos-preview" class="content-container">
+        <div class="photos-preview-header">
+            <h2>Some of my Photos</h2>
+            <a href="/photos/" class="photos-link">View All</a>
+        </div>
+        <div class="photos-preview-grid" id="photos-preview-grid">
+        </div>
+        <script>
+            (function() {
+                const allPhotos = {{ sidebarPhotos | json }};
+                if (!allPhotos || allPhotos.length === 0) return;
+                // Shuffle array
+                for (let i = allPhotos.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
+                }
+                // Pick 6 and render
+                const grid = document.getElementById('photos-preview-grid');
+                allPhotos.slice(0, 6).forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = photo.src;
+                    img.alt = photo.category + ' photo';
+                    img.className = 'preview-photo';
+                    img.loading = 'lazy';
+                    grid.appendChild(img);
+                });
+            })();
+        </script>
+    </section>
+
     <!-- Contact Section-->
     <section id="contact" class="content-container">
         {% markdownInclude "./src/contact.md" %}
     </section>
-        </div><!-- End main-content-column -->
-
-        <!-- Photos sidebar - only visible on wide screens -->
-        <aside class="photos-sidebar">
-            <div class="photos-sidebar-header">
-                <h2>Some of my Photos</h2>
-                <a href="/photos/" class="photos-link">View All</a>
-            </div>
-            <div class="photos-sidebar-grid" id="sidebar-photos-grid">
-            </div>
-            <script>
-                (function() {
-                    const allPhotos = {{ sidebarPhotos | json }};
-                    if (!allPhotos || allPhotos.length === 0) return;
-                    // Shuffle array
-                    for (let i = allPhotos.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
-                    }
-                    // Pick 6 and render
-                    const grid = document.getElementById('sidebar-photos-grid');
-                    allPhotos.slice(0, 6).forEach(photo => {
-                        const img = document.createElement('img');
-                        img.src = photo.src;
-                        img.alt = photo.category + ' photo';
-                        img.className = 'sidebar-photo';
-                        img.loading = 'lazy';
-                        grid.appendChild(img);
-                    });
-                })();
-            </script>
-        </aside>
-    </div><!-- End main-layout-wrapper -->
 
     {% include "footer.html" %}
 </body>

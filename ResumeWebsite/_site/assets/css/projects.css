@@ -1,6 +1,7 @@
 .category-title {
     padding: 0;
-    margin-bottom: 20px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
     color: var(--color-accent);
 }
@@ -11,15 +12,14 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 1.5rem 0;
     width: 100%;
     align-items: stretch; /* Ensure all cards in a row have equal height */
 }
 
-
 .project-card {
     background: var(--color-base);
-    border-radius: 8px;
+    border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     
     /* Ensure flex column behavior */
@@ -36,6 +36,15 @@
     height: 100%; /* Fill full height of grid cell for consistent row heights */
 }
 
+/* Even out the card's top and bottom padding */
+.category-section:first-child .category-title {
+    margin-top: 0.5rem;
+}
+
+.category-section:last-child .projects-grid {
+    margin-bottom: 0.75rem;
+}
+
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
@@ -49,6 +58,8 @@
     margin: 0;
     padding: 0;
     line-height: 0; /* Remove any inline spacing */
+    border: none;
+    outline: none;
 }
 
 .project-card .project-image img {
@@ -60,21 +71,35 @@
     margin: 0; /* Override .content-container img margin */
     padding: 0;
     border-radius: 0; /* Override .content-container img border-radius */
+    border: none;
+    outline: none;
     max-width: none; /* Override .content-container img max-width */
 }
 
 .project-content {
     padding: 1rem;
     flex-grow: 1; /* Allow content area to expand to fill remaining space */
+    display: flex;
+    flex-direction: column;
 }
 
-.project-content h3 {
+.project-card .project-content h3 {
     color: var(--color-accent);
     margin: 0 0 0.5rem 0;
 }
 
 .project-content p {
     margin: 0;
+}
+
+.project-card-date {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
 }
 
 .pencil-photo-slide {
@@ -93,7 +118,7 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     margin: 0;
-    border-radius: 4px;
+    border-radius: 1.5px;
 }
 
 /* Mobile adjustments */

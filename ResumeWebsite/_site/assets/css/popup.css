@@ -1,51 +1,314 @@
-#popup-form {
-    animation: fadeIn 0.3s ease-in-out;
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    border-radius: 12px;
-    color: black;
-    width: 500px;
-    text-align: center;
-}
+/* Contact Modal Dialog & Tour Ribbon Styles */
 
-#popup-form input {
-    margin: 10px 0;
-    padding: 12px;
-    width: calc(100% - 24px);
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-#popup-form button {
-    padding: 12px 24px;
-    font-size: 16px;
-    background-color: #403B3B;
-    color: white;
+/* Modal Dialog */
+.contact-dialog {
     border: none;
     border-radius: 4px;
+    padding: 0;
+    background: transparent;
+    box-shadow: 0 16px 40px rgba(50, 52, 56, 0.25);
+    max-width: 480px;
+    width: 90%;
+    margin: auto;
+}
+
+.contact-dialog::backdrop {
+    background: rgba(50, 52, 56, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.contact-dialog-inner {
+    position: relative;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    padding: 2.25rem 2rem 2rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-text-light);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 6px 10px;
+    border-radius: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
 }
 
-#popup-form button:hover {
-    background-color: var(--color-accent);
-    color: var(--color-primary);
+.modal-close-btn:hover {
+    background: rgba(50, 52, 56, 0.08);
+    color: var(--color-ink);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+.modal-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-ink-warm);
+    margin: 0 0 0.5rem 0;
+}
+
+.modal-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin: 0 0 1.5rem 0;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hp-field {
+    display: none !important;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: #FFFFFF;
+    border: 1px solid rgba(50, 52, 56, 0.25);
+    border-radius: 2px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: var(--color-accent-teal);
+    box-shadow: 0 0 0 3px rgba(0, 97, 117, 0.15);
+}
+
+.modal-submit-btn,
+.contact-trigger-btn {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    background-color: var(--color-accent-teal);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-submit-btn:hover,
+.contact-trigger-btn:hover {
+    background-color: var(--color-hover);
+}
+
+.modal-submit-btn:active,
+.contact-trigger-btn:active {
+    transform: scale(0.99);
+}
+
+/* Unlocked Contact State */
+.contact-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent-red);
+    background: rgba(125, 32, 39, 0.08);
+    padding: 3px 8px;
+    border-radius: 1.5px;
+    margin-bottom: 0.5rem;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.contact-method-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+}
+
+.contact-method-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.contact-method-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent-teal);
+    text-decoration: none;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-method-link:hover {
+    text-decoration: underline;
+}
+
+.modal-copy-btn {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1px solid var(--color-border);
+    border-radius: 1.5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.modal-copy-btn:hover {
+    background: var(--color-accent-teal);
+    color: #FFFFFF;
+    border-color: var(--color-accent-teal);
+}
+
+.modal-copy-btn.copied {
+    background: var(--color-fig-lime);
+    color: #FFFFFF;
+    border-color: var(--color-fig-lime);
+}
+
+/* Tour Persistent Ribbon */
+.tour-ribbon {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    z-index: 999;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border-bottom: 2px solid var(--color-accent-warm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tour-ribbon-inner {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0.45rem 1.75rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tour-ribbon-back {
+    color: var(--color-accent-warm);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.15s ease;
+}
+
+.tour-ribbon-back:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.tour-ribbon-divider {
+    color: rgba(237, 227, 210, 0.3);
+}
+
+.tour-ribbon-label {
+    color: var(--color-paper);
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tour-ribbon-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tour-ribbon-nav-btn {
+    padding: 3px 10px;
+    font-size: 0.8rem;
+    color: var(--color-paper);
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 1.5px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.tour-ribbon-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+}
+
+.tour-ribbon-next {
+    background: var(--color-accent-red);
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.tour-ribbon-next:hover {
+    background: #9D202F;
+}
+
+.tour-ribbon-dismiss {
+    background: transparent;
+    border: none;
+    color: rgba(237, 227, 210, 0.6);
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 1;
+    margin-left: 0.25rem;
+    transition: color 0.15s ease;
+}
+
+.tour-ribbon-dismiss:hover {
+    color: #FFFFFF;
+}
+
+/* Adjust top spacing when tour ribbon is present */
+html.in-tour main.content-container {
+    margin-top: 135px;
+}
+
+@media (max-width: 650px) {
+    .tour-ribbon-label {
+        display: none;
     }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+    .tour-ribbon-inner {
+        justify-content: space-between;
     }
 }

@@ -1,12 +1,13 @@
 ---
 title: "Three-D-Printer"
-description: "A one-of-one custom FDM 3D printer (2021)"
+description: "A one-of-one custom FDM 3d printer (2021)"
 image: "/assets/images/printer_toolhead.jpeg"
-permalink: "/project/printer/"
+permalink: "/projects/printer/"
 layout: "projectLayout.html"
 priority: 2
-category: "Cap"
+category: "Machines"
 isPriority: true
+projectDate: "2020–2021"
 ---
 
 # Three-D-Printer

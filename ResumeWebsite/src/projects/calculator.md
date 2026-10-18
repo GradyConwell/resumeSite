@@ -5,7 +5,8 @@ image: "/assets/images/myCASdemoShot.png"
 permalink: "/projects/calculator/"
 layout: "projectLayout.html"
 priority: 2
-category: "Software"
+category: "Mechatronics"
+projectDate: "2024"
 ---
 
 # Unnamed Desktop Calculator

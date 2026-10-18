@@ -4,8 +4,9 @@ const markdownItAttrs = require("markdown-it-attrs");
 const markdownItTaskLists = require("markdown-it-task-lists");
 
 module.exports = function (eleventyConfig) {
-    // Copy the entire 'assets' directory to the output
+    // Copy assets and redirects to output
     eleventyConfig.addPassthroughCopy("src/assets");
+    eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
     // Initialize Markdown-It with plugins
     const md = markdownIt({ html: true })

@@ -4,8 +4,9 @@ description: "A simple gel pen, designed and machined as a gift for a friend."
 image: "/assets/images/PrototypePen.png"
 permalink: "/projects/2023_proto_pen/"
 layout: "projectLayout.html"
-category: "Stationary"
+category: "Stationery"
 priority: 4
+projectDate: "2023"
 ---
 
 # First Pen (2023)

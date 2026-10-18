@@ -5,7 +5,8 @@ image: "/assets/images/bikeComEarlyDemo.jpeg"
 permalink: "/projects/bikecomputer/"
 layout: "projectLayout.html"
 priority: 2
-category: "Software"
+category: "Mechatronics"
+projectDate: "2025–Present"
 ---
 
 # GPS Bike Computer

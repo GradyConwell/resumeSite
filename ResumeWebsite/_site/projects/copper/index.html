@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copper Internship - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-83CZPWDMGD');
+    </script>
+</head>
+<body class="project-page-body">
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
+<script>
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
+
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
+
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
+        }
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+    <main class="content-container project-container">
+        
+            <p class="project-plain-date">2025-2026</p>
+        
+
+        <article class="project-article">
+            <h1>Hardware Engineering at Copper</h1>
+<figure>
+<img src="/assets/images/Internship/allthewood.jpg" alt="Wooden knobs affixed the front of a stainless steel stove." title="Screenshot" loading="lazy">
+<figcaption class="caption"> I made those knobs!</figcaption>
+</figure>
+<h2>Overview</h2>
+<p>I started interning at Copper, an eclectic climate tech startup, in May 2025, and have continued working with the team while I attend California State University, Chico.</p>
+<ul>
+<li>Summer 2025: (Original Internship) Full time, Berkeley.</li>
+<li>Fall 2025: (Very) Part time.</li>
+<li>Spring 2026: (Very) Part time remote.</li>
+<li>Summer 2026: Full time, Berkeley.</li>
+<li>Fall 2026: Part time remote during the current school term.</li>
+</ul>
+<h2>Show and Tell</h2>
+<h3>(Public-friendly) The cool stuff is yet to be announced. Can't be out here spoiling the fun!</h3>
+<p>If you're a reader for a particular graduate program, you'll just have to schedule an interview to learn all the details I can't be publishing out in public.</p>
+<figure>
+<img src="/assets/images/Internship/DSC01049.jpg" alt="Mechanical components in a metal fixture." title="Screenshot" loading="lazy">
+<figcaption class="caption"> Fixture for machining knobs.</figcaption>
+</figure>
+<figure>
+<img src="/assets/images/Internship/woodTight.jpg" alt="Mechanical components in a metal fixture." title="Screenshot" loading="lazy">
+<figcaption class="caption">Knob.</figcaption>
+</figure>
+<h2>R&amp;D</h2>
+<p>During my time at Copper, I've worked on an enormous variety of different projects. My job amounts to assisisting my boss in the development of new product and proof-of-concept prototypes. Think the 0-10 unit range. This means I do a bit of <em>everything</em>.</p>
+<p>A typical project might involve turning a very rough concept in to a functioning piece of hardware and then iterating on that hardware as we learn things about the project through testing. As a contributor to such an effort, I might be trying to hire a job shop to produce hardware, based on a second or third draft of an idea that may only exist in CAD software. I might be prototyping a sheet metal part myself while I wait for the outsourced components to arrive. Or I could be producing some artifact using data collected from a nest of thermocouples or onboard sensors.</p>
+<p>Ambiguity is a non-negotiable element of my job, and I've really focused on improving my ability to make informed guesses about what might be, rather than idling and waiting for clarification. I have an oppurtunity to both continue developing my strongest fundamentals—be it drafting or handling large digital assemblies—and also to experiment with processes that I have little to no exposure to.</p>
+<p>Here's a snapshot of what I've had the oppurtunity to during my time at Copper:</p>
+<ul>
+<li>
+<p>Design my first injection molded part.</p>
+</li>
+<li>
+<p>Create tools for a real production line.</p>
+</li>
+<li>
+<p>Own the mechanical design of a PoC battery integrated appliance.</p>
+<ul>
+<li>And even better, <em>more than once!</em></li>
+</ul>
+</li>
+<li>
+<p>Make beautiful, tactile objects, like softwood knobs for Copper's flagship induction range.</p>
+</li>
+<li>
+<p>Train my coworkers on manufacturing processes that I developed for in-house prototyping.</p>
+</li>
+</ul>
+
+        </article>
+
+        <nav class="project-footer-nav" aria-label="Project navigation">
+            <a href="/#projects" class="project-nav-back">← Back to All Projects</a>
+        </nav>
+    </main>
+
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
+</footer>
+</body>
+</html>

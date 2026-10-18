@@ -1,18 +1,18 @@
 .navbar {
     display: flex;
     justify-content: center;
-    align-items: left;
-    background: rgba(242, 242, 242, 0.7); /* Semi-transparent version of var(--color-primary) */
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%); /* Safari support */
+    align-items: center;
+    background: rgba(245, 243, 236, 0.88); /* Stalactite with blur */
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
     padding: 10px 20px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
-                0 1px 0 rgba(255, 255, 255, 0.1) inset; /* Subtle top highlight */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(50, 52, 56, 0.08);
+    border-bottom: 1px solid var(--color-border);
+    box-sizing: border-box;
 }
 
 .navbar-container {
@@ -20,11 +20,14 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: none;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 
 .navbar-left {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
     flex: 1;
 }
@@ -32,27 +35,18 @@
 .navbar-logo {
     display: flex;
     align-items: center;
-    margin-right: 15px; /* Add spacing between the logo and the links */
+    margin-right: 25px;
 }
 
 .logo-svg {
-    height: 40px; /* Adjust size as needed */
+    height: 34px;
     width: auto;
-    fill: var(--color-hover); /* Color the SVG white */
-    filter: none; /* Ensure the SVG appears as the accent color */
-    fill: var(--color-accent); /* Set the SVG color to the accent color */
+    fill: var(--color-accent-teal);
+    transition: transform 0.2s ease;
 }
 
-.navbar-logo img.logo-svg {
-    height: 30px; /* Adjust size as needed */
-    width: auto;
-    fill: var(--color-hover); /* Color the SVG white */
-    fill: var(--color-accent); /* Set the SVG color to the accent color */
-}
-
-.navbar-logo img {
-    height: 40px;
-    cursor: pointer;
+.logo-svg:hover {
+    transform: scale(1.05);
 }
 
 .navbar-links {
@@ -63,90 +57,93 @@
 }
 
 .navbar-links li {
-    margin: 0 15px;
+    margin: 0 14px;
 }
 
 .navbar-links a {
     text-decoration: none;
-    color: var(--color-text-light);
-    font-size: 16px;
+    color: var(--color-ink);
+    font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
 }
 
 .navbar-links a:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-teal);
 }
 
 .navbar-right {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     flex: 1;
 }
 
 .navbar-resume-button {
-    padding: 10px 20px;
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+    padding: 8px 18px;
+    background-color: var(--color-accent-teal);
+    color: #FFFFFF;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 2px;
+    font-size: 0.95rem;
     font-weight: 600;
+    font-family: var(--font-sans);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-right: 25px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .navbar-resume-button:hover {
-    background-color: var(--color-accent);
-    color: var(--color-primary);
+    background-color: var(--color-hover);
 }
 
-/* Default: Show text, hide icons */
+.navbar-resume-button:active {
+    transform: scale(0.98);
+}
+
+/* Icons */
 .navbar-icon {
-    display: none; /* Hide icons by default */
-}
-
-.navbar-text {
-    display: inline; /* Show text by default */
-}
-
-/* Style for the icons */
-.navbar-icon {
-    height: 24px;
-    width: 24px;
-    margin-right: 8px;
+    display: none;
+    height: 22px;
+    width: 22px;
     vertical-align: middle;
-    fill: var(--color-text-light); /* Default color */
-    transition: fill 0.3s ease;
+    fill: var(--color-ink);
+    transition: fill 0.2s ease;
 }
 
 .navbar-links a:hover .navbar-icon {
-    fill: var(--color-accent); /* Change color on hover */
+    fill: var(--color-accent-teal);
 }
 
-/* Media Query for Small Screens */
-@media (max-width: 575px) {
+.navbar-text {
+    display: inline;
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        padding: 8px 12px;
+    }
+
     .navbar-icon {
-        display: inline; /* Show icons on small screens */
-        height: 24px;
-        width: 24px;
-        margin-right: 0; /* Remove spacing for icons */
-        vertical-align: middle;
-        fill: var(--color-text-light); /* Default color */
-        transition: fill 0.3s ease;
+        display: inline;
     }
 
     .navbar-text {
-        display: none; /* Hide text on small screens */
+        display: none;
     }
 
     .navbar-links {
-        justify-content: space-around; /* Space out the icons */
-        width: 100%; /* Ensure icons take up full width */
+        justify-content: space-around;
+        width: 100%;
     }
 
     .navbar-links li {
-        margin: 0; /* Remove extra margin */
+        margin: 0 6px;
+    }
+
+    .navbar-resume-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
     }
 }

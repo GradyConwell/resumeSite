@@ -1,6 +1,6 @@
 [
-  { "id": "Robotics", "name": "Robotics" },
-  { "id": "Cap", "name": "Personal Capstones" },
-  { "id": "Stationary", "name": "Stationary" },
-  { "id": "Software", "name": "Software" }
+  { "id": "Production", "name": "Production" },
+  { "id": "Machines", "name": "Machines" },
+  { "id": "Stationery", "name": "Stationery" },
+  { "id": "Mechatronics", "name": "Mechatronics" }
 ]

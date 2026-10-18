@@ -1,11 +1,12 @@
 ---
-title: "GraphGear-Derived Pen"
-description: "One-off prototype pen built around my production GraphGear 1000 bodies."
+title: "Graphgear Derived Pen"
+description: "One-off prototype pen built around my production Graphgear 1000 bodies."
 image: "/assets/images/WarmAug25.png"
-permalink: "/project/graphPen/"
+permalink: "/projects/graphpen/"
 layout: "projectLayout.html"
 priority: 2
-category: "Stationary"
+category: "Stationery"
+projectDate: "2025"
 ---
 
 # GraphGear-Derived Pen

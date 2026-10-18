@@ -9,9 +9,18 @@ templateEngineOverride: njk
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - Grady Conwell</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>

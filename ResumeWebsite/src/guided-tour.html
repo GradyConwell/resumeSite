@@ -1,0 +1,184 @@
+---
+title: "Guided Tour"
+permalink: "/guided-tour/"
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Guided Tour - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Mark session tour active immediately in head -->
+    <script>
+        try {
+            sessionStorage.setItem('tour_active', '1');
+            document.documentElement.classList.add('in-tour');
+        } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-83CZPWDMGD');
+    </script>
+</head>
+<body class="tour-page-body">
+    {% include "navbar.html" %}
+
+    <main class="content-container tour-container">
+        <header class="tour-header">
+            <h1 class="tour-title">A Guided Tour</h1>
+            <p class="tour-intro">
+                A curated directory of my projects and work, organized for quick navigation.
+            </p>
+        </header>
+
+        <!-- Interactive Directory with Dropdowns -->
+        <section class="tour-section">
+            <div class="directory-accordions">
+                <!-- Dropdown: Production -->
+                <details class="directory-group" open>
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Production</span>
+                        <span class="group-count">2 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/copper/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Hardware Engineering at Copper</span>
+                                <span class="item-pitch">16 continuous months of production mechanical engineering.</span>
+                            </div>
+                            <span class="item-meta">2024–2025</span>
+                        </a>
+                        <a href="/projects/pencils/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Pencil Replacement Parts</span>
+                                <span class="item-pitch">100% positive customer feedback with over 900 precision replacement parts sold.</span>
+                            </div>
+                            <span class="item-meta">2023–Present</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Machines -->
+                <details class="directory-group" open>
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Machines</span>
+                        <span class="group-count">3 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/lathe/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Turning Center for Ants.</span>
+                                <span class="item-pitch">WIP gang tool lathe designed for small parts</span>
+                            </div>
+                            <span class="item-meta">2023–Present</span>
+                        </a>
+                        <a href="/projects/router/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Benchtop CNC Router</span>
+                                <span class="item-pitch">Simple and inexpensive CNC machine for routing aluminum plate</span>
+                            </div>
+                            <span class="item-meta">2021–2022</span>
+                        </a>
+                        <a href="/projects/printer/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Three-D-Printer</span>
+                                <span class="item-pitch">A one-of-one custom FDM 3d printer (2021)</span>
+                            </div>
+                            <span class="item-meta">2020–2021</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Stationery -->
+                <details class="directory-group">
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Stationery</span>
+                        <span class="group-count">3 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/fp2/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">FP2</span>
+                                <span class="item-pitch">I made a fountain pen.</span>
+                            </div>
+                            <span class="item-meta">2026</span>
+                        </a>
+                        <a href="/projects/graphpen/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Graphgear Derived Pen</span>
+                                <span class="item-pitch">One-off prototype pen built around my production Graphgear 1000 bodies.</span>
+                            </div>
+                            <span class="item-meta">2025</span>
+                        </a>
+                        <a href="/projects/2023_proto_pen/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">First Pen (2023)</span>
+                                <span class="item-pitch">A simple gel pen, designed and machined as a gift for a friend.</span>
+                            </div>
+                            <span class="item-meta">2023</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Mechatronics -->
+                <details class="directory-group">
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Mechatronics</span>
+                        <span class="group-count">4 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/anklebiter/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">AnkleBiter (2023)</span>
+                                <span class="item-pitch">FIRST Competition Robot</span>
+                            </div>
+                            <span class="item-meta">2023</span>
+                        </a>
+                        <a href="/projects/bikecomputer/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">GPS Bike Computer</span>
+                                <span class="item-pitch">I will finish it eventually</span>
+                            </div>
+                            <span class="item-meta">2025–Present</span>
+                        </a>
+                        <a href="/projects/calculator/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Unnamed Desktop Calculator</span>
+                                <span class="item-pitch">Bringing the power of Python to a familiar calculator interface.</span>
+                            </div>
+                            <span class="item-meta">2024</span>
+                        </a>
+                        <a href="/projects/meta/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Portfolio Website</span>
+                                <span class="item-pitch">Pretty meta right?</span>
+                            </div>
+                            <span class="item-meta">2024–Present</span>
+                        </a>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Direct Contact Section -->
+        <section class="tour-section tour-contact-box">
+            <h2>Get in Touch</h2>
+            <p>Interested in discussing my research interests, hardware experience, or lab opportunities? Connect with me directly:</p>
+            <button type="button" class="contact-trigger-btn">Contact me →</button>
+        </section>
+    </main>
+
+    {% include "footer.html" %}
+</body>
+</html>

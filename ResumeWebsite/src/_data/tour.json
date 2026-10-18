@@ -1,0 +1,68 @@
+{
+  "stops": [
+    {
+      "index": 1,
+      "title": "Hardware Engineering at Copper",
+      "url": "/projects/copper/",
+      "category": "Production",
+      "date": "2024–2025",
+      "pitch": "16 continuous months of production mechanical engineering."
+    },
+    {
+      "index": 2,
+      "title": "Pencil Replacement Parts",
+      "url": "/projects/pencils/",
+      "category": "Production",
+      "date": "2023–Present",
+      "pitch": "100% positive customer feedback with over 900 precision replacement parts sold."
+    },
+    {
+      "index": 3,
+      "title": "Turning Center for Ants.",
+      "url": "/projects/lathe/",
+      "category": "Machines",
+      "date": "2023–Present",
+      "pitch": "WIP gang tool lathe designed for small parts"
+    },
+    {
+      "index": 4,
+      "title": "Benchtop CNC Router",
+      "url": "/projects/router/",
+      "category": "Machines",
+      "date": "2021–2022",
+      "pitch": "Simple and inexpensive CNC machine for routing aluminum plate"
+    },
+    {
+      "index": 5,
+      "title": "Three-D-Printer",
+      "url": "/projects/printer/",
+      "category": "Machines",
+      "date": "2020–2021",
+      "pitch": "A one-of-one custom FDM 3d printer (2021)"
+    },
+    {
+      "index": 6,
+      "title": "FP2",
+      "url": "/projects/fp2/",
+      "category": "Stationery",
+      "date": "2026",
+      "pitch": "I made a fountain pen."
+    },
+    {
+      "index": 7,
+      "title": "AnkleBiter (2023)",
+      "url": "/projects/anklebiter/",
+      "category": "Mechatronics",
+      "date": "2023",
+      "pitch": "FIRST Competition Robot"
+    },
+    {
+      "index": 8,
+      "title": "GPS Bike Computer",
+      "url": "/projects/bikecomputer/",
+      "category": "Mechatronics",
+      "date": "2025–Present",
+      "pitch": "I will finish it eventually"
+    }
+  ]
+}

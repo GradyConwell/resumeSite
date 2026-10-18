@@ -1,11 +1,12 @@
 ---
-title: "AnkleBiter (2023)"
+title: "AnkleBiter"
 description: "FIRST Competition Robot"
 image: "/assets/images/swerve.jpeg"
 permalink: "/projects/anklebiter/"
 layout: "projectLayout.html"
 priority: 2
-category: "Robotics"
+category: "Mechatronics"
+projectDate: "2022–2023"
 ---
 
 # AnkleBiter (2023)

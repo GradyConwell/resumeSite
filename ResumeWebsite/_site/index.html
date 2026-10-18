@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grady Conwell - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
@@ -21,9 +30,7 @@
     </script>
 </head>
 <body>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<nav class="navbar">
+    <nav class="navbar">
     <div class="navbar-container">
         <!-- Left Section: Logo and Navigation Links -->
         <div class="navbar-left">
@@ -59,40 +66,125 @@
                 </li>
             </ul>
         </div>
-
-        <!-- Right Section: Resume Button -->
-        <div class="navbar-right">
-            <button id="popup-button" class="navbar-resume-button">View My Resume</button>
-        </div>
     </div>
 </nav>
 
-<!-- Popup Form -->
-<div id="popup-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 8px; color: black; width: 300px; text-align: center;">
-    <!--<form action="https://submit-form.com/EQ3OQ1GmK" id="email-form" method="POST" data-botpoison-public-key="pk_800c4593-6ff7-4f7c-8c87-2f12976427c6">!-->
-    <form id="email-form">
-        <input type="hidden" name="form-name" value="popup-form" />
-        <!-- Honeypot Field -->
-        <input type="text" id="honeypot" name="honeypot" style="display: none;" autocomplete="off" />
-        <label for="email" style="color: #403B3B;">Almost There! Let’s Stay in Touch.</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required style="margin: 10px 0; padding: 8px; width: calc(100% - 20px); box-sizing: border-box;" />
-        <button type="submit" class="popup-form-button">Submit</button>
-    </form>
-</div>
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
 
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
 <script>
-    const popupButton = document.getElementById('popup-button');
-    const popupForm = document.getElementById('popup-form');
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
 
-    popupButton.addEventListener('click', () => {
-        popupForm.style.display = 'block';
-    });
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
 
-    window.addEventListener('click', (event) => {
-        if (event.target !== popupForm && !popupForm.contains(event.target) && event.target !== popupButton) {
-            popupForm.style.display = 'none';
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
         }
-    });
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
 </script>
 
 <script src="/assets/scripts/form-handler.js"></script>
@@ -174,16 +266,12 @@
         <p id="message"></p>
     </div>
 
-    <!-- Main content wrapper for two-column layout on wide screens -->
-    <div class="main-layout-wrapper">
-        <!-- Primary content column -->
-        <div class="main-content-column">
-            <!-- About Section-->
-            <section id="about" class="content-container">
-                <h1>About Me</h1>
-<p>I’m a Mechanical Engineering major at CSU Chico. On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, where I mentor students and coordinate our technical projects. Off campus, I am always tinkering away with a plethora of side projects, or training for the Megaflower 125, or otherwise riding bikes in the extensive foothills and forests surrounding Chico.</p>
-<p>This past summer I returned to the Bay Area and worked with the wonderful team at Copper, a Berkeley-based climate-tech startup. This fall I'm starting my penultimate semester at Chico State.</p>
-<p>Otherwise, I’m looking for new things to do and figuring out where I'm headed after graduation. Recruit me to your lab, try to hire me, whatever floats your boat—my inbox is open.</p>
+    <!-- About Section-->
+    <section id="about" class="content-container">
+        <h1>About Me</h1>
+<p>I’m a mechanical engineering student at California State University, Chico. Currently, I’m working on a senior capstone project sponsored by the SLAC National Accelerator Laboratory. This project involves exploring novel methods of sample delivery for XFEL crystallography. Previously, I served as the Vice President of Chico State’s Society of Manufacturing Engineers (SME) chapter. In this role, I mentored students and coordinated various technical projects.</p>
+<p>I’m a maker at heart, and I grew up during the maker movement of the early 2010s. You can find a selection of my projects below, with some associated musings. I aspire to be proud of the things I make and put my name on, which means that I often revisit old projects to add just a bit more polish.</p>
+<p>Outside of the classroom and my nascent professional career, I'm an avid cyclist, less-than-great musician, and very particular about my tea. You might find me hanging out with a stray cat on campus, or chasing a chicken with a camera in a parking lot. Otherwise, I’m looking for new things to do and figuring out where I'm headed after graduation.</p>
 
     </section>
 
@@ -191,29 +279,47 @@
     <section id="projects" class="content-container">
         
             <div class="category-section">
-                <h2 class="category-title">Robotics</h2>
+                <h2 class="category-title">Production</h2>
                 <div class="projects-grid">
                     
                         
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                            <a class="project-card " href="/projects/anklebiter/">
+                            <a class="project-card project-card--priority" href="/projects/copper/">
                                 <div class="project-image">
-                                    <img src="/assets/images/swerve.jpeg" alt="AnkleBiter (2023)" loading="lazy">
+                                    <img src="/assets/images/Internship/allthewood.jpg" alt="Copper Internship" loading="lazy">
                                 </div>
                                 <div class="project-content">
-                                    <h3>AnkleBiter (2023)</h3>
-                                    <p>FIRST Competition Robot</p>
+                                    
+                                        <span class="project-card-date">2025-2026</span>
+                                    
+                                    <h3>Copper Internship</h3>
+                                    <p>The internship that keeps on giving.</p>
                                 </div>
                             </a>
+                        
+                    
+                        
+                            <a class="project-card project-card--priority" href="/projects/pencils/">
+                                <div class="project-image">
+                                    <img src="/assets/images/pencil_aluv3.jpeg" alt="Pencil Replacement Parts" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    
+                                        <span class="project-card-date">2023–Present</span>
+                                    
+                                    <h3>Pencil Replacement Parts</h3>
+                                    <p>100% positive customer feedback with over 900 precision replacement parts sold.</p>
+                                </div>
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
                         
                     
                         
@@ -230,8 +336,12 @@
             </div>
         
             <div class="category-section">
-                <h2 class="category-title">Personal Capstones</h2>
+                <h2 class="category-title">Machines</h2>
                 <div class="projects-grid">
+                    
+                        
+                    
+                        
                     
                         
                     
@@ -241,24 +351,36 @@
                                     <img src="/assets/images/lathe_wip_control_cabinet.png" alt="Turning Center for Ants." loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2023–Present</span>
+                                    
                                     <h3>Turning Center for Ants.</h3>
-                                    <p>WIP gang-tool lathe designed for small parts</p>
+                                    <p>WIP gang tool lathe designed for small parts</p>
                                 </div>
                             </a>
                         
                     
                         
-                    
-                        
-                            <a class="project-card project-card--priority" href="/project/printer/">
+                            <a class="project-card project-card--priority" href="/projects/printer/">
                                 <div class="project-image">
                                     <img src="/assets/images/printer_toolhead.jpeg" alt="Three-D-Printer" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2020–2021</span>
+                                    
                                     <h3>Three-D-Printer</h3>
-                                    <p>A one-of-one custom FDM 3D printer (2021)</p>
+                                    <p>A one-of-one custom FDM 3d printer (2021)</p>
                                 </div>
                             </a>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
                         
                     
                         
@@ -267,6 +389,9 @@
                                     <img src="/assets/images/router_lathe_part_machining.png" alt="Benchtop CNC Router" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2021–2022</span>
+                                    
                                     <h3>Benchtop CNC Router</h3>
                                     <p>Simple and inexpensive CNC machine for routing aluminum plate</p>
                                 </div>
@@ -277,31 +402,13 @@
                     
                         
                     
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
                 </div>
             </div>
         
             <div class="category-section">
-                <h2 class="category-title">Stationary</h2>
+                <h2 class="category-title">Stationery</h2>
                 <div class="projects-grid">
                     
-                        
-                            <a class="project-card project-card--priority" href="/project/pencils/">
-                                <div class="project-image">
-                                    <img src="/assets/images/pencil_aluv3.jpeg" alt="Pencil Replacement Parts" loading="lazy">
-                                </div>
-                                <div class="project-content">
-                                    <h3>Pencil Replacement Parts</h3>
-                                    <p>100% positive customer feedback with over 600 precision replacement parts sold.</p>
-                                </div>
-                            </a>
                         
                     
                         
@@ -312,6 +419,9 @@
                                     <img src="/assets/images/fp2/compositedFPthumb.png" alt="FP2" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2026</span>
+                                    
                                     <h3>FP2</h3>
                                     <p>I made a fountain pen.</p>
                                 </div>
@@ -323,17 +433,22 @@
                         
                     
                         
-                    
-                        
-                            <a class="project-card " href="/project/graphPen/">
+                            <a class="project-card " href="/projects/graphpen/">
                                 <div class="project-image">
-                                    <img src="/assets/images/WarmAug25.png" alt="GraphGear-Derived Pen" loading="lazy">
+                                    <img src="/assets/images/WarmAug25.png" alt="Graphgear Derived Pen" loading="lazy">
                                 </div>
                                 <div class="project-content">
-                                    <h3>GraphGear-Derived Pen</h3>
-                                    <p>One-off prototype pen built around my production GraphGear 1000 bodies.</p>
+                                    
+                                        <span class="project-card-date">2025</span>
+                                    
+                                    <h3>Graphgear Derived Pen</h3>
+                                    <p>One-off prototype pen built around my production Graphgear 1000 bodies.</p>
                                 </div>
                             </a>
+                        
+                    
+                        
+                    
                         
                     
                         
@@ -348,6 +463,9 @@
                                     <img src="/assets/images/PrototypePen.png" alt="First Pen (2023)" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2023</span>
+                                    
                                     <h3>First Pen (2023)</h3>
                                     <p>A simple gel pen, designed and machined as a gift for a friend.</p>
                                 </div>
@@ -358,7 +476,7 @@
             </div>
         
             <div class="category-section">
-                <h2 class="category-title">Software</h2>
+                <h2 class="category-title">Mechatronics</h2>
                 <div class="projects-grid">
                     
                         
@@ -374,27 +492,16 @@
                         
                     
                         
-                    
-                        
-                            <a class="project-card " href="/projects/calculator/">
+                            <a class="project-card " href="/projects/anklebiter/">
                                 <div class="project-image">
-                                    <img src="/assets/images/myCASdemoShot.png" alt="Unnamed Desktop Calculator" loading="lazy">
+                                    <img src="/assets/images/swerve.jpeg" alt="AnkleBiter" loading="lazy">
                                 </div>
                                 <div class="project-content">
-                                    <h3>Unnamed Desktop Calculator</h3>
-                                    <p>Bringing the power of Python to a familiar calculator interface.</p>
-                                </div>
-                            </a>
-                        
-                    
-                        
-                            <a class="project-card " href="/projects/meta/">
-                                <div class="project-image">
-                                    <img src="/assets/images/website_thumb3.png" alt="Portfolio Website" loading="lazy">
-                                </div>
-                                <div class="project-content">
-                                    <h3>Portfolio Website</h3>
-                                    <p>Pretty meta, right?</p>
+                                    
+                                        <span class="project-card-date">2022–2023</span>
+                                    
+                                    <h3>AnkleBiter</h3>
+                                    <p>FIRST Competition Robot</p>
                                 </div>
                             </a>
                         
@@ -405,8 +512,43 @@
                                     <img src="/assets/images/bikeComEarlyDemo.jpeg" alt="GPS Bike Computer" loading="lazy">
                                 </div>
                                 <div class="project-content">
+                                    
+                                        <span class="project-card-date">2025–Present</span>
+                                    
                                     <h3>GPS Bike Computer</h3>
                                     <p>I will finish it eventually</p>
+                                </div>
+                            </a>
+                        
+                    
+                        
+                            <a class="project-card " href="/projects/calculator/">
+                                <div class="project-image">
+                                    <img src="/assets/images/myCASdemoShot.png" alt="Unnamed Desktop Calculator" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    
+                                        <span class="project-card-date">2024</span>
+                                    
+                                    <h3>Unnamed Desktop Calculator</h3>
+                                    <p>Bringing the power of Python to a familiar calculator interface.</p>
+                                </div>
+                            </a>
+                        
+                    
+                        
+                    
+                        
+                            <a class="project-card " href="/projects/meta/">
+                                <div class="project-image">
+                                    <img src="/assets/images/website_thumb3.png" alt="Portfolio Website" loading="lazy">
+                                </div>
+                                <div class="project-content">
+                                    
+                                        <span class="project-card-date">2024–Present</span>
+                                    
+                                    <h3>Portfolio Website</h3>
+                                    <p>Pretty meta right?</p>
                                 </div>
                             </a>
                         
@@ -418,48 +560,50 @@
         
     </section>
 
+    <!-- Photos Section-->
+    <section id="photos-preview" class="content-container">
+        <div class="photos-preview-header">
+            <h2>Some of my Photos</h2>
+            <a href="/photos/" class="photos-link">View All</a>
+        </div>
+        <div class="photos-preview-grid" id="photos-preview-grid">
+        </div>
+        <script>
+            (function() {
+                const allPhotos = [{"src":"/assets/photos/000_Chico_Hills_Flowers/1_purplehead_Sunset.webp","category":"000_Chico_Hills_Flowers","mtime":1772843331858},{"src":"/assets/photos/000_Chico_Hills_Flowers/3_purplehead_sillo.webp","category":"000_Chico_Hills_Flowers","mtime":1772843411568},{"src":"/assets/photos/000_Chico_Hills_Flowers/4_DSC00886.webp","category":"000_Chico_Hills_Flowers","mtime":1780327206023},{"src":"/assets/photos/00_LA_Wide/I_love_LA.webp","category":"00_LA_Wide","mtime":1772178702085},{"src":"/assets/photos/00_LA_Wide/Sticks_over_the_2.webp","category":"00_LA_Wide","mtime":1772178702092},{"src":"/assets/photos/00_LA_Wide/Sunset_over_GriffithPark.webp","category":"00_LA_Wide","mtime":1772843689862},{"src":"/assets/photos/00_LA_Wide/soccer_montrose_2.webp","category":"00_LA_Wide","mtime":1772178702068},{"src":"/assets/photos/00_LA_Wide/windingpath.webp","category":"00_LA_Wide","mtime":1772846534571},{"src":"/assets/photos/01_Dogs/DSC00229.webp","category":"01_Dogs","mtime":1772178752323},{"src":"/assets/photos/01_Dogs/DSC00653.webp","category":"01_Dogs","mtime":1772178752335},{"src":"/assets/photos/01_Dogs/notadog.webp","category":"01_Dogs","mtime":1772847318661},{"src":"/assets/photos/03_Chico/04_Chico.webp","category":"03_Chico","mtime":1764997148244},{"src":"/assets/photos/03_Chico/3FE27390-19AE-45D7-AD8B-55AA822B06A3_1_105_c.webp","category":"03_Chico","mtime":1772847059243},{"src":"/assets/photos/03_Chico/89FF51EC-D951-42BB-9769-BFA27743779E_1_105_c.webp","category":"03_Chico","mtime":1772847083957},{"src":"/assets/photos/03_Chico/AC3E4631-C54D-41A5-8B2A-7196E89B8453_1_105_c.webp","category":"03_Chico","mtime":1772847066829},{"src":"/assets/photos/03_Chico/C2D7B003-F3E3-4812-9D58-12F3F4E2589B_1_201_a.webp","category":"03_Chico","mtime":1772847025553},{"src":"/assets/photos/03_Chico/D4BAE638-6BFC-4371-8AE5-22B9DA109C71_1_201_a.webp","category":"03_Chico","mtime":1772847100158},{"src":"/assets/photos/03_Chico/FA5D3245-8482-4456-906D-01F78DCD5115_1_105_c.webp","category":"03_Chico","mtime":1772846897348},{"src":"/assets/photos/05_Landscapes/01_Kauai_Waves.webp","category":"05_Landscapes","mtime":1764997266123},{"src":"/assets/photos/05_Landscapes/02_Oakland.webp","category":"05_Landscapes","mtime":1764997541377},{"src":"/assets/photos/05_Landscapes/03_Paradise.webp","category":"05_Landscapes","mtime":1764997249154},{"src":"/assets/photos/05_Landscapes/04_Kauai_Sleeping_Giant.webp","category":"05_Landscapes","mtime":1764997074368},{"src":"/assets/photos/05_Landscapes/05_Kauai_Birds.webp","category":"05_Landscapes","mtime":1764997261023},{"src":"/assets/photos/05_Landscapes/06_Bay_Bridge.webp","category":"05_Landscapes","mtime":1767918092984},{"src":"/assets/photos/05_Landscapes/07_Mammoth_Mountain.webp","category":"05_Landscapes","mtime":1767918244218},{"src":"/assets/photos/06_Newt/01_Newt.webp","category":"06_Newt","mtime":1764998025587},{"src":"/assets/photos/06_Newt/03_PowerLines.webp","category":"06_Newt","mtime":1764998041323},{"src":"/assets/photos/06_Newt/04_Trees.webp","category":"06_Newt","mtime":1764998039040},{"src":"/assets/photos/07_Chickens/1_chicken.webp","category":"07_Chickens","mtime":1764984931681},{"src":"/assets/photos/07_Chickens/4_run.webp","category":"07_Chickens","mtime":1764983725405},{"src":"/assets/photos/07_Chickens/5_chicken.webp","category":"07_Chickens","mtime":1764983725399},{"src":"/assets/photos/08_Geese/2_nene.webp","category":"08_Geese","mtime":1764996567480},{"src":"/assets/photos/08_Geese/3_nene.webp","category":"08_Geese","mtime":1764996665330},{"src":"/assets/photos/08_Geese/7_nene.webp","category":"08_Geese","mtime":1764996903423},{"src":"/assets/photos/08_Geese/8_nene.webp","category":"08_Geese","mtime":1764996942559}];
+                if (!allPhotos || allPhotos.length === 0) return;
+                // Shuffle array
+                for (let i = allPhotos.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
+                }
+                // Pick 6 and render
+                const grid = document.getElementById('photos-preview-grid');
+                allPhotos.slice(0, 6).forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = photo.src;
+                    img.alt = photo.category + ' photo';
+                    img.className = 'preview-photo';
+                    img.loading = 'lazy';
+                    grid.appendChild(img);
+                });
+            })();
+        </script>
+    </section>
+
     <!-- Contact Section-->
     <section id="contact" class="content-container">
         <h1>Contact</h1>
-<p>My phone number, and email address can be found at the top of my resume. Please do not hesitate to contact me if you have any questions!</p>
-
+<div style="margin: 24px 0;">
+    <button id="popup-button" type="button" class="contact-trigger-btn">Email</button>
+    <button id="popup-button-linkedin" type="button" class="contact-trigger-btn" onclick="window.open('https://www.linkedin.com/in/gradyconwell', '_blank', 'noopener')">LinkedIn</button>
+    <button id="popup-button-2" type="button" class="contact-trigger-btn" onclick="window.open('https://github.com/gradyconwell', '_blank', 'noopener')">GitHub</button>
+</div>
     </section>
-        </div><!-- End main-content-column -->
 
-        <!-- Photos sidebar - only visible on wide screens -->
-        <aside class="photos-sidebar">
-            <div class="photos-sidebar-header">
-                <h2>Some of my Photos</h2>
-                <a href="/photos/" class="photos-link">View All</a>
-            </div>
-            <div class="photos-sidebar-grid" id="sidebar-photos-grid">
-            </div>
-            <script>
-                (function() {
-                    const allPhotos = [{"src":"/assets/photos/000_Chico_Hills_Flowers/1_purplehead_Sunset.webp","category":"000_Chico_Hills_Flowers","mtime":1772843331858},{"src":"/assets/photos/000_Chico_Hills_Flowers/3_purplehead_sillo.webp","category":"000_Chico_Hills_Flowers","mtime":1772843411568},{"src":"/assets/photos/000_Chico_Hills_Flowers/4_DSC00886.webp","category":"000_Chico_Hills_Flowers","mtime":1780327206023},{"src":"/assets/photos/00_LA_Wide/I_love_LA.webp","category":"00_LA_Wide","mtime":1772178702085},{"src":"/assets/photos/00_LA_Wide/Sticks_over_the_2.webp","category":"00_LA_Wide","mtime":1772178702092},{"src":"/assets/photos/00_LA_Wide/Sunset_over_GriffithPark.webp","category":"00_LA_Wide","mtime":1772843689862},{"src":"/assets/photos/00_LA_Wide/soccer_montrose_2.webp","category":"00_LA_Wide","mtime":1772178702068},{"src":"/assets/photos/00_LA_Wide/windingpath.webp","category":"00_LA_Wide","mtime":1772846534571},{"src":"/assets/photos/01_Dogs/DSC00229.webp","category":"01_Dogs","mtime":1772178752323},{"src":"/assets/photos/01_Dogs/DSC00653.webp","category":"01_Dogs","mtime":1772178752335},{"src":"/assets/photos/01_Dogs/notadog.webp","category":"01_Dogs","mtime":1772847318661},{"src":"/assets/photos/03_Chico/04_Chico.webp","category":"03_Chico","mtime":1764997148244},{"src":"/assets/photos/03_Chico/3FE27390-19AE-45D7-AD8B-55AA822B06A3_1_105_c.webp","category":"03_Chico","mtime":1772847059243},{"src":"/assets/photos/03_Chico/89FF51EC-D951-42BB-9769-BFA27743779E_1_105_c.webp","category":"03_Chico","mtime":1772847083957},{"src":"/assets/photos/03_Chico/AC3E4631-C54D-41A5-8B2A-7196E89B8453_1_105_c.webp","category":"03_Chico","mtime":1772847066829},{"src":"/assets/photos/03_Chico/C2D7B003-F3E3-4812-9D58-12F3F4E2589B_1_201_a.webp","category":"03_Chico","mtime":1772847025553},{"src":"/assets/photos/03_Chico/D4BAE638-6BFC-4371-8AE5-22B9DA109C71_1_201_a.webp","category":"03_Chico","mtime":1772847100158},{"src":"/assets/photos/03_Chico/FA5D3245-8482-4456-906D-01F78DCD5115_1_105_c.webp","category":"03_Chico","mtime":1772846897348},{"src":"/assets/photos/05_Landscapes/01_Kauai_Waves.webp","category":"05_Landscapes","mtime":1764997266123},{"src":"/assets/photos/05_Landscapes/02_Oakland.webp","category":"05_Landscapes","mtime":1764997541377},{"src":"/assets/photos/05_Landscapes/03_Paradise.webp","category":"05_Landscapes","mtime":1764997249154},{"src":"/assets/photos/05_Landscapes/04_Kauai_Sleeping_Giant.webp","category":"05_Landscapes","mtime":1764997074368},{"src":"/assets/photos/05_Landscapes/05_Kauai_Birds.webp","category":"05_Landscapes","mtime":1764997261023},{"src":"/assets/photos/05_Landscapes/06_Bay_Bridge.webp","category":"05_Landscapes","mtime":1767918092984},{"src":"/assets/photos/05_Landscapes/07_Mammoth_Mountain.webp","category":"05_Landscapes","mtime":1767918244218},{"src":"/assets/photos/06_Newt/01_Newt.webp","category":"06_Newt","mtime":1764998025587},{"src":"/assets/photos/06_Newt/03_PowerLines.webp","category":"06_Newt","mtime":1764998041323},{"src":"/assets/photos/06_Newt/04_Trees.webp","category":"06_Newt","mtime":1764998039040},{"src":"/assets/photos/07_Chickens/1_chicken.webp","category":"07_Chickens","mtime":1764984931681},{"src":"/assets/photos/07_Chickens/4_run.webp","category":"07_Chickens","mtime":1764983725405},{"src":"/assets/photos/07_Chickens/5_chicken.webp","category":"07_Chickens","mtime":1764983725399},{"src":"/assets/photos/08_Geese/2_nene.webp","category":"08_Geese","mtime":1764996567480},{"src":"/assets/photos/08_Geese/3_nene.webp","category":"08_Geese","mtime":1764996665330},{"src":"/assets/photos/08_Geese/7_nene.webp","category":"08_Geese","mtime":1764996903423},{"src":"/assets/photos/08_Geese/8_nene.webp","category":"08_Geese","mtime":1764996942559}];
-                    if (!allPhotos || allPhotos.length === 0) return;
-                    // Shuffle array
-                    for (let i = allPhotos.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [allPhotos[i], allPhotos[j]] = [allPhotos[j], allPhotos[i]];
-                    }
-                    // Pick 6 and render
-                    const grid = document.getElementById('sidebar-photos-grid');
-                    allPhotos.slice(0, 6).forEach(photo => {
-                        const img = document.createElement('img');
-                        img.src = photo.src;
-                        img.alt = photo.category + ' photo';
-                        img.className = 'sidebar-photo';
-                        img.loading = 'lazy';
-                        grid.appendChild(img);
-                    });
-                })();
-            </script>
-        </aside>
-    </div><!-- End main-layout-wrapper -->
-
-    <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
-    <p>© 2026 Grady Conwell</p>
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
 </footer>
 </body>
 </html>

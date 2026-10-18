@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Guided Tour - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Mark session tour active immediately in head -->
+    <script>
+        try {
+            sessionStorage.setItem('tour_active', '1');
+            document.documentElement.classList.add('in-tour');
+        } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-83CZPWDMGD');
+    </script>
+</head>
+<body class="tour-page-body">
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
+<script>
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
+
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
+
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
+        }
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+    <main class="content-container tour-container">
+        <header class="tour-header">
+            <h1 class="tour-title">A Guided Tour</h1>
+            <p class="tour-intro">
+                A curated directory of my projects and work, organized for quick navigation.
+            </p>
+        </header>
+
+        <!-- Interactive Directory with Dropdowns -->
+        <section class="tour-section">
+            <div class="directory-accordions">
+                <!-- Dropdown: Production -->
+                <details class="directory-group" open>
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Production</span>
+                        <span class="group-count">2 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/copper/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Hardware Engineering at Copper</span>
+                                <span class="item-pitch">16 continuous months of production mechanical engineering.</span>
+                            </div>
+                            <span class="item-meta">2024–2025</span>
+                        </a>
+                        <a href="/projects/pencils/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Pencil Replacement Parts</span>
+                                <span class="item-pitch">100% positive customer feedback with over 900 precision replacement parts sold.</span>
+                            </div>
+                            <span class="item-meta">2023–Present</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Machines -->
+                <details class="directory-group" open>
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Machines</span>
+                        <span class="group-count">3 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/lathe/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Turning Center for Ants.</span>
+                                <span class="item-pitch">WIP gang tool lathe designed for small parts</span>
+                            </div>
+                            <span class="item-meta">2023–Present</span>
+                        </a>
+                        <a href="/projects/router/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Benchtop CNC Router</span>
+                                <span class="item-pitch">Simple and inexpensive CNC machine for routing aluminum plate</span>
+                            </div>
+                            <span class="item-meta">2021–2022</span>
+                        </a>
+                        <a href="/projects/printer/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Three-D-Printer</span>
+                                <span class="item-pitch">A one-of-one custom FDM 3d printer (2021)</span>
+                            </div>
+                            <span class="item-meta">2020–2021</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Stationery -->
+                <details class="directory-group">
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Stationery</span>
+                        <span class="group-count">3 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/fp2/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">FP2</span>
+                                <span class="item-pitch">I made a fountain pen.</span>
+                            </div>
+                            <span class="item-meta">2026</span>
+                        </a>
+                        <a href="/projects/graphpen/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Graphgear Derived Pen</span>
+                                <span class="item-pitch">One-off prototype pen built around my production Graphgear 1000 bodies.</span>
+                            </div>
+                            <span class="item-meta">2025</span>
+                        </a>
+                        <a href="/projects/2023_proto_pen/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">First Pen (2023)</span>
+                                <span class="item-pitch">A simple gel pen, designed and machined as a gift for a friend.</span>
+                            </div>
+                            <span class="item-meta">2023</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Dropdown: Mechatronics -->
+                <details class="directory-group">
+                    <summary class="directory-group-summary">
+                        <span class="group-title">Mechatronics</span>
+                        <span class="group-count">4 Projects</span>
+                    </summary>
+                    <div class="directory-list">
+                        <a href="/projects/anklebiter/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">AnkleBiter (2023)</span>
+                                <span class="item-pitch">FIRST Competition Robot</span>
+                            </div>
+                            <span class="item-meta">2023</span>
+                        </a>
+                        <a href="/projects/bikecomputer/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">GPS Bike Computer</span>
+                                <span class="item-pitch">I will finish it eventually</span>
+                            </div>
+                            <span class="item-meta">2025–Present</span>
+                        </a>
+                        <a href="/projects/calculator/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Unnamed Desktop Calculator</span>
+                                <span class="item-pitch">Bringing the power of Python to a familiar calculator interface.</span>
+                            </div>
+                            <span class="item-meta">2024</span>
+                        </a>
+                        <a href="/projects/meta/" class="directory-item">
+                            <div class="item-main">
+                                <span class="item-title">Portfolio Website</span>
+                                <span class="item-pitch">Pretty meta right?</span>
+                            </div>
+                            <span class="item-meta">2024–Present</span>
+                        </a>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Direct Contact Section -->
+        <section class="tour-section tour-contact-box">
+            <h2>Get in Touch</h2>
+            <p>Interested in discussing my research interests, hardware experience, or lab opportunities? Connect with me directly:</p>
+            <button type="button" class="contact-trigger-btn">Contact me →</button>
+        </section>
+    </main>
+
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
+</footer>
+</body>
+</html>

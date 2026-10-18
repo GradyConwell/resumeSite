@@ -6,13 +6,15 @@ html, body {
 }
 
 body {
-    font-family: 'Inter';
+    font-family: var(--font-sans);
     text-align: left;
     background-color: var(--color-base);
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin: 0;
     padding: 0;
     justify-content: space-between;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #main-header {
@@ -20,31 +22,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: min(82vh, calc(100vh - 80px)); /* Max 82vh or viewport minus navbar */
-    min-height: 400px; /* Ensure minimum height for Chrome */
+    height: min(82vh, calc(100vh - 80px));
+    min-height: 400px;
     text-align: center;
     background-color: var(--color-primary);
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin: 0;
-    margin-top: -80px; /* Push down to account for fixed navbar */
+    margin-top: -80px;
     padding: 0;
-    flex-shrink: 0; /* Prevent shrinking in Chrome */
-    
-    /* Background image configuration - uncomment the line below to enable chicken.jpg background */
+    flex-shrink: 0;
     background-image: url('/assets/images/16:9_Sunset_Silhouette.jpeg');
-    /* To switch back to no background image, comment out the line above */
-    /* also remove the radial blur in .title-card */
-    
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: left center; /* Keep left edge fixed, center vertically */
-    background-blend-mode: normal; /* Change to 'overlay' for blended effect */
-    
-    /* Start hidden for fade-in animation */
+    background-position: left center;
     opacity: 0;
 }
 
-/* Animation class added after image loads */
 #main-header.loaded {
     animation: fadeInHeader 0.7s ease-in-out forwards;
 }
@@ -63,167 +56,326 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* Footer */
 footer {
     margin-top: auto;
     text-align: center;
     background-color: #3E6E8C;
     background-image: url('/assets/misc/subtleGlitter.svg');
     color: white;
-    padding: 10px;
+    padding: 12px 10px;
 }
 
+/* Title Card */
 .title-card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    height: 100%; /* Fill the header container */
-    width: 100%; /* Fill the header container width */
-    text-align: center; /* Center the text */
-    /* color: var(--color-text-light); /* Use your defined text color */
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
     color: var(--color-base);
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
-    
-    /* Radial gradient overlay to make text pop - adjust blur/darkness as needed */
-    /* background: radial-gradient(ellipse at center, 
-        rgba(0, 0, 0, 0.4) 0%,            
-        rgba(0, 0, 0, 0.2) 30%,           
-        rgba(255, 255, 255, 0.1) 100%);
-    */
+    margin: 0;
+    padding: 0;
 }
 
-/* Overlapping title card that sits between header and body */
+/* Overlapping title card */
 .overlapping-title-card {
     position: relative;
     width: 80%;
     max-width: 800px;
-    margin: 0 auto 50px var(--dynamic-padding); /* Align to left with padding on large screens */
-    margin-top: -50px; /* Negative margin to overlap with header (adjusted lower) */
-    padding: var(--card-padding-vertical-desktop) var(--card-padding-horizontal-desktop); /* Fixed padding for desktop */
+    margin: -50px auto 50px auto;
+    padding: var(--card-padding-vertical-desktop) var(--card-padding-horizontal-desktop);
     background-color: var(--color-primary);
-    color: var(--color-text-light);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 8px; /* Match content-container radius */
-    text-align: left; /* Left justify text */
-    z-index: 10; /* Ensure it sits above other elements */
-    transform: translateZ(0); /* Force hardware acceleration for better Chrome rendering */
-    will-change: transform; /* Optimize for transform changes */
+    color: var(--color-text);
+    box-shadow: 0 6px 20px rgba(50, 52, 56, 0.1);
+    border-radius: 3px;
+    border: 1px solid var(--color-border);
+    text-align: left;
+    z-index: 10;
+    transform: translateZ(0);
 }
 
 .overlapping-title-card h1 {
-    color: var(--color-accent);
-    font-family: var(--font-serif); /* Use serif font for title */
-    font-weight: 500; /* Medium weight */
-    font-size: 2.25em; /* Set explicit size for consistency */
-    margin-top: 0.5rem; /* Remove space above the header */
-    margin-bottom: 1rem;
+    color: var(--color-ink-warm);
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 2.35em;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
 }
 
 .overlapping-title-card p {
     color: var(--color-text-light);
     line-height: 1.6;
+    font-size: 1.05rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .overlapping-title-card {
-        width: 80%; /* Match content-container width on small screens */
-        margin: 0 auto 50px auto; /* Center on small screens with reduced bottom margin */
-        margin-top: -50px;
-        padding: var(--card-padding-vertical-mobile) var(--card-padding-horizontal-mobile); /* Fixed padding for mobile */
+        width: 88%;
+        margin: -50px auto 40px auto;
+        padding: var(--card-padding-vertical-mobile) var(--card-padding-horizontal-mobile);
     }
 }
 
-/* Two-column layout wrapper for wide screens */
-.main-layout-wrapper {
-    display: block; /* Default: single column */
+/* Homepage photos section */
+.photos-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
 }
 
-/* Photos sidebar - hidden by default */
-.photos-sidebar {
-    display: none;
+.photos-preview-header h2 {
+    margin: 0;
 }
 
-/* Wide screen two-column layout */
-@media (min-width: 1400px) {
-    .main-layout-wrapper {
-        display: flex;
-        gap: 4rem;
-        padding-right: var(--dynamic-padding);
-        align-items: flex-start;
-    }
+.content-container a.photos-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+}
 
-    .main-content-column {
-        flex: 0 0 auto; /* Don't grow, don't shrink, size by content */
-        min-width: 900px; /* Ensure content column maintains minimum width */
-        width: 900px; /* Fixed width to prevent shrinking */
-    }
+.content-container a.photos-link:hover {
+    text-decoration: underline;
+}
 
-    /* Override content-container to use fixed width instead of percentage */
-    .main-content-column .content-container {
-        width: 800px;
-        margin-left: var(--dynamic-padding);
-        margin-right: 0;
-    }
+.photos-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+}
 
-    .photos-sidebar {
-        display: block;
-        flex: 1 1 400px; /* Grow to fill remaining space */
-        min-width: 350px;
-        background-color: var(--color-primary);
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
-        align-self: flex-start; /* Height matches content, not stretched */
-    }
+.content-container .preview-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    border-radius: 2px;
+    object-fit: cover;
+}
 
-    .photos-sidebar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .photos-sidebar-header h2 {
-        font-family: var(--font-serif);
-        font-size: 2em;
-        font-weight: 500; /* Match other section headers */
-        color: var(--color-accent);
-        margin: 0;
-    }
-
-    .photos-link {
-        font-size: 0.9rem;
-        color: var(--color-accent);
-        text-decoration: none;
-        opacity: 0.8;
-        transition: opacity 0.2s ease;
-    }
-
-    .photos-link:hover {
-        opacity: 1;
-        text-decoration: underline;
-    }
-
-    .photos-sidebar-grid {
-        display: grid;
+@media (max-width: 768px) {
+    .photos-preview-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
     }
+}
 
-    .sidebar-photo {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 8px;
-        object-fit: cover;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Neutral Gray Photo Placeholder Box */
+.photo-placeholder-box {
+    width: 100%;
+    margin: 24px auto;
+    padding: 3rem 1.5rem;
+    background-color: #E6E2D8;
+    border: 2px dashed #C8C2B4;
+    border-radius: 3px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.photo-placeholder-box p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: #6C665C;
+    font-weight: 500;
+}
+
+/* Project Meta Bar */
+/* Plain Project Date */
+.project-plain-date {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: var(--color-text-light);
+    margin: 0 0 1rem 0;
+}
+
+.project-footer-nav {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.project-nav-back {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-accent-teal);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.15s ease;
+}
+
+.project-nav-back:hover {
+    color: var(--color-hover);
+    text-decoration: underline;
+}
+
+/* Guided Tour Styles */
+.tour-container {
+    max-width: 900px;
+    width: 85%;
+    margin: 110px auto 60px auto;
+    padding: 2.5rem 2.5rem;
+}
+
+.tour-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+}
+
+.tour-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-ink-warm);
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+}
+
+.tour-intro {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0;
+    max-width: 760px;
+}
+
+.tour-section {
+    margin-bottom: 3rem;
+}
+
+/* Dropdowns Accordion */
+.directory-accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.directory-group {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.directory-group[open] {
+    border-color: rgba(0, 97, 117, 0.4);
+}
+
+.directory-group-summary {
+    padding: 1rem 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-ink-warm);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-surface);
+    user-select: none;
+}
+
+.group-count {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+}
+
+.directory-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+}
+
+.directory-item {
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    text-decoration: none !important;
+    color: var(--color-text);
+    border-bottom: 1px solid rgba(50, 52, 56, 0.06);
+    transition: background 0.15s ease;
+}
+
+.directory-item:last-child {
+    border-bottom: none;
+}
+
+.directory-item:hover {
+    background: rgba(0, 97, 117, 0.04);
+}
+
+.item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-accent-teal);
+    text-decoration: none !important;
+}
+
+.item-pitch {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.4;
+    text-decoration: none !important;
+}
+
+.item-meta {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    white-space: nowrap;
+    text-decoration: none !important;
+}
+
+.tour-contact-box {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.tour-contact-box h2 {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    color: var(--color-ink-warm);
+    margin: 0 0 0.5rem 0;
+}
+
+.tour-contact-box p {
+    color: var(--color-text-light);
+    margin: 0 0 1.5rem 0;
+}
+
+@media (max-width: 850px) {
+    .directory-item {
+        flex-direction: column;
+        gap: 0.5rem;
     }
-
-    .sidebar-photo:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    .tour-container {
+        padding: 1.5rem 1rem;
+        width: 90%;
     }
 }

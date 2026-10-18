@@ -1,7 +1,7 @@
 # About Me
 
-I’m a Mechanical Engineering major at CSU Chico. On campus, I serve as Vice President of our Society of Manufacturing Engineers (SME) chapter, where I mentor students and coordinate our technical projects. Off campus, I am always tinkering away with a plethora of side projects, or training for the Megaflower 125, or otherwise riding bikes in the extensive foothills and forests surrounding Chico.
+I’m a mechanical engineering student at California State University, Chico. Currently, I’m working on a senior capstone project sponsored by the SLAC National Accelerator Laboratory. This project involves exploring novel methods of sample delivery for XFEL crystallography. Previously, I served as the Vice President of Chico State’s Society of Manufacturing Engineers (SME) chapter. In this role, I mentored students and coordinated various technical projects. 
 
-This past summer I returned to the Bay Area and worked with the wonderful team at Copper, a Berkeley-based climate-tech startup. This fall I'm starting my penultimate semester at Chico State.
+I’m a maker at heart, and I grew up during the maker movement of the early 2010s. You can find a selection of my projects below, with some associated musings. I aspire to be proud of the things I make and put my name on, which means that I often revisit old projects to add just a bit more polish. 
 
-Otherwise, I’m looking for new things to do and figuring out where I'm headed after graduation. Recruit me to your lab, try to hire me, whatever floats your boat—my inbox is open.
+Outside of the classroom and my nascent professional career, I'm an avid cyclist, less-than-great musician, and very particular about my tea. You might find me hanging out with a stray cat on campus, or chasing a chicken with a camera in a parking lot. Otherwise, I’m looking for new things to do and figuring out where I'm headed after graduation. 

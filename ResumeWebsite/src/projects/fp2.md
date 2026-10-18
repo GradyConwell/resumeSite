@@ -4,8 +4,9 @@ description: "I made a fountain pen."
 image: "/assets/images/fp2/compositedFPthumb.png"
 permalink: "/projects/fp2/"
 layout: "projectLayout.html"
-category: "Stationary"
+category: "Stationery"
 priority: 1
+projectDate: "2026"
 ---
 
 # FP2

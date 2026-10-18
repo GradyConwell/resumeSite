@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turning Center for Ants. - Grady Conwell</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
@@ -17,10 +27,8 @@
       gtag('config', 'G-83CZPWDMGD');
     </script>
 </head>
-<body>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<nav class="navbar">
+<body class="project-page-body">
+    <nav class="navbar">
     <div class="navbar-container">
         <!-- Left Section: Logo and Navigation Links -->
         <div class="navbar-left">
@@ -56,46 +64,136 @@
                 </li>
             </ul>
         </div>
-
-        <!-- Right Section: Resume Button -->
-        <div class="navbar-right">
-            <button id="popup-button" class="navbar-resume-button">View My Resume</button>
-        </div>
     </div>
 </nav>
 
-<!-- Popup Form -->
-<div id="popup-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 8px; color: black; width: 300px; text-align: center;">
-    <!--<form action="https://submit-form.com/EQ3OQ1GmK" id="email-form" method="POST" data-botpoison-public-key="pk_800c4593-6ff7-4f7c-8c87-2f12976427c6">!-->
-    <form id="email-form">
-        <input type="hidden" name="form-name" value="popup-form" />
-        <!-- Honeypot Field -->
-        <input type="text" id="honeypot" name="honeypot" style="display: none;" autocomplete="off" />
-        <label for="email" style="color: #403B3B;">Almost There! Let’s Stay in Touch.</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required style="margin: 10px 0; padding: 8px; width: calc(100% - 20px); box-sizing: border-box;" />
-        <button type="submit" class="popup-form-button">Submit</button>
-    </form>
-</div>
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
 
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
 <script>
-    const popupButton = document.getElementById('popup-button');
-    const popupForm = document.getElementById('popup-form');
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
 
-    popupButton.addEventListener('click', () => {
-        popupForm.style.display = 'block';
-    });
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
 
-    window.addEventListener('click', (event) => {
-        if (event.target !== popupForm && !popupForm.contains(event.target) && event.target !== popupButton) {
-            popupForm.style.display = 'none';
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
         }
-    });
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
 </script>
 
 <script src="/assets/scripts/form-handler.js"></script>
 
-    <main class="content-container">
-        <h1>Compact CNC Lathe</h1>
+    <main class="content-container project-container">
+        
+            <p class="project-plain-date">2023–Present</p>
+        
+
+        <article class="project-article">
+            <h1>Compact CNC Lathe</h1>
 <div style="text-align: center; margin: 20px auto;">
 <iframe width="100%" style="max-width: 800px; aspect-ratio: 16/9; border-radius: 8px;" src="https://www.youtube.com/embed/k7oSAq7gK64?si=eOCRGVswx6PJW6x9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 </div>
@@ -200,10 +298,16 @@
     <img src="/assets/images/Lathe/shopDog.jpeg" alt="A black-and-white dog resting beside the lathe in the workshop" title="Workshop Companion" loading="lazy">
     <figcaption class="caption">Tucker! Excellent shop dog, and very excited that everyone is on the floor where he hangs out.</figcaption>
 </figure>
+        </article>
+
+        <nav class="project-footer-nav" aria-label="Project navigation">
+            <a href="/#projects" class="project-nav-back">← Back to All Projects</a>
+        </nav>
     </main>
 
-    <footer style="text-align: center; background-color: #3E6E8C; color: white; padding: 10px;">
-    <p>© 2026 Grady Conwell</p>
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
 </footer>
 </body>
 </html>
