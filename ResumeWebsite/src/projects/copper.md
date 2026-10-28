@@ -6,7 +6,7 @@ permalink: "/projects/copper/"
 layout: "projectLayout.html"
 priority: 0
 isPriority: true
-category: "Production"
+category: "Products"
 projectDate: "2025-2026"
 ---
 

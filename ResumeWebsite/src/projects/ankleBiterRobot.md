@@ -1,7 +1,7 @@
 ---
 title: "AnkleBiter"
 description: "FIRST Competition Robot"
-image: "/assets/images/swerve.jpeg"
+image: "/assets/images/AnkleBiter/swerve.jpeg"
 permalink: "/projects/anklebiter/"
 layout: "projectLayout.html"
 priority: 2
@@ -22,7 +22,7 @@ projectDate: "2022–2023"
 <iframe src="https://icloud11636.autodesk360.com/shares/public/SH35dfcQT936092f0e43955c17b2f02d9e36?mode=embed" frameborder="0" allowfullscreen loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
 </div>
 
-<img src="/assets/images/swerve2.jpeg" alt="Portrait of swerve drives" title="Portrait of swerve drives" loading="lazy">
+<img src="/assets/images/AnkleBiter/swerve2.jpeg" alt="Portrait of swerve drives" title="Portrait of swerve drives" loading="lazy">
 
 ## Summary 
 

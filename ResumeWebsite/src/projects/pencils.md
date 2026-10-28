@@ -1,12 +1,12 @@
 ---
 title: "Pencil Replacement Parts"
 description: "100% positive customer feedback with over 900 precision replacement parts sold."
-image: "/assets/images/pencil_aluv3.jpeg"
+image: "/assets/images/Pencils/pencil_aluv3.jpeg"
 permalink: "/projects/pencils/"
 layout: "projectLayout.html"
 priority: 0
 isPriority: true
-category: "Production"
+category: "Products"
 projectDate: "2023–Present"
 ---
 
@@ -58,15 +58,15 @@ The Unsharpen videos were an interesting lesson in the value of sticking to eBay
 
 
 
-<img src="/assets/images/pencil_aluv3.jpeg" alt="Several aluminum pencil parts in a row." title="aluv3" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_aluv3.jpeg" alt="Several aluminum pencil parts in a row." title="aluv3" class="responsive-image" loading="lazy"> 
 
-<img src="/assets/images/pencil_brassv3.jpeg" alt="3 Brass Pencil Parts in black plastic boxes." title="brassv3" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_Brassv3.jpeg" alt="3 Brass Pencil Parts in black plastic boxes." title="brassv3" class="responsive-image" loading="lazy"> 
 
-<img src="/assets/images/pencil_100.jpeg" alt="A gift box with a set of four turned pencil bodies, a little celebration for hitting 100 units sold." title="100" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_100.jpeg" alt="A gift box with a set of four turned pencil bodies, a little celebration for hitting 100 units sold." title="100" class="responsive-image" loading="lazy"> 
 
-<img src="/assets/images/pencil_ano_ti.jpeg" alt="GraphGear 1000 Mechanical Pencil with a blue anodized titanium body" title="Ti Ano" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_ano_ti.jpeg" alt="GraphGear 1000 Mechanical Pencil with a blue anodized titanium body" title="Ti Ano" class="responsive-image" loading="lazy"> 
 
-<img src="/assets/images/pencil_raw_ti.jpeg" alt="Shiny titanium part next to a blue sharpie" title="Raw Ti" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_raw_ti.jpeg" alt="Shiny titanium part next to a blue sharpie" title="Raw Ti" class="responsive-image" loading="lazy"> 
 
-<img src="/assets/images/pencil_repair_fixture.jpeg" alt="A plastic collet block next to a mechanical pencil" title="Repair Fixture" class="responsive-image" loading="lazy"> 
+<img src="/assets/images/Pencils/pencil_repair_fixture.jpeg" alt="A plastic collet block next to a mechanical pencil" title="Repair Fixture" class="responsive-image" loading="lazy"> 
 

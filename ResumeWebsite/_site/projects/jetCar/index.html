@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jet Car - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-83CZPWDMGD');
+    </script>
+</head>
+<body class="project-page-body">
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
+<script>
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
+
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
+
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
+        }
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+    <main class="content-container project-container">
+        
+            <p class="project-plain-date">Spring 2026</p>
+        
+
+        <article class="project-article">
+            <h1>EDF Powered RC Car</h1>
+<p>My group built this totally rad RC jet car as the final project for our 300-level mechanical engineering design course. We were prescribed a pretty beefy ducted fan, oversized battery, and told to build a race car. Winner's of the race at the end of the semester got higher grades. We got 2nd place out of eight teams, so not a bad showing. I think we built the best car, though. I mean, check out that F1 style suspension I designed!</p>
+<figure>
+    <img src="/assets/images/JetCar/JetCarSideProfileColor.jpeg" alt="Red Toy Race Car" title="FP2" loading="lazy">
+    <figcaption class="caption">I built this suspension using some ball ends and shocks that I pulled off an RC car I found in my apartment complex's dumpster.</figcaption>
+</figure>
+<div style="text-align: center; margin: 20px auto;">
+    <iframe src="https://icloud11636.autodesk360.com/shares/public/SH90d2dQT28d5b602811baf2ea56c0ba3c48?mode=embed" width="100%" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
+</div>
+<figure>
+    <img src="/assets/images/JetCar/JetCarFrontColor.jpeg" alt="Red Toy Race Car" title="FP2" loading="lazy">
+    <figcaption class="caption">My brother took this photo. Please kindly route any and all complaints to him.</figcaption>
+</figure>
+        </article>
+
+        <nav class="project-footer-nav" aria-label="Project navigation">
+            <a href="/#projects" class="project-nav-back">← Back to All Projects</a>
+        </nav>
+    </main>
+
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
+</footer>
+</body>
+</html>

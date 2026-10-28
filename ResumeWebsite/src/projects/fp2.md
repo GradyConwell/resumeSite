@@ -12,7 +12,6 @@ projectDate: "2026"
 # FP2
 <img src="/assets/images/fp2/compositedFPthumb.png" alt="A fountain pen against a blue and white background." title="FP2" loading="lazy">
 
-    
 I got stuck serving on a particularly rough Butte County jury earlier this year (February 2026). I was taking notes during the trial with a Platinum Preppy. I had a lot of free time during breaks, where the only thing I had any bandwidth left to do was idly sketch miscellaneous ideas occupying space in the back of my head. One of those sketches became Fountain Pen Two (FP2), successor to an ill-fated FP1.
 
 <figure>

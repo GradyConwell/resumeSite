@@ -47,34 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cluster Navigation
     const categories = document.querySelectorAll('.gallery-category');
-    
+
     categories.forEach(category => {
         const wrapper = category.querySelector('.cluster-wrapper');
         const prevBtn = category.querySelector('.prev-btn');
         const nextBtn = category.querySelector('.next-btn');
-        
+
         if (!wrapper || !prevBtn || !nextBtn) return;
-        
+
         const cards = Array.from(wrapper.querySelectorAll('.photo-card'));
         const totalCards = cards.length;
-        
+
         // Initialize positions
         // We use a virtual index for each card.
         // card[i] has position (i - offset) % total
         let offset = 0;
-        
+
         const updatePositions = (direction) => {
             // Add direction class for CSS transition logic
             category.classList.remove('direction-next', 'direction-prev');
             wrapper.classList.add('animating');
-            
+
             // Force reflow to ensure class removal is processed
             void category.offsetWidth;
-            
+
             if (direction) {
                 category.classList.add(`direction-${direction}`);
             }
-            
+
             cards.forEach((card, index) => {
                 // Calculate position index (0 to total-1)
                 // We want the visual order to rotate.
@@ -83,10 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // JS modulo of negative numbers is negative, so we fix that.
                 let posIndex = (index - offset) % totalCards;
                 if (posIndex < 0) posIndex += totalCards;
-                
+
                 // Remove all pos classes
                 card.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-hidden');
-                
+
                 // Add new pos class
                 if (posIndex < 5) {
                     card.classList.add(`pos-${posIndex}`);
@@ -94,22 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.classList.add('pos-hidden');
                 }
             });
-            
+
             // Remove animating class after transition
             setTimeout(() => {
                 wrapper.classList.remove('animating');
                 category.classList.remove('direction-next', 'direction-prev');
             }, 800); // Match CSS transition duration
         };
-        
+
         // Initial setup
         updatePositions();
-        
+
         nextBtn.addEventListener('click', () => {
             offset++; // Move forward: Card 0 (Front) becomes Card 4 (Back)
             updatePositions('next');
         });
-        
+
         prevBtn.addEventListener('click', () => {
             offset--; // Move backward: Card 4 (Back) becomes Card 0 (Front)
             updatePositions('prev');

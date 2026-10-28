@@ -1,7 +1,7 @@
 ---
 title: "Benchtop CNC Router"
 description: "Simple and inexpensive CNC machine for routing aluminum plate"
-image: "/assets/images/router_lathe_part_machining.png"
+image: "/assets/images/Router/router_lathe_part_machining.png"
 permalink: "/projects/router/"
 layout: "projectLayout.html"
 priority: 2
@@ -18,7 +18,7 @@ In late 2021, I became involved with my high school's FIRST (a national student 
 During the '21–22 season, my team advanced to the SoCal regional championship, much to the dismay of the club's adult mentors, who would've preferred that both students and resources be focused on what was, in their eyes, the far more important FIRST Robotics Competition (FRC). 
 
 <figure>
-    <img src="/assets/images/router_chipboardcutouts.jpeg" alt="Chipboard CNC parts" title="Chipboard CNC parts" loading="lazy"> 
+    <img src="/assets/images/Router/router_chipboardcutouts.jpeg" alt="Chipboard CNC parts" title="Chipboard CNC parts" loading="lazy"> 
     <figcaption class="caption">I built the first version of the router by hand, cutting out chipboard with a Dremel. This configuration barely survived cutting the aluminum plate replacement parts.</figcaption>
 </figure>
 
@@ -36,7 +36,7 @@ I built the original frame from hardware-store chipboard because I was too cheap
 
 
 <figure>
-    <img src="/assets/images/routerInBackground.jpeg" alt="CNC parts" title="CNC parts" loading="lazy"> 
+    <img src="/assets/images/Router/routerInBackground.jpeg" alt="CNC parts" title="CNC parts" loading="lazy"> 
     <figcaption class="caption">A lathe project, conveniently photographed with the router in the background. Notice the (if anything) scrappy design choices.</figcaption>
 </figure>
 
@@ -47,14 +47,14 @@ Today, I rarely use my router, mostly because I have access to far better equipm
 What I really want to do—given unlimited time, money, and space—is to build something like what [Piotr Fox Wysocki](https://www.youtube.com/piotrfoxwysocki) built in their home workshop. The granite surface plate construction gantry mill is, in my estimation, a clever, accessible, and proven architecture for building top-of-the-line "DIY" machines.
 
 
-<img src="/assets/images/router_lathe_part_machining.png" alt="router machining aluminum panels for the ongoing lathe project" title="SME Eureka Part machining" loading="lazy">
+<img src="/assets/images/Router/router_lathe_part_machining.png" alt="router machining aluminum panels for the ongoing lathe project" title="SME Eureka Part machining" loading="lazy">
 
-<img src="/assets/images/router_SME_sample_parts.jpeg" alt="Two flat, etched aluminum parts for a SME shop tool project" title="SME finished parts" loading="lazy">
+<img src="/assets/images/Router/router_SME_sample_parts.jpeg" alt="Two flat, etched aluminum parts for a SME shop tool project" title="SME finished parts" loading="lazy">
 
-<img src="/assets/images/router_milling_slot.png" alt="Machining a J-slot in brass with a 2mm end mill" title="J-slot Milling" loading="lazy">
+<img src="/assets/images/Router/router_milling_slot.png" alt="Machining a J-slot in brass with a 2mm end mill" title="J-slot Milling" loading="lazy">
 
-<img src="/assets/images/router_penstand.jpeg" alt="Custom Aluminum Stand for four pens" title="Pen Stand" loading="lazy">
+<img src="/assets/images/Router/router_penstand.jpeg" alt="Custom Aluminum Stand for four pens" title="Pen Stand" loading="lazy">
 
-<img src="/assets/images/router_tooling_plate.png" alt="Machining 5052 Tooling plate with a 4mm end mill" title="Tooling Plate" loading="lazy">
+<img src="/assets/images/Router/router_tooling_plate.png" alt="Machining 5052 Tooling plate with a 4mm end mill" title="Tooling Plate" loading="lazy">
 
-<img src="/assets/images/router_engraving.jpeg" alt="Machining a pocket ruler from aluminum plate." title="Engraving Aluminum" loading="lazy">
+<img src="/assets/images/Router/router_engraving.jpeg" alt="Machining a pocket ruler from aluminum plate." title="Engraving Aluminum" loading="lazy">

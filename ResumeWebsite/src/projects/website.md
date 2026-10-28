@@ -1,7 +1,7 @@
 ---
 title: "Portfolio Website"
 description: "Pretty meta right?"
-image: "/assets/images/website_thumb3.png"
+image: "/assets/images/Website/website_thumb3.png"
 permalink: "/projects/meta/"
 layout: "projectLayout.html"
 priority: 2
@@ -23,7 +23,7 @@ For example, each project page is a simple markdown file, which is automatically
 # Example front-matter defining project parameters
 title: "AnkleBiter (2023)"
 description: "FIRST Competition Robot"
-image: "/assets/images/swerve.jpeg"
+image: "/assets/images/AnkleBiter/swerve.jpeg"
 permalink: "/projects/anklebiter/"
 layout: "projectLayout.html"
 priority: 2

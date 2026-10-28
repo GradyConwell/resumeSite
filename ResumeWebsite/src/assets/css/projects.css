@@ -112,7 +112,20 @@
     gap: 0.75rem;
 }
 
-.pencil-photo-slide__panes img {
+.pencil-photo-slide__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.pencil-photo-slide__item .caption {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.pencil-photo-slide__panes img,
+.pencil-photo-slide__item img {
     display: block;
     width: 100%;
     aspect-ratio: 1 / 1;

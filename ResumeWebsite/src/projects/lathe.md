@@ -1,7 +1,7 @@
 ---
 title: "Turning Center for Ants."
 description: "WIP gang tool lathe designed for small parts"
-image: "/assets/images/lathe_wip_control_cabinet.png"
+image: "/assets/images/Lathe/lathe_wip_control_cabinet.png"
 permalink: "/projects/lathe/"
 layout: "projectLayout.html"
 priority: 1
@@ -56,7 +56,7 @@ Most notable among the early acquisitions were:
 </figure>
 
 <figure>
-    <img src="/assets/images/lathe_first_assembled_z_axis.jpeg" alt="A long aluminum frame with a black slide bolted to the top" title="Z Axis" loading="lazy">
+    <img src="/assets/images/Lathe/lathe_first_assembled_z_axis.jpeg" alt="A long aluminum frame with a black slide bolted to the top" title="Z Axis" loading="lazy">
     <figcaption class="caption">Several of the "locked in" components are visible in this image.</figcaption>
 </figure>
 
@@ -88,12 +88,12 @@ This project is still ongoing as of January 2026. Here's a breakdown of what's b
 </figure>
 
 <figure>
-    <img src="/assets/images/lathe_wip_cross_slide.png" alt="A partially assembled lathe cross slide" title="WIP Cross Slide" loading="lazy">
+    <img src="/assets/images/Lathe/lathe_wip_cross_slide.png" alt="A partially assembled lathe cross slide" title="WIP Cross Slide" loading="lazy">
     <figcaption class="caption">Check out those one-of-one custom fasteners! I turned down a bunch of round-head Torx screws because it was what I could get on Amazon with next-day shipping.</figcaption>
 </figure>
 
 <figure>
-    <img src="/assets/images/lathe_wip_control_cabinet.png" alt="Several electronic components wired together atop a metal panel" title="Control Cabinet Demo Assembly" loading="lazy">
+    <img src="/assets/images/Lathe/lathe_wip_control_cabinet.png" alt="Several electronic components wired together atop a metal panel" title="Control Cabinet Demo Assembly" loading="lazy">
     <figcaption class="caption">I built this control cabinet before I had figured out that terminal blocks and other low-voltage control wiring accessories are functionally commodity items and readily available at bargain prices in the DigiKey and AutomationDirect catalogs. Please excuse the use of no-name mystery stuff.</figcaption>
 </figure>
 

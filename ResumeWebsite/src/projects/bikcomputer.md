@@ -1,7 +1,7 @@
 ---
 title: "GPS Bike Computer"
 description: "I will finish it eventually"
-image: "/assets/images/bikeComEarlyDemo.jpeg"
+image: "/assets/images/BikeComputer/bikeComEarlyDemo.jpeg"
 permalink: "/projects/bikecomputer/"
 layout: "projectLayout.html"
 priority: 2
@@ -19,7 +19,7 @@ So, I figured I'd get some time with the ESP32 ecosystem, build my own—one tha
 
 ## April 2026
 
-<img src="/assets/images/bikeComEarlyDemo.jpeg" alt="Two COTS circuit boards lying on a piece of bubble wrap." title="on the bubblewrap." loading="lazy"> 
+<img src="/assets/images/BikeComputer/bikeComEarlyDemo.jpeg" alt="Two COTS circuit boards lying on a piece of bubble wrap." title="on the bubblewrap." loading="lazy"> 
 
 I recently learned that my original codebase was trashing my GPS speedometer results by repeatedly failing to interpret GPS data because I was handling tasks in a really dumb way. Scooting on over to FreeRTOS and having GPS parsing be its own little routine almost entirely eliminated all the issues I was having with the GPS module. The speedometer is spot-on, with a very reasonable 2-second lag. 
 

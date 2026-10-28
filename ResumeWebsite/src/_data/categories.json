@@ -1,6 +1,18 @@
 [
-  { "id": "Production", "name": "Production" },
-  { "id": "Machines", "name": "Machines" },
-  { "id": "Stationery", "name": "Stationery" },
-  { "id": "Mechatronics", "name": "Mechatronics" }
+  {
+    "id": "Products",
+    "name": "Products"
+  },
+  {
+    "id": "Machines",
+    "name": "Machines"
+  },
+  {
+    "id": "Stationery",
+    "name": "Stationery"
+  },
+  {
+    "id": "Mechatronics",
+    "name": "Mechatronics"
+  }
 ]
