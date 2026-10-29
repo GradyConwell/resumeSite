@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microjet Research - Grady Conwell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,100..900,0..100,0..1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
+
+    <!-- Inline script to show tour ribbon if tour is active -->
+    <script>
+        try {
+            if (sessionStorage.getItem('tour_active') === '1') {
+                document.documentElement.classList.add('in-tour');
+            }
+        } catch (e) {}
+    </script>
+
+        <!-- Google tag (gtag.js) - skipped on local/dev hosts so testing doesn't pollute analytics -->
+    <script>
+      (function () {
+        var h = location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '[::1]' ||
+          /\.(local|localhost|test)$/.test(h) || /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h);
+        if (isLocal) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-83CZPWDMGD');
+      })();
+    </script>
+
+
+    
+    <!-- KaTeX renders the $$...$$ equations on pages with math: true in their front matter -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.querySelector('.project-article'))"></script>
+    
+</head>
+<body class="project-page-body">
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!-- Left Section: Logo and Navigation Links -->
+        <div class="navbar-left">
+            <div class="navbar-logo">
+                <a href="/#">
+                    <img src="/assets/icons/goopedLogo.svg" alt="Logo" class="logo-svg" />
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="/#about">
+                        <img src="/assets/icons/about-icon.svg" alt="About Icon" class="navbar-icon" />
+                        <span class="navbar-text">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#projects">
+                        <img src="/assets/icons/projects-icon.svg" alt="Projects Icon" class="navbar-icon" />
+                        <span class="navbar-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item-photos">
+                    <a href="/photos/">
+                        <img src="/assets/icons/photos-icon.svg" alt="Photos Icon" class="navbar-icon" />
+                        <span class="navbar-text">Photos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact">
+                        <img src="/assets/icons/contact-icon.svg" alt="Contact Icon" class="navbar-icon" />
+                        <span class="navbar-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Guided Tour Persistent Ribbon (Shown when visiting via /guided-tour/) -->
+<aside id="tour-ribbon" class="tour-ribbon" style="display: none;" aria-label="Guided Tour Navigation">
+    <div class="tour-ribbon-inner">
+        <a href="/guided-tour/" class="tour-ribbon-back">← Back to Guided Tour</a>
+        <span class="tour-ribbon-divider">·</span>
+        <span id="tour-ribbon-label" class="tour-ribbon-label">Curated Tour</span>
+        <div class="tour-ribbon-actions">
+            <a href="#" id="tour-ribbon-prev" class="tour-ribbon-nav-btn" style="display: none;">← Prev</a>
+            <a href="#" id="tour-ribbon-next" class="tour-ribbon-nav-btn tour-ribbon-next" style="display: none;">Next →</a>
+            <button type="button" id="tour-ribbon-dismiss" class="tour-ribbon-dismiss" title="Exit Guided Tour" aria-label="Exit Guided Tour">✕</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Contact Modal Dialog -->
+<dialog id="contact-dialog" class="contact-dialog">
+    <div class="contact-dialog-inner">
+        <button type="button" id="modal-close-btn" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <!-- State 1: Email Capture Form -->
+        <div id="modal-form-section" class="modal-state-section">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Enter your email below to get in touch with me and view direct contact details.</p>
+            <form id="contact-email-form" class="modal-form">
+                <input type="text" id="contact-honeypot" name="contact-hp" class="hp-field" autocomplete="off" tabindex="-1" aria-hidden="true" />
+                <input type="email" id="contact-email-input" name="email" placeholder="Your email address" required class="modal-input" />
+                <button type="submit" class="modal-submit-btn">Reveal Contact Info</button>
+            </form>
+        </div>
+
+        <!-- State 2: Unlocked Direct Contact Card -->
+        <div id="modal-unlocked-section" class="modal-state-section" style="display: none;">
+            <h2 class="modal-title">Get in Touch</h2>
+            <p class="modal-desc">Feel free to reach out via email:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method-row">
+                    <span class="contact-method-label">Email:</span>
+                    <a id="unlocked-email-value" href="mailto:gradyconwell@icloud.com" class="contact-method-link">gradyconwell@icloud.com</a>
+                    <button type="button" id="copy-email-btn" class="modal-copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Tour Ribbon Controller -->
+<script>
+(function() {
+    const isTourActive = sessionStorage.getItem('tour_active') === '1';
+    const ribbon = document.getElementById('tour-ribbon');
+    if (!ribbon) return;
+
+    if (!isTourActive || window.location.pathname.replace(/\/$/, '') === '/guided-tour') {
+        ribbon.style.display = 'none';
+        return;
+    }
+
+    ribbon.style.display = 'block';
+
+    const tourStops = [
+        { url: '/projects/lathe/', title: 'Turning Center for Ants.' },
+        { url: '/projects/copper/', title: 'Hardware Engineering at Copper' },
+        { url: '/projects/pencils/', title: 'Pencil Replacement Parts' },
+        { url: '/projects/router/', title: 'Benchtop CNC Router' },
+        { url: '/projects/fp2/', title: 'FP2' },
+        { url: '/projects/printer/', title: 'Three-D-Printer' },
+        { url: '/projects/anklebiter/', title: 'AnkleBiter (2023)' },
+        { url: '/projects/bikecomputer/', title: 'GPS Bike Computer' }
+    ];
+
+    const currentPath = window.location.pathname.replace(/\/$/, '') + '/';
+    let stopIndex = -1;
+    for (let i = 0; i < tourStops.length; i++) {
+        if (tourStops[i].url === currentPath) {
+            stopIndex = i;
+            break;
+        }
+    }
+
+    const label = document.getElementById('tour-ribbon-label');
+    const prevBtn = document.getElementById('tour-ribbon-prev');
+    const nextBtn = document.getElementById('tour-ribbon-next');
+    const dismissBtn = document.getElementById('tour-ribbon-dismiss');
+
+    if (stopIndex !== -1) {
+        if (label) label.textContent = 'Stop ' + (stopIndex + 1) + ' of ' + tourStops.length + ': ' + tourStops[stopIndex].title;
+        if (stopIndex > 0 && prevBtn) {
+            prevBtn.href = tourStops[stopIndex - 1].url;
+            prevBtn.style.display = 'inline-block';
+        }
+        if (stopIndex < tourStops.length - 1 && nextBtn) {
+            nextBtn.href = tourStops[stopIndex + 1].url;
+            nextBtn.textContent = 'Next Stop →';
+            nextBtn.style.display = 'inline-block';
+        } else if (nextBtn) {
+            nextBtn.href = '/guided-tour/';
+            nextBtn.textContent = 'Tour Directory →';
+            nextBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (label) label.textContent = 'Guided Tour Active';
+        if (nextBtn) {
+            nextBtn.href = tourStops[0].url;
+            nextBtn.textContent = 'Resume Tour →';
+            nextBtn.style.display = 'inline-block';
+        }
+    }
+
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            sessionStorage.removeItem('tour_active');
+            ribbon.style.display = 'none';
+        });
+    }
+})();
+</script>
+
+<script src="/assets/scripts/form-handler.js"></script>
+
+    <main class="content-container project-container">
+        
+            <p class="project-plain-date">2026</p>
+        
+
+        <article class="project-article">
+            <h1>Microjet Research</h1>
+<h2></h2>
+<p>For my undergraduate capstone project, I am part of a team of four students engineering a sample delivery system for the <a href="https://lcls.slac.stanford.edu/instruments/mfx">Macromolecular Femtosecond Crystallography (MFX) instrument</a> at SLAC National Accelerator Laboratory. We've decided to focus on studying how acoustic forcing in air can enhance microjet breakup and refine droplet stream characteristics.</p>
+<h2>What is a microjet?</h2>
+<p>Microjets are very thin streams of liquid, typically a few tens of microns in diameter. By perturbing the nozzle with an actuator, we can control how the jet breaks up into droplets, and trigger breakup at fairly predicatble locations down the length of the jet.</p>
+<h2>What is acoustic forcing?</h2>
+<p>Acoustic forcing, in this context, involves using a transducer to generate ultrasonic sound waves that perturb the microjet. These sound waves apply restoring forces to specific locations, which helps control the breakup of the microjet and refine the droplet velocity.  This is similar to the styrofoam bead levitators you might have seen before.</p>
+<h2>Simulation</h2>
+<p>These small droplet streams are, as one might expect, governened by the navier-stokes equations. We could solve these equations with traditional CFD software, but this is annoying and time consuming.</p>
+<p>Thankfully, there exists a <a href="https://arxiv.org/abs/1011.0320">1D &quot;lubrication approximation&quot;</a> that has been empirically verified against droplet streams of similar sizes to those required for MFX.</p>
+<p>The partial differential equations of this model are:</p>
+<div class="math">
+$$\frac{\partial v}{\partial t} + v v' = -\frac{\gamma}{\rho_\ell} C' + \frac{3\mu}{\rho_\ell} \frac{\left(h^2 v'\right)'}{h^2}$$
+$$C = \frac{1}{R_1} + \frac{1}{R_2} = \frac{1}{h\sqrt{1 + h'^2}} - \frac{h''}{\left(1 + h'^2\right)^{3/2}}$$
+$$\frac{\partial h^2}{\partial t} + \left(v h^2\right)' = 0$$
+</div>
+<p>where <em>h(z, t)</em> is the jet radius, <em>v(z, t)</em> is the axial velocity, <em>C</em> is the interface curvature, and a prime is a derivative along the jet axis <em>z</em>. The first equation is momentum (inertia balanced against surface tension and viscosity), and the last is conservation of mass.</p>
+<p>The jet starts as a hemispherical cap on the nozzle, and the nozzle radius is perturbed very slightly at the fastest growing Rayleigh wavelength to kick off breakup. The nozzle velocity is modulated with it to keep the flow rate constant:</p>
+<div class="math">
+$$h(z, 0) = \sqrt{h_0^2 - z^2}$$
+$$h_\text{nozzle}(t) = h_0 + \delta \sin(2\pi f t), \qquad v_\text{nozzle}(t) = \frac{h_0^2\, v_\text{jet}}{h_\text{nozzle}^2}$$
+$$f = \frac{v_\text{jet}}{\lambda_\text{opt}}, \qquad \lambda_\text{opt} = 2\sqrt{2}\,\pi h_0, \qquad \delta / h_0 \approx 0.005$$
+</div>
+<p>A drop pinches off when the thinnest neck of the jet drops below 100 nm, and two objects coalesce when they come within 0.005 <em>h</em><sub>0</sub> of each other.</p>
+<p>And the dimensionless parameters are:</p>
+<div class="math">
+$$\mathrm{We} = \frac{\rho_\ell\, r\, v^2}{\gamma} > 4, \qquad \mathrm{We}_g = \frac{\rho_g}{\rho_\ell}\,\mathrm{We} < 0.2$$
+$$\mathrm{Oh} = \frac{\mu}{\sqrt{\gamma\, \rho_\ell\, r}}, \qquad \mathrm{Re} = \frac{\rho_\ell\, v\, r}{\mu} = \frac{\sqrt{\mathrm{We}}}{\mathrm{Oh}}, \qquad \tau_c = \sqrt{\frac{\rho_\ell\, r^3}{\gamma}}$$
+</div>
+<p>The Weber number (We) compares inertia to surface tension. The gas Weber number (We<sub>g</sub>) does the same for the surrounding air. The Ohnesorge number (Oh) compares viscosity to inertia and surface tension, and the capillary time (<em>τ<sub>c</sub></em>) is the natural timescale of the breakup.</p>
+<p>I opted to implement the solver in C++ using the incredibly fast <a href="https://bluescarni.github.io/heyoka/">Heyoka ODE library</a>, which, as far as I can tell, is the best in class for solving systems of ODEs with event detection. This was a happy accident, considering that I chose it solely because C++ is the language I am most familiar with, and it was the first ODE solver that I came across.</p>
+<figure>
+    <img src="/assets/images/microJet/sebulbaFast.png" alt="sebulbaFast" title="sebulbaFast" loading="lazy"> 
+    <figcaption class="caption">Now this is podracing!</figcaption>
+</figure>
+<p>I initially wrote a really elegant solver that didn't include non-dimensionalization, which amounted to less than 100 lines of C++, but barely worked, and would quickly diverge for most inputs. Lesson learned I guess, non-dimensionalization is important.</p>
+<p>The current solver measures lengths in <em>h</em><sub>0</sub>, time in <em>τ<sub>c</sub></em>, and velocity in <em>h</em><sub>0</sub>/<em>τ<sub>c</sub></em>, and works with the squared radius <em>a</em> = <em>h</em><sup>2</sup>, which keeps the equations well behaved at the rounded tip of the jet where <em>h</em> → 0. Written so that mass and momentum are conserved exactly, the equations become:</p>
+<div class="math">
+$$\frac{\partial a}{\partial t} + \left(a v\right)' = 0$$
+$$\frac{\partial (a v)}{\partial t} + \left(a v^2\right)' = G' + 3\,\mathrm{Oh}\left(a v'\right)'$$
+$$G = \frac{a^2 \left(1 + \tfrac{1}{2} a''\right)}{\left(a + \tfrac{1}{4} a'^2\right)^{3/2}} = \frac{h}{\sqrt{1 + h'^2}} + \frac{h^2 h''}{\left(1 + h'^2\right)^{3/2}}$$
+</div>
+<p>where <em>G</em> is the surface tension pulling on a cross-section of the jet (it satisfies <em>G</em>′ = −<em>h</em><sup>2</sup><em>C</em>′). The nozzle becomes <em>h</em> = 1 + <em>δ</em> sin(<em>ωt</em>) and <em>v</em> = <em>U</em> / <em>h</em><sup>2</sup>, with <em>U</em> = √We and <em>ω</em> = <em>U</em> / √2. The jet is split into 1000 cells that stretch evenly from the nozzle to the tip, and the tip moves with the liquid, so the jet length obeys d<em>L</em>/d<em>t</em> = <em>v</em><sub>tip</sub>.</p>
+<p>I am now iterating on a proper solver, and the preliminary results so far are pretty promising. I got bold enough to even add in the acoustic forcing terms, and while I'm maybe 50/50 on whether the acoustic forcing model is even physically accurate, the underlying simulation pretty convincingly reproduces the <a href="https://arxiv.org/abs/1011.0320">experimental results described in literature</a>.</p>
+<p>The acoustic model is a standing wave in the air along the jet axis, with pressure nodes half an acoustic wavelength apart that slide along with the drops. The acoustic period (about 1 µs) is short compared to the capillary time (about 10 µs), so only the time-averaged radiation forces are kept:</p>
+<div class="math">
+$$E = \frac{p_A^2}{4 \rho_g c_g^2}, \qquad k = \frac{\pi}{\Delta}, \qquad f_\text{ac} = \frac{c_g}{2\Delta}, \qquad \xi = z - z_0 - u_p t$$
+</div>
+<p>where <em>E</em> is the acoustic energy density, <em>p<sub>A</sub></em> is the peak acoustic pressure, <em>ρ<sub>g</sub></em> and <em>c<sub>g</sub></em> are the density and speed of sound of the air, <em>Δ</em> is the spacing between pressure nodes, <em>u<sub>p</sub></em> is how fast the nodes move, and <em>ξ</em> is the distance ahead of a node.</p>
+<p>On the jet, the radiation pressure acts across the slender cross-section just like the capillary pressure does, so it <em>should</em> add a body acceleration to the momentum equation:</p>
+<div class="math">
+$$p_\text{rad} = \frac{\langle p_1^2 \rangle}{2 \rho_g c_g^2} - \frac{\rho_g \langle u_1^2 \rangle}{2} = -E \cos(2 k \xi)$$
+$$g_\text{jet} = -\frac{1}{\rho_\ell} \frac{\partial p_\text{rad}}{\partial z} = -\frac{2 k E}{\rho_\ell} \sin(2 k \xi)$$
+$$\frac{\partial (a v)}{\partial t} + \left(a v^2\right)' = G' + 3\,\mathrm{Oh}\left(a v'\right)' + a\, g_\text{jet}$$
+</div>
+<p>After pinch-off, each drop feels the Gor'kov force on a small sphere, with a correction that averages the force over the drop's volume (Gor'kov assumes the drop is much smaller than the wavelength, which these drops aren't):</p>
+<div class="math">
+$$U = V E \left[ f_1 \sin^2(k \xi) - \tfrac{3}{2} f_2 \cos^2(k \xi) \right]$$
+$$\frac{d^2 z}{dt^2} = -\frac{3 \Phi k E}{\rho_\ell} \sin(2 k \xi) \cdot \frac{3\, j_1(2 k R)}{2 k R}, \qquad \Phi = \frac{f_1}{3} + \frac{f_2}{2}$$
+$$f_1 = 1 - \frac{\rho_g c_g^2}{\rho_\ell c_\ell^2}, \qquad f_2 = \frac{2 (\rho_\ell - \rho_g)}{2 \rho_\ell + \rho_g}$$
+</div>
+<p>where <em>R</em> is the drop radius, <em>V</em> is its volume, <em>Φ</em> is the acoustic contrast factor, and <em>j</em><sub>1</sub> is the first-order spherical Bessel function (trigonometry). Both accelerations point toward the nearest pressure node, so the nodes act as potential wells that liquid gathers in and drops get trapped in. Air drag isn't modeled, so a trapped drop just oscillates about its node forever.</p>
+<p>While I didn't use agentic AI while building my solver, I figured that I should probably get more experience working with Skynet anyway, and had Claude build a rendering tool for the simulation. I drew it a picture on some paper, provided it with the solver's output data, and let it rip. Of course, the rendering tool is written in Python because LLMs love Python. There's an example figure below. Pretty neat, if I do say so myself.</p>
+<figure>
+    <img src="/assets/images/microJet/jetProfile_294-329us.png" alt="jetProfile_294-329us" title="jetProfile_294-329us" loading="lazy"> 
+    <figcaption class="caption">Early simulation results that closely match literature.</figcaption>
+</figure>
+
+        </article>
+
+        <nav class="project-footer-nav" aria-label="Project navigation">
+            <a href="/#projects" class="project-nav-back">← Back to All Projects</a>
+        </nav>
+    </main>
+
+    <footer
+    style="text-align: center; background-color: #3E6E8C; background-image: url('/assets/misc/subtleGlitter.svg'); color: white; padding: 12px 10px;">
+    <p style="margin: 0 0 4px 0;">© 2026 Grady Conwell</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+    <!-- Google tag (gtag.js) - skipped on local/dev hosts so testing doesn't pollute analytics -->
+    <script>
+      (function () {
+        var h = location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '[::1]' ||
+          /\.(local|localhost|test)$/.test(h) || /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h);
+        if (isLocal) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-83CZPWDMGD');
+      })();
+    </script>

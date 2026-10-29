@@ -4,6 +4,10 @@
     "name": "Products"
   },
   {
+    "id": "Research",
+    "name": "Research"
+  },
+  {
     "id": "Machines",
     "name": "Machines"
   },

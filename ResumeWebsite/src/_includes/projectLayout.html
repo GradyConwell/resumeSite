@@ -17,15 +17,15 @@
         } catch (e) {}
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CZPWDMGD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    {% include "analytics.html" %}
 
-      gtag('config', 'G-83CZPWDMGD');
-    </script>
+    {% if math %}
+    <!-- KaTeX renders the $$...$$ equations on pages with math: true in their front matter -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.querySelector('.project-article'))"></script>
+    {% endif %}
 </head>
 <body class="project-page-body">
     {% include "navbar.html" %}
