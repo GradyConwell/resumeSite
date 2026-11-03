@@ -16,10 +16,10 @@ math: true
 For my undergraduate capstone project, I am part of a team of four students engineering a sample delivery system for the [Macromolecular Femtosecond Crystallography (MFX) instrument](https://lcls.slac.stanford.edu/instruments/mfx) at SLAC National Accelerator Laboratory. We've decided to focus on studying how acoustic forcing in air can enhance microjet breakup and refine droplet stream characteristics. 
 
 ## What is a microjet? 
-Microjets are very thin streams of liquid, typically a few tens of microns in diameter. By perturbing the nozzle with an actuator, we can control how the jet breaks up into droplets, and trigger breakup at fairly predicatble locations down the length of the jet. 
+Microjets are very thin streams of liquid, typically a few tens of microns in diameter. By perturbing the nozzle with an actuator, we can control how the jet breaks up into droplets, and trigger breakup at fairly predictable locations along the length of the jet. 
 
 ## What is acoustic forcing?
-Acoustic forcing, in this context, involves using a transducer to generate ultrasonic sound waves that perturb the microjet. These sound waves apply restoring forces to specific locations, which helps control the breakup of the microjet and refine the droplet velocity.  This is similar to the styrofoam bead levitators you might have seen before.
+Acoustic forcing, in this context, involves using a transducer to generate ultrasonic sound waves that perturb the microjet and resultant droplets. These sound waves apply restoring forces at known locations, which helps control the breakup of the microjet and refine the droplet velocity.  This is similar to the styrofoam bead levitators you might have seen before.
 
 ## Simulation
 These small droplet streams are, as one might expect, governened by the navier-stokes equations. We could solve these equations with traditional CFD software, but this is annoying and time consuming. 
@@ -75,7 +75,7 @@ $$G = \frac{a^2 \left(1 + \tfrac{1}{2} a''\right)}{\left(a + \tfrac{1}{4} a'^2\r
 
 where *G* is the surface tension pulling on a cross-section of the jet (it satisfies *G*′ = −*h*<sup>2</sup>*C*′). The nozzle becomes *h* = 1 + *δ* sin(*ωt*) and *v* = *U* / *h*<sup>2</sup>, with *U* = √We and *ω* = *U* / √2. The jet is split into 1000 cells that stretch evenly from the nozzle to the tip, and the tip moves with the liquid, so the jet length obeys d*L*/d*t* = *v*<sub>tip</sub>.
 
-I am now iterating on a proper solver, and the preliminary results so far are pretty promising. I got bold enough to even add in the acoustic forcing terms, and while I'm maybe 50/50 on whether the acoustic forcing model is even physically accurate, the underlying simulation pretty convincingly reproduces the [experimental results described in literature](https://arxiv.org/abs/1011.0320).
+Preliminary results from the solver have been fairly promising thus far. I even got bold enough to add in the acoustic forcing terms, and while I'm only about 50/50 on whether the acoustic forcing model is physically accurate, the underlying simulation pretty convincingly reproduces the [experimental results described in literature](https://arxiv.org/abs/1011.0320).
 
 The acoustic model is a standing wave in the air along the jet axis, with pressure nodes half an acoustic wavelength apart that slide along with the drops. The acoustic period (about 1 µs) is short compared to the capillary time (about 10 µs), so only the time-averaged radiation forces are kept:
 
